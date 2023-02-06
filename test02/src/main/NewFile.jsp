@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-오오오오옹오오ㅗ
+오오오오옹오오
 </body>
 </html>
