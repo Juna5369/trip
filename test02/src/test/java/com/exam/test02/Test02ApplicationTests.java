@@ -8,6 +8,7 @@ class Test02ApplicationTests {
 
 	@Test
 	void contextLoads() {
+		String adasdasd;
 	}
 
 }
