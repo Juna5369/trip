@@ -27,7 +27,7 @@
             <!-- 슬라이드 시작 -->
                 <div id="slide_wrap">
                     <div id="slide1">
-                        <!-- 슬라이드1 제목ㅎ -->
+                        <!-- 슬라이드1 제목ㅎㅇㅇ -->
                         <div id="slide_title">
                             <h3>22년 일본 여행지</h3>
                         </div>
