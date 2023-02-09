@@ -15,7 +15,7 @@
 <%@include file="../header.jsp" %>
   <section class="main">
         <div id="wrap">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-    <!-- 위쪽 이벤트창 시작 -->
+    <!-- 위쪽 이벤트창 시작  -->
             <div id="list_event">
                 
                 <img src="resources/img/event1.jpg">
