@@ -13,7 +13,7 @@
 				<ul class="bottom_menu">
 					<li>회사소개</li>
 					<li>|</li>
-					<li>이용약관</li>
+					<li>이용약관</li> 
 					<li>|</li>
 					<li>개인정보처리방침</li>
 					<li>|</li>

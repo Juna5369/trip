@@ -17,7 +17,7 @@
 			</div>
 			<span id="red_line"></span><!--nav line 빨간줄--> 
 			<ul class="nav_list">
-				<!-- 해외/테마/국내 nav_list -->
+				<!-- 해외/테마/국내 nav_list  -->
 				<li><a href="#">해외</a>
 					<div class="dropdown_nav">
 						<!-- 해외 part dropdown-->

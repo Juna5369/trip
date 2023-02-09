@@ -14,7 +14,7 @@
 				<c:if test="${sessionScope.id != null }">
 					<ul id="top_menu">
 						<li><a href="logout.do">로그아웃</a></li>
-						<li>|</li>
+						<li>|</li> 
 						<li>${sessionScope.id }님환영합니다.</li>
 					</ul>
 				</c:if>
