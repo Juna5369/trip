@@ -12,7 +12,7 @@
     <script src="resources/js/navjs.js"></script>
 </head>
 <body>
-<%@include file="header.jsp" %>
+<%@include file="../header.jsp" %>
   <section class="main">
         <div id="wrap">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     <!-- 위쪽 이벤트창 시작 -->
@@ -265,6 +265,6 @@
             </div>
         </div>
     </section>
-  <%@include file="footer.jsp" %>
+  <%@include file="../footer.jsp" %>
 </body>
 </html>
