@@ -8,7 +8,7 @@
 <title>header</title>
 </head>
 <body>
-	<header> <!-- header   -->
+	<header> <!-- header -->
 		<div class="box">
 			<div class="header_menu">
 				<c:if test="${sessionScope.id != null }">
