@@ -19,12 +19,6 @@ public class IMemberController {
 	@Autowired
 	IMemberMapper mapper;
 
-	@GetMapping("/")
-	public String root() {
-
-		return "main";
-	}
-
 	@GetMapping("/regMember")
 	public void regMember1() {
 
