@@ -115,3 +115,13 @@ table{
 	margin:0 auto;
 	
 }
+#find{
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+	margin: 0 auto;
+}
+.form2{
+	display:none;
+}

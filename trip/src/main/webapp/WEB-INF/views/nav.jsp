@@ -7,12 +7,13 @@
 <title>nav</title>
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 <script src="js/nav.js"></script>
+
 </head>
 <body>
 	<nav id="nav"><!-- nav -->
 		<div class="box">
 			<div class="logo">
-				<a href="#"> <img class="logo_img"
+				<a href="/"> <img class="logo_img"
 					src="/img/geogineoddae_logo.png">
 				</a>
 			</div>

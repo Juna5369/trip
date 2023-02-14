@@ -49,7 +49,7 @@
 		
 		<tr class="emailtr">
 			<td id="content">이메일</td>
-			<td id="input"><div id="wholeemail">
+			<td id="input"><div class="wholeemail">
 			<input type="text"name="email" id="email">@<input type="text" name="email2" id="email2"><select id="select" class="input">
 												<option>직접입력</option>
 												<option>naver.com</option>

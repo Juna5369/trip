@@ -14,9 +14,22 @@
   		SELECT COUNT(*) FROM member WHERE id=#{mid} AND pw=#{mpw}
   	</select>
   	<select id="findId" resultType="String">
-  	
+  		SELECT id FROM member WHERE name=#{fname} AND tel=#{ftel}
   	</select>
   	<select id="findPw" resultType="String">
-		  	
+		SELECT pw FROM member WHERE id=#{param1} AND email=#{param2} 	
+  	</select>
+  	<select id="selectOne" resultType="com.project.trip.vo.MemberVO">
+  		SELECT * FROM member WHERE id=#{selId}
+  	</select>
+  	<update id="updateMember">
+  		UPDATE member SET pw=#{pw} , name=#{name} , birth=#{birth},email=#{email},email_check=#{email_check}, address=#{address} ,address_detail=#{address_detail},
+  		postalcode=#{postalcode} WHERE id=#{id}
+  	</update>
+  	<delete id="deleteMember">
+		DELETE FROM member WHERE id=#{delId}  	
+  	</delete>
+  	<select id="getReservation" resultType="com.project.trip.vo.ReserVO">
+  		SELECT * FROM reservation WHERE id=#{reserId}
   	</select>
 </mapper>

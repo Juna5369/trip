@@ -14,6 +14,20 @@
 	font-size: 20px;
 	width: 480px;
 }
+.wholeemail{
+	display: inline;
+	width: 500px;
+	height: 51px;
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";	
+}
+.wholeemail input{
+	width:351px;
+	height: 51px;
+	
+}
 
 #btn1 {
 	font-family: 'UhBeeSe_hyun';
@@ -68,15 +82,7 @@
 	font-family: "jalnan";
 }
 
-#email {
-	display: inline;
-	width: 351px;
-	height: 51px;
-	font-family: 'UhBeeSe_hyun';
-	font-family: 'Pretendard-Regular';
-	src: url("/fonts/Jalnan.ttf");
-	font-family: "jalnan";
-}
+
 
 form {
 	margin: 0 auto;
