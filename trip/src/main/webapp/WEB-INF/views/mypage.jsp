@@ -19,7 +19,7 @@
 			<p class="txt_info">
 				<span style="color: green; font-weight: bold;">
 					${sessionScope.id }고객님,</span><span>거긴어때를 방문해 주셔서 감사합니다. </span><br>
-				<span>고객님의 즐거운 여행을 위해서 항상 최선을 다하겠습니다. </span>
+				<span>고객님의 즐거운 여행을 위해서 항상 최선을 다하겠습니다.</span>
 			</p>
 			<p class="txt_contact">
 				<span>${mv.email }</span> <span>${mv.tel }</span>
