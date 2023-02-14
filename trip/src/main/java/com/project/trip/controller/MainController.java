@@ -26,5 +26,20 @@ public class MainController {
 		List<ProductVO> list = mapper.getList();
 		model.addAttribute("list", list);
 	return "prod_list/japan_hongkong";
-}
+	}
+	
+	@GetMapping("/pay")
+	public void pay() {
+		
+	}
+	
+	@GetMapping("/success")
+	public void success() {
+		
+	}
+	
+	@GetMapping("/cust_center")
+	public void customer_center() {
+		
+	}
 }

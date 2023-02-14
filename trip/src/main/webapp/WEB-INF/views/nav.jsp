@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>nav</title>
+<script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 <script src="js/nav.js"></script>
 </head>
 <body>
