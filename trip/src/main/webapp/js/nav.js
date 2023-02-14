@@ -8,7 +8,7 @@ $(document).ready(function() {
         $(e.target).parent().find('div.dropdown_nav').stop();
         $(e.target).parent().find('div.dropdown_nav').slideDown('fast');
         $(e.target).parent().find('div.dropdown_nav').css("display", "block");
-        $("#nav").css("border-bottom", "1px solid #ccc");
+        //$("#nav").css("border-bottom", "1px solid #ccc");
         if($(e.target).text()=='해외'){
             $("#red_line").css("visibility", "visible");
             $("#red_line").css("left", "310px");
@@ -28,7 +28,7 @@ $(document).ready(function() {
         $(e.target).parent().find('div.dropdown_nav').slideUp('fast');
         $(e.target).parent().find('div.dropdown_nav').hide();
         $("#red_line").css("visibility", "hidden");
-        $("#nav").css("border-bottom", "transparent");
+        //$("#nav").css("border-bottom", "transparent");
     });
     lnb2.mouseleave(function(e){
         lnb2.stop();
