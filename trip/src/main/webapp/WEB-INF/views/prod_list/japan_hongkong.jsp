@@ -6,13 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <!-- <link rel="stylesheet" href="css/packagelist.css"> -->
     <script src="resources/js/jquery.js"></script>
     <script src="resources/js/navjs.js"></script>
 </head>
 <body>
 <%@include file="../header.jsp" %>
+<%@include file="../nav.jsp" %>
   <section class="main">
         <div id="wrap">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
     <!-- 위쪽 이벤트창 시작  -->
