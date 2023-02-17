@@ -32,4 +32,14 @@
   	<select id="getReservation" resultType="com.project.trip.vo.ReserVO">
   		SELECT * FROM reservation WHERE id=#{reserId}
   	</select>
+  	<select id="getQnA" resultType="qnavo">
+  		SELECT * FROM qna WHERE id=#{qid}
+  	</select>
+  	<select id="getLike" resultType="com.project.trip.vo.LikeVO">
+  		SELECT * FROM like_tbl WHERE id=#{lid}
+  	</select>
+  	<select id="getProduct" resultType="com.project.trip.vo.ProductVO">
+  		SELECT * FROM product WHERE prod_no=#{prod_no}
+  	
+  	</select>
 </mapper>
