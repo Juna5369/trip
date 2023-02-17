@@ -1,5 +1,6 @@
 package com.project.trip.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.trip.mapper.IMemberMapper;
+import com.project.trip.vo.LikeVO;
 import com.project.trip.vo.MemberVO;
+import com.project.trip.vo.ProductVO;
+import com.project.trip.vo.QNAVO;
 import com.project.trip.vo.ReserVO;
 
 @Controller
@@ -25,10 +29,19 @@ public class MyPageController {
 	public void mypage(Model model,String id) {
 		
 		MemberVO mv = mapper.selectOne(id);
-		
-		
-		List<ReserVO> list = mapper.getReservation(id);
-		model.addAttribute("list", list);
+		List<ReserVO> rlist = mapper.getReservation(id);
+		List<QNAVO> qlist =mapper.getQnA(id);
+		List<LikeVO> likeList = mapper.getLike(id);
+		List<ProductVO> plist = new ArrayList<>() ;
+		for(int i =0;i<likeList.size();i++) {
+			int product_no=likeList.get(i).getProd_no();
+			ProductVO pv = mapper.getProduct(product_no);
+			
+			plist.add(pv);
+		}
+		model.addAttribute("plist",plist);
+		model.addAttribute("rlist", rlist);
+		model.addAttribute("qlist",qlist);
 		model.addAttribute("mv",mv);
 		
 	}
@@ -57,5 +70,12 @@ public class MyPageController {
 		String out = "<script>alert('회원탈퇴 완료');location.href='/';</script>";
 		return out;
 	}
+	@GetMapping("/qna_detail")
+	public String qnaDetail() {
+		
+		
+		return"";
+	}
+	
 	
 }
