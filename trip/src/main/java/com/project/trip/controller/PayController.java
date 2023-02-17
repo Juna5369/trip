@@ -13,7 +13,7 @@ import com.project.trip.vo.KakaoReadyResponse;
 import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
-public class payController {
+public class PayController {
 	
 	@Autowired
 	private final KakaoPayService kakaoPayService;

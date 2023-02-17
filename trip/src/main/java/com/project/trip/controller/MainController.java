@@ -6,26 +6,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.trip.mapper.CustomerCenterMapper;
 import com.project.trip.mapper.ProductMapper;
+import com.project.trip.vo.NoticeVO;
 import com.project.trip.vo.ProductVO;
 
 @Controller
 public class MainController {
-	
+
 	@Autowired
-	ProductMapper mapper;
+	CustomerCenterMapper cMapper;
 	
 	@GetMapping("/")
 	public String root() {
 		return "index";
-	}
-	
-	@GetMapping("/list")
-	public String japanList(Model model) {
-		List<ProductVO> list = mapper.getList();
-		model.addAttribute("list", list);
-	return "prod_list/japan_hongkong";
 	}
 	
 	@GetMapping("/pay")
@@ -39,7 +35,28 @@ public class MainController {
 	}
 	
 	@GetMapping("/cust_center")
-	public void customer_center() {
+	public String customer_center() {
+		return "/cust_center/center_main";
+	}
+	
+	@GetMapping("/faq")
+	public String faq() {
+		return "/cust_center/faq";
+	}
+	
+	@GetMapping("/notice")
+	public String notice() {
+		return "/cust_center/notice";
+	}
+	
+	@GetMapping("/qna")
+	public String qna() {
+		return "/cust_center/qna";
+	}
+	
+	@GetMapping("/getNoticeList.do")
+	public @ResponseBody List<NoticeVO> getList() {
 		
+		return cMapper.getNoticeList();
 	}
 }

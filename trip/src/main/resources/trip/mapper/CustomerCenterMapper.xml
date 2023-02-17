@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.project.trip.mapper.CustomerCenterMapper">
+  	<resultMap type="noticevo" id="noticeMap">
+  		<id column="not_no" property="not_no"/>
+  		<result column="not_title" property="not_title"/>
+  		<result column="not_date" property="not_date"/>
+  		<result column="not_contents" property="not_contents"/>
+  	</resultMap>
+  	
+  	<insert id="insert">
+  		INSERT INTO notice (not_title, not_date, not_contents) VALUES (#{not_title}, #{not_date}, #{not_tel})
+  	</insert>
+  	
+  	<select id="getNoticeList" resultType="noticevo">
+  		SELECT * FROM notice ORDER BY not_no DESC
+  	</select>
+  
+	<select id="getQNAList" resultType="qnavo">
+		SELECT * FROM qna ORDER BY qna_no DESC
+	</select>  
+  
+  	<select id="getFAQList" resultType="faqvo">
+		SELECT * FROM faq ORDER BY faq_no DESC
+	</select>
+  
+  </mapper>

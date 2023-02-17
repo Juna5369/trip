@@ -7,7 +7,6 @@
 <title>nav</title>
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 <script src="js/nav.js"></script>
-
 </head>
 <body>
 	<nav id="nav"><!-- nav -->
@@ -17,7 +16,12 @@
 					src="/img/geogineoddae_logo.png">
 				</a>
 			</div>
-			<span id="red_line"></span><!--nav line 빨간줄--> 
+			<span id="red_line"></span><!--nav line 빨간줄-->
+			<div class="right_nav">
+				<div class="like_icon"><a href="#">찜 목록</a></div>
+				<div class="res_icon"><a href="#">예약 내역</a></div>
+				<div class="myp_icon"><a href="#">내 정보</a></div>
+			</div> 
 			<ul class="nav_list">
 				<!-- 해외/테마/국내 nav_list  -->
 				<li><a href="#">해외</a>

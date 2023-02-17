@@ -104,17 +104,39 @@
 			</div>
 			<div class="bottom_side_notice">
 				<h2 class="bottom_side_notice_title">공지사항</h2>
-				<h3 class="bottom_side_notice_subtitle">거긴어때의 새로운 소식을 알려드립니다.</h3>
+				<h3 class="bottom_side_notice_subtitle"><em>거긴어때</em>의 새로운 소식을 알려드립니다.</h3>
+				<h3 class="bottom_side_notice_plus"><a href="notice">더보기>></a></h3>
 				<ul class="bottom_side_notice_list">
-					<li>공지내용</li>
-					<li>공지내용</li>
-					<li>공지내용</li>
-					<li>공지내용</li>
+
 				</ul>
 			</div>
 		</div>
 	</section>
 	<%@ include file="footer.jsp"%>
 	<script src="js/main.js"></script>
+	<script>
+	$(document).ready(function(){
+		
+    	$.ajax({
+    		url: "getNoticeList.do",
+    		type: "get",
+    		dataType: "text",
+    		success: function(data){ 
+
+    			let obj = JSON.parse(data);
+    			
+    			for (i = 0; i < 4; i++) {
+    				$(".bottom_side_notice_list").append('<li><a href="#"><span class="not_title_span">' 
+    						+ obj[i].not_title + '</span><span class="not_date_span">' 
+    						+ obj[i].not_date + '</span></a><input type="hidden" value="'
+    						+ obj[i].not_no + '"></li>');
+    				}
+    		},
+    		error: function(){
+    			alert("error.....");
+    		}
+    	});
+    });
+	</script>
 </body>
 </html>
