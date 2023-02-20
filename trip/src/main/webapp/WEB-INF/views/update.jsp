@@ -7,15 +7,19 @@
 <title>Insert title here</title>
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/update.css">
 </head>
 <body>
 	<%@include file="header.jsp"%>
 	<%@include file="nav.jsp"%>
+	<h1 style=font-weight:bold;text-align:center;margin-top:100px;>회원정보 수정</h1>
+<h3 style=font-weight:nomal;text-align:center;color:white;background-color:gray;margin-bottom:50px;>수정할 정보를 입력해주세요.</h3>
+
 	<form action="update.do" method="post" name="frm" >
 	<table>
 		<tr>
 			<td id="content">아이디</td>
-			<td><input type="text" name="id" id="uinput" value="${mv.id }"></td>
+			<td><input type="text" name="id" id="input" value="${mv.id }"></td>
 			
 		<tr>
 			<td id="content">비밀번호</td>
@@ -72,6 +76,7 @@
 	</table> 
 
 	</form>
+	<%@include file="footer.jsp"%>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
 		$("#select").change(function(){
@@ -128,6 +133,40 @@
 							}
 						}
 					}).open();
+		}
+
+		function confirm() {
+
+			if (document.frm.pw.value == "") {
+				alert("비밀번호를 입력해주세요");
+				document.frm.pw.focus();
+				return false;
+			} else if (document.frm.email.value == "") {
+				alert("이메일을 입력해주세요");
+				document.frm.email.focus();
+				return false;
+			} else if (document.frm.email2.value == "") {
+				alert("이메일을 입력해주세요");
+				document.frm.email2.focus();
+				return false;
+			} else if (document.frm.postalcode.value == "") {
+				alert("우편번호를 입력해주세요");
+				document.frm.postalcode.focus();
+				return false;
+			} else if (document.frm.address.value == "") {
+				alert("주소를 입력해주세요");
+				document.frm.address.focus();
+				return false;
+			} else if (document.frm.address_detail.value == "") {
+				alert("상세주소를 입력해주세요");
+				document.frm.address_detail.focus();
+				return false;
+			} else {
+
+				alert("회원정보수정 완료")
+				return true;
+			}
+
 		}
 	</script>
 </body>

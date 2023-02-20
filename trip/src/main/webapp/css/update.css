@@ -1,0 +1,129 @@
+*{
+	margin:0 auto;
+	padding:0;
+}
+.container {
+	width: 1300px;
+	margin: 0 auto;
+	text-align: center;
+}
+.table{
+	margin:0 auto;
+	padding:0 ;
+	
+}
+.emailtr {
+	width: 1063px;
+}
+
+
+#text {
+	margin: 0 auto;
+	font-size: 20px;
+	width: 480px;
+}
+.wholeemail{
+	display: inline;
+	width: 500px;
+	height: 51px;
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";	
+}
+.wholeemail input{
+	width:351px;
+	height: 51px;
+	
+}
+
+#btn1 {
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+	margin: 0 auto;
+	width: 250px;
+	background-color: gray;
+	color: white;
+}
+
+
+
+#btn2 {
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+	margin: 0 auto;
+	width: 250px;
+	color: white;
+	background-color: gray;
+}
+
+#submit {
+	margin: 0 auto;
+	width: 500px;
+	background-color: #DC143C;
+	color: white;
+	font-size: 20px;
+}
+
+#submit:hover {
+	background-color: #F08080;
+}
+
+#input {
+	
+	width: 351px;
+	height: 51px;
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+
+.input {
+	
+	width: 351px;
+	height: 51px;
+	width: 351px;
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+
+
+
+form {
+	margin: 0 auto;
+	font-size: 20px;
+	border-top: 2px solid gray;
+	border-bottom: 2px solid gray;
+}
+
+#submit {
+	font-size: 15px;
+	
+	width: 351px;
+	height: 51px;
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+
+#content {
+	color: white;
+	text-align: center;
+	border: 1px solid gray;
+	background-color: gray;
+	font-size: 15px;
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+
+
+@font-face {
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+#wholeemail {
+	display: inline-block;
+}

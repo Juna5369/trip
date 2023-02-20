@@ -20,12 +20,12 @@
 				<div class="section_content">
 					<img src="/img/heart.JPG" style="width: 100px; heigth: 100px">
 					<p class="txt_info">
-						<span style="color: green; font-weight: bold;">
+						<span style="color: #e82835; font-weight: bold;">
 							${sessionScope.id }고객님,</span><span>거긴어때를 방문해 주셔서 감사합니다. </span><br>
-						<span >고객님의 즐거운 여행을 위해서 항상 최선을 다하겠습니다.</span>
+						<span>고객님의 즐거운 여행을 위해서 항상 최선을 다하겠습니다.</span>
 					</p>
 					<p class="txt_contact">
-						<span>${mv.email }</span> <span style="margin-left:40px;">${mv.tel }</span>
+						<span>${mv.email }</span> <span style="margin-left: 40px;">${mv.tel }</span>
 					</p>
 					<div class="update_section">
 						<a href="update?id=${sessionScope.id }">회원정보수정</a>
@@ -92,7 +92,57 @@
 				</table>
 			</div>
 		</div>
+		<div class="list_section">
 
+			<div class="review_section">
+
+				<div class="section_title">
+
+					<h1>나의 여행 후기</h1>
+
+					<sub>나의 여행 후기를 확인해보세요.</sub>
+
+				</div>
+
+				<table class="tb_mypage">
+
+					<tr style="border-bottom: 2px">
+
+						<th><h3>리뷰번호</h3></th>
+
+						<th><h3>상품번호</h3></th>
+						<th><h3>상품사진</h3></th>
+						<th><h3>리뷰작성날짜</h3></th>
+
+					</tr>
+
+					<c:forEach var="review" items="${reviewList }">
+
+						<tr>
+
+							<td>${review.rev_no }</td>
+
+							<td>${review.prod_no }</td>
+							<td><img src="img/${review.rev_img }"></td>
+							<td>${review.rev_date }</td>
+
+						</tr>
+
+					</c:forEach>
+					<tr>
+						<td colspan="4">
+							<button 
+								onclick="location.href='reviewBoard?id=${sessionScope.id}'"
+								class="review_btn">리뷰 작성하기</button>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+
+
+
+		</div>
 
 		<div class="list_section">
 			<div class="like_section">

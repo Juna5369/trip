@@ -7,9 +7,12 @@ import org.apache.ibatis.annotations.Param;
 
 import com.project.trip.vo.LikeVO;
 import com.project.trip.vo.MemberVO;
+import com.project.trip.vo.OrderVO;
+import com.project.trip.vo.PayVO;
 import com.project.trip.vo.ProductVO;
 import com.project.trip.vo.QNAVO;
 import com.project.trip.vo.ReserVO;
+import com.project.trip.vo.ReviewVO;
 
 @Mapper
 public interface IMemberMapper {
@@ -25,4 +28,12 @@ public interface IMemberMapper {
 	public List<QNAVO> getQnA(@Param("qid")String id);
 	public List<LikeVO> getLike(@Param("lid")String id);
 	public ProductVO getProduct(@Param("prod_no")int product_no);
+	public List<ReviewVO> getReview(@Param("reviewId")String id);
+	public List<OrderVO> getOrder(@Param("orderid")String id);
+	public ProductVO getProductByName(@Param("prod_name")String product_name);
+	public int getOrderOne(@Param("order_id")String id ,@Param("order_prod")int prod_no);
+	public PayVO getPay(@Param("order_no")int prod_no);
+	public int regReview(ReviewVO rv);
+
+	
 }
