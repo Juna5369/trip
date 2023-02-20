@@ -6,6 +6,10 @@
   
 
 	<select id="getList" resultType="com.project.trip.vo.ProductVO">
-	SELECT * FROM product;
+	SELECT * FROM product_tbl
+	</select>
+
+	<select id="getListOne" resultType="com.project.trip.vo.ProductVO">
+	SELECT * FROM product_tbl WHERE prod_no=#{no} 
 	</select>
 </mapper>

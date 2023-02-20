@@ -7,9 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/list.css">
     <!-- <link rel="stylesheet" href="css/packagelist.css"> -->
-    <script src="resources/js/jquery.js"></script>
-    <script src="resources/js/navjs.js"></script>
 </head>
 <body>
 <%@include file="../header.jsp" %>
@@ -39,7 +38,8 @@
                                     <ul>
                                     <c:forEach var="data" items="${list }" varStatus="status" begin="0" end="3">
                                         <li style="float: left; list-style: none; position: relative; width: 323px;">
-                                        <img src="resources/img/${data.prod_img }" id="slide_img"><br>
+                                        <a href="/prod_detail?no=${data.prod_no }">
+                                        <img src="../img/${data.prod_img }" id="slide_img"><br>
                                         <div id="slide_info">
                                             <!-- 게시글 제목1 -->
                                             <span class="prod_title">
@@ -47,10 +47,11 @@
                                             </span>
                                             <!-- 게시글 가격1 -->
                                             <span class="price">
-                                                ${data.prod_price }
+                                                ${data.prod_price_adult }
                                             </span>
                                             원
                                         </div>
+                                        </a>
                                         </li>
                                         </c:forEach>
                                     </ul>
@@ -69,6 +70,7 @@
                                     <ul>
                                        <c:forEach var="data" items="${list }" varStatus="status" begin="4" end="7">
                                         <li style="float: left; list-style: none; position: relative; width: 323px;">
+                                         <a href="/prod_detail?no=${data.prod_no }">
                                         <img src="resources/img/${data.prod_img }" id="slide_img"><br>
                                         <div id="slide_info">
                                             <!-- 게시글 제목1 -->
@@ -77,10 +79,11 @@
                                             </span>
                                             <!-- 게시글 가격1 -->
                                             <span class="price">
-                                                ${data.prod_price }
+                                                ${data.prod_price_adult }
                                             </span>
                                             원
                                         </div>
+                                        </a>
                                         </li>
                                         </c:forEach>
                                       
@@ -100,6 +103,7 @@
                                     <ul>
                                          <c:forEach var="data" items="${list }" varStatus="status" begin="8" end="11">
                                         <li style="float: left; list-style: none; position: relative; width: 323px;">
+                                         <a href="/prod_detail?no=${data.prod_no }">
                                         <img src="resources/img/${data.prod_img }" id="slide_img"><br>
                                         <div id="slide_info">
                                             <!-- 게시글 제목1 -->
@@ -108,10 +112,11 @@
                                             </span>
                                             <!-- 게시글 가격1 -->
                                             <span class="price">
-                                                ${data.prod_price }
+                                                ${data.prod_price_adult }
                                             </span>
                                             원
                                         </div>
+                                        </a>
                                         </li>
                                         </c:forEach>
                                        
@@ -138,22 +143,24 @@
                                 <ul>
                                  <c:forEach var="data" items="${list }" varStatus="status" begin="12" end="12">
                                     <li style=" list-style: none;">
+                                     <a href="/prod_detail?no=${data.prod_no }">
                                         <img src="resources/img/${data.prod_img }" style="width:300px;"><br>
                                         <div id="bottom_event_text">
                                             <span style="text-align:none;">
                                                 <hr>
                                                 <br>
                                                 <span style="font-size: 12px;">
-                                                    #패키지<br>
+                                                    ${data.prod_hash }<br>
                                                 </span>
                                                 <br>
                                                 ${data.prod_name }<br>
                                             </span>
                                             <span class="price">
-                                                ${data.prod_price }
+                                                ${data.prod_price_adult }
                                             </span>
                                             원
                                         </div>          
+                                        </a>
                                     </li>
                                     </c:forEach>
                                 </ul>
@@ -162,22 +169,24 @@
                                 <ul>
                                 <c:forEach var="data" items="${list }" varStatus="status" begin="13" end="13">
                                     <li style=" list-style: none;">
+                                     <a href="/prod_detail?no=${data.prod_no }">
                                         <img src="resources/img/${data.prod_img }" style="width:300px;"><br>
                                         <div id="bottom_event_text">
                                             <span style="text-align:none;">
                                                 <hr>
                                                 <br>
                                                 <span style="font-size: 12px;">
-                                                    #패키지<br>
+                                                    ${data.prod_hash }<br>
                                                 </span>
                                                 <br>
                                                 ${data.prod_name }<br>
                                             </span>
                                             <span class="price">
-                                                ${data.prod_price }
+                                                ${data.prod_price_adult }
                                             </span>
                                             원
-                                        </div>          
+                                        </div>     
+                                        </a>     
                                     </li>
                                     </c:forEach>
                                 </ul>
@@ -187,22 +196,24 @@
                                 <ul>
                                       <c:forEach var="data" items="${list }" varStatus="status" begin="14" end="14">
                                     <li style=" list-style: none;">
-                                        <img src="resources/img/${data.prod_img }" style="width:300px;"><br>
+                                     <a href="/prod_detail?no=${data.prod_no }">
+                                        <img src="../img/${data.prod_img }" style="width:300px;"><br>
                                         <div id="bottom_event_text">
                                             <span style="text-align:none;">
                                                 <hr>
                                                 <br>
                                                 <span style="font-size: 12px;">
-                                                    #패키지<br>
+                                                    ${data.prod_hash }<br>
                                                 </span>
                                                 <br>l
                                                 ${data.prod_name }<br>
                                             </span>
                                             <span class="price">
-                                                ${data.prod_price }
+                                                ${data.prod_price_adult }
                                             </span>
                                             원
                                         </div>          
+                                        </a>
                                     </li>
                                     </c:forEach>
                             </div>
