@@ -4,10 +4,15 @@
 	margin: 0 auto;
 	text-align: center;
 }
-
+.table{
+	margin:0 auto;
+	padding:0 ;
+	
+}
 .emailtr {
 	width: 1063px;
 }
+
 
 #text {
 	margin: 0 auto;

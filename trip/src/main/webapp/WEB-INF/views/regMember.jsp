@@ -15,7 +15,7 @@
 <h1 style=font-weight:bold;text-align:center;margin-top:100px;>회원정보 입력</h1>
 <h3 style=font-weight:nomal;text-align:center;color:white;background-color:gray;margin-bottom:50px;>회원님의 정보를 입력해주시길 바랍니다</h3>
 	<form action="regMember" method="post" name="frm" >
-	<table>
+	<table class="table">
 		<tr>
 			<td id="content">아이디</td>
 			<td><input type="text" name="id" id="input"></td>
