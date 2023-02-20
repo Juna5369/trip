@@ -1,121 +1,173 @@
-
-#find{
-	
-	margin-top:100px;
-}
-#find a{
-	text-align:center;
-	
-}
-.info{
-	text-align:center;
-	background-color:#e4f5ff;
-
+#find {
+	margin-top: 100px;
 }
 
-h1{
+#find a {
+	text-align: center;
+}
+
+.info {
+	text-align: center;
+	background-color: #e4f5ff;
+}
+
+h1 {
 	display: block;
-    font-size: 1.5em;
-    margin-block-start: 0.83em;
-    margin-block-end: 0.83em;
-    font-weight: bold;
+	font-size: 1.5em;
+	margin-block-start: 0.83em;
+	margin-block-end: 0.83em;
+	font-weight: bold;
 }
-sub{
-	
-    font-size: 15px;
-    color: #888;
-    letter-spacing: -.5px;
+
+sub {
+	font-size: 15px;
+	color: #888;
+	letter-spacing: -.5px;
 }
-.tb_mypage{
+
+.tb_mypage {
 	table-layout: fixed;
-    width: 1280px;
-    border-top: 1px solid #111;
-}
-.tb_mypage tr{
-	display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
-    height:50px;
-}
-.tb_mypage th{
-	padding: 15px 15px 16px 15px;
-    font-size: 14px;
-    color: #555;
-    background: #e6e7eb;
-    border-left: 1px solid #ccc;
-}
-.content_section{
-	margin:0 auto;
-	font-family: "맑은 고딕","Malgun Gothic","Apple SD Gothic Neo","Dotum",Helvetica,Sans-serif;
-    color: #555;
-	width:1280px;
-	height:300px;
-	display: block;
-	background-color:#e4f5ff;
-	margin-top:100px;
-	margin-bottom:100px;
+	width: 1280px;
+	border-top: 1px solid #111;
+	
+	text-align:cetner;
 	
 }
-.section_content{
-	position:relative;
-	right:60px;
-	margin:0 auto;
-	height: 236px;
-    width: 1280px;
-    padding: 44px 0 0 130px;
-    font-size: 20px;
-    letter-spacing: -0.07em;
+
+.tb_mypage tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+	height: 50px;
+	width:1280px;
+	
 }
-.qna_section{
-	 width: 1280px;
-   
-}
-.reservation_section{
-	width: 1280px;
-    margin: 0 auto;
-    text-align: center;
+.tb_mypage tr {
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
+	height: 50px;
+	width:1280px;
+	
 }
 
-.like_section img{
-    width: 280px;
-    height: 212px;
-    border:0;
-    overflow-clip-margin: content-box;
-    overflow: clip;
-    vertical-align: top;
+
+
+.tb_mypage th {
+	padding: 15px 15px 16px 15px;
+	font-size: 14px;
+	color: #555;
+	background: #e6e7eb;
+	border-left: 1px solid #ccc;
 }
-.like_section li{
-	width: 327px !important;
-    height: 100%;
-    padding: 20px;
-    border-right: 1px solid #ccc;
-	    
+.tb_mypage img{
+	width:100px;
+	height:100px;
 }
-.like_section ul{
-	display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-   
-    
-}	
-.like_wrap{
-	border: 1px solid #ccc;
-    border-right: none;
-    height:300px;
-}
-.list_section{
-	margin-top:50px;
-	margin-bottom :50px;
-	width:100%;
-	height:400px;
-	padding:5px;
+.content_section {
 	margin: 0 auto;
-    width: 1280px;
-}
-div {
-    display: block;
+	font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", "Dotum",
+		Helvetica, Sans-serif;
+	color: #555;
+	width: 1280px;
+	height: 300px;
+	display: block;
+	background-color: #e4f5ff;
+	margin-top: 100px;
+	margin-bottom: 100px;
 }
 
+.section_content {
+	position: relative;
+	right: 60px;
+	margin: 0 auto;
+	height: 236px;
+	width: 1280px;
+	padding: 44px 0 0 130px;
+	font-size: 20px;
+	letter-spacing: -0.07em;
+}
+
+.qna_section {
+	width: 1280px;
+}
+
+.reservation_section {
+	width: 1280px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.review_section {
+	height: 300px;
+}
+
+.review_btn {
+	font-size: 15px;
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+	width: 150px;
+	height:30px;
+	border: none;
+	background-color: #e82835;
+	color: white;
+	
+	
+}
+.review_btn:hover{
+	transition: 0.7s;
+	cursor:pointer;
+	
+}
+
+.like_section img {
+	width: 280px;
+	height: 212px;
+	border: 0;
+	overflow-clip-margin: content-box;
+	overflow: clip;
+	vertical-align: top;
+}
+
+.like_section li {
+	width: 327px !important;
+	height: 100%;
+	padding: 20px;
+	border-right: 1px solid #ccc;
+}
+
+.like_section ul {
+	display: block;
+	list-style-type: disc;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+}
+
+.like_wrap {
+	border-top: 1px solid #ccc; border-right : none;
+	height: 300px;
+	border-right: none;
+}
+
+.list_section {
+
+	width: 100%;
+	height: 450px;
+	padding: 5px;
+	margin: 0 auto;
+	border-bottom:1px solid #ccc;
+	width: 1280px;
+	
+}
+
+div {
+	display: block;
+}
+
+@font-face {
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}

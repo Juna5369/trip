@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+@font-face {
+   src: url("/fonts/Jalnan.ttf");
+   font-family: "jalnan";
+}
+
+.reason {
+   width: 1280px;
+}
+
+.title_section {
+   margin: 0 auto;
+   color: gray;
+   font-size: 20px;
+   height: 50px;
+   border-bottom: 3px solid #e82835;
+   color: gray;
+   font-size: 20px;
+   height: 50px;
+   border-bottom: 3px solid #e82835;
+   width: 1280PX;
+}
+
+.delete_section1 {
+   font-size: 15px;
+   font-family: 'Pretendard-Regular';
+   src: url("/fonts/Jalnan.ttf");
+   font-family: "jalnan";
+   margin-top: 20px;
+   margin: 0 auto;
+   width: 1280PX;
+}
+
+.delete_section2 {
+   font-size: 15px;
+   font-family: 'Pretendard-Regular';
+   src: url("/fonts/Jalnan.ttf");
+   font-family: "jalnan";
+   margin: 0 auto;
+   width: 1280PX;
+}
+
+.submit {
+   text-align: center;
+   border: none;
+}
