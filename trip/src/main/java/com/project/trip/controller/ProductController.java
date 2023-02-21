@@ -8,15 +8,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.trip.dto.ReviewBoardDTO;
+import com.project.trip.mapper.IBoardMapper;
 import com.project.trip.mapper.ProductMapper;
 import com.project.trip.vo.ProductVO;
+import com.project.trip.vo.QNAVO;
 
 @Controller
 public class ProductController {
 
 	@Autowired
 	ProductMapper mapper;
+	
+	@Autowired
+	IBoardMapper b_mapper;
 	
 	@GetMapping("/list")
 	public String japanList(Model model) {
@@ -34,7 +41,25 @@ public class ProductController {
 		List<ProductVO> list = new ArrayList<>();
 		list.add(vo);
 		model.addAttribute("list", list);
+		
+		List<ReviewBoardDTO> review = b_mapper.review_selectAll();
+		List<QNAVO> qna = b_mapper.qna_selectAll();
+		model.addAttribute("reviews", review);
+		model.addAttribute("qnas", qna);
+		
+		
 	return "prod_list/prod_detail";
+	}
+	
+	@GetMapping("/board1")
+	public @ResponseBody List<ReviewBoardDTO> getboard(int rev_no){
+		List<ReviewBoardDTO> p1 = b_mapper.review_selectOne(rev_no);
+		return p1;
+	}
+	@GetMapping("/board2")
+	public @ResponseBody List<QNAVO> getQna(int qna_no){
+		List<QNAVO> q1 = b_mapper.qna_selectOne(qna_no);
+		return q1;
 	}
 	
 	
