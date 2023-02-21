@@ -108,6 +108,9 @@
 .cuc_list > li {
 	padding: 20px 0 20px 15px;
 	border-top: 1px solid #ccc;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 .cuc_list > li:first-child {
 	border-top: 2px solid rgba(37, 33, 33, 0.945);
@@ -189,7 +192,7 @@
 	height: 800px;
 }
 .faq_title {
-	width: 1080px;
+	width: 1070px;
 	height: 30px;
 	font-size: 22px;
 	font-weight: bold;
@@ -235,7 +238,7 @@
 	height: 800px;
 }
 .notice_title {
-	width: 1080px;
+	width: 1060px;
 	height: 30px;
 	font-size: 22px;
 	font-weight: bold;
@@ -271,6 +274,60 @@
 }
 #page > span {
 	margin-left: 20px;
+	cursor: pointer;
+}
+.current_page {
+	color: #e82835;
+	font-weight: bold;
+}
+.main_post{
+	width: 1070px;
+	height: 100%;
+	float: left;
+}
+.notice_post{
+	width: 100%;
+	height: 100%;
+}
+.title_area {
+	width: 1070px;
+	height: 60px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid #ccc;
+}
+.post_title {
+	width: 800px;
+	height: 55px;
+	float: left;
+	padding: 15px 20px;
+	text-align: left;
+	font-size: 18px;
+}
+.post_date {
+	width: 260px;
+	height: 55px;
+	float: left;
+	padding: 18px 20px;
+	text-align: right;
+	font-size: 15px;
+}
+.post_contents {
+	width: 100%;
+	height: 100%;
+	min-height: 800px;
+	border-bottom: 1px solid #ccc;
+	text-align: left;
+	padding: 30px 30px;
+}
+.l_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: 1px solid #ccc;
+	background-color: white;
+	
+	font-size: 18px;
 }
 
 /* qna Page */

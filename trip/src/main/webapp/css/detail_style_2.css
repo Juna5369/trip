@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 .btn_1 {
 	width: 40px;
 	height: 30px;
@@ -475,6 +474,7 @@
 	display: flex;
 }
 /*
+
 		.stars{
 			width: 30px; height: 30px;
 			border: 1px solid black;

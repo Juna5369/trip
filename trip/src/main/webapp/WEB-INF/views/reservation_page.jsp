@@ -12,6 +12,8 @@
         <div id="container">
             <div id="product_main">
                 <!-- 상품상세보기 메인 감싸기 -->
+                
+                <form name="frm" action="/pay" method="post">
 
                 <div id="travel_rool">
                     <!-- 국룰 범위(배경색 회색) -->
@@ -53,9 +55,9 @@
                     -->
                     			   	<div id="many_ad">  
                     					<label id="detail_lbl" for="detail_ad">성인</label>
-                    					<input type="text" name="detail_ad1" id="detail_ad1" class="input_sum_2" value="${prod_list[0].prod_price_adult }" readonly>
+                    					<input type="text" name="detail_ad1" id="detail_ad1" class="input_sum_2" value="${prodvo.prod_price_adult }" readonly>
                     					<label id="detail_lbl" for="detail_ad">원 x </label>
-                    					<input type="text" name="detail_ad2" id="detail_ad2" class="input_sum_2" value="${reg_res.res_adult }" readonly>
+                    					<input type="text" name="detail_ad2" id="detail_ad2" class="input_sum_2" value="${resdto.ad_val }" readonly>
                     					<label id="detail_lbl" for="detail_ad">명</label>
                     					<input type="text" name="ad_sum" id="ad_sum" class="input_sum" value="" readonly>
                     					<span id="sp_won">원</span>
@@ -63,9 +65,9 @@
                       			
                     				<div id="many_ch">
                     				    <label id="detail_lbl" for="detail_ch">아동</label>
-                    					<input type="text" name="detail_ch1" id="detail_ch1" class="input_sum_2" value="${prod_list[0].prod_price_child }" readonly>
+                    					<input type="text" name="detail_ch1" id="detail_ch1" class="input_sum_2" value="${prodvo.prod_price_child }" readonly>
                     					<label id="detail_lbl" for="detail_ch">원 x</label>
-                    					<input type="text" name="detail_ch2" id="detail_ch2" class="input_sum_2" value="${reg_res.res_child }" readonly>
+                    					<input type="text" name="detail_ch2" id="detail_ch2" class="input_sum_2" value="${resdto.ch_val }" readonly>
                     					<label id="detail_lbl" for="detail_ch">명</label>
                     					<input type="text" name="ch_sum" id="ch_sum" class="input_sum" value="" readonly>
                     					<span id="sp_won">원</span>
@@ -132,14 +134,14 @@
         					<label for="boxcon1" id="lbl"> <span id="sp_t">성인</span> (만 12세 이상) </label>
        			 				<div class="many_boxcon" id="boxcon1">
             						<input type="button" name="minus_adcon" id="minus_adcon" class="btn_1 minus_1" value="" >
-            						<input type="text" name="ad_valcon" id="ad_valcon" class="input_1" value="${reg_res.res_adult }">
+            						<input type="text" name="res_adult" id="ad_valcon" class="input_1" value="${resdto.ad_val }">
             						<input type="button" name="plus_adcon" id="plus_adcon" class="btn_1 plus_1" value="" >
         					</div></div>
         					<div id="res_boxcon_ch"> 
         					<label for="boxcon2" id="lbl"> <span id="sp_t">아동</span> (만 12세 미만) </label>
         						<div class="many_boxcon" id="boxcon2">
             						<input type="button" name="minus_chcon" id="minus_chcon" class="btn_1 minus_1" value="" >
-            						<input type="text" name="ch_valcon" id="ch_valcon" class="input_1" value="${reg_res.res_child }">
+            						<input type="text" name="res_child" id="ch_valcon" class="input_1" value="${resdto.ch_val }">
             						<input type="button" name="plus_chcon" id="plus_chcon" class="btn_1 plus_1" value="" >
        	 					</div></div>
        	 					
@@ -147,7 +149,7 @@
                  	</div>
                  	<div class="infoCon_3">
                  		<div class="check_wrap">
-	                 		<input type="text" name="id" id="id" class="input_3" value="'사용자'" readonly>
+	                 		<input type="text" name="user_id" id="user_id" class="input_3" value="${memvo.name }" readonly>
 	                 		<span>님도 여행에 참여 하십니까?</span>
   							<input type="checkbox" id="goCheck_btn"/>
   							<label for="goCheck_btn"><span>네, 참여합니다.</span></label>
@@ -488,11 +490,16 @@
 						</div>
                 </div>
                 <div id="btn_box">
-                	<input type="button" id="reservation" class="btn_2" value="결제하기">
+                	<input type="submit" name="reservation" id="reservation" class="btn_2" value="결제하기" onclick="return check()">
+                	<input type="hidden" name="id" id="id" value="${sessionScope.id }">
+					<input type="hidden" name="prod_no" id="prod_no" value="${prodvo.prod_no }">
+					<input type="hidden" name="res_price" id="res_price" value="0">
                 </div>
                 	
-            	</div>
-        	</div>
+            	</div> <!-- travel_info -->
+            	
+            </form>	
+        	</div>  <!-- product_main -->
     	</div>
 	</div>
 	
@@ -558,11 +565,13 @@
 	const k_nat = document.querySelector("#k_nat");
 	k_nat.addEventListener('click',nat_k);
 	
+	const res_price = document.querySelector("#res_price");
+	
 	ad_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
     total_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
     
-	const reservation = document.querySelector("#reservation");
-	reservation.addEventListener('click',res_go);
+//	const reservation = document.querySelector("#reservation");
+//	reservation.addEventListener('click',res_go);
   
 	function ad_pluscon(){
 		let ad_price1 = won(detail_ad1.value); // 현재 성인 가격
@@ -575,6 +584,7 @@
 			ad_valcon.value = pre_Aval1 + 1;
 			ad_sum.value = format((ad_price1)*(detail_ad2.value));
 			total_sum.value = format((ad_price1)*(detail_ad2.value)+(ch_price1)*(pre_Cval1));
+			res_price.value = parseInt((ad_price1)*(detail_ad2.value)+(ch_price1)*(pre_Cval1));
 			}else{
 				alert("최대5명까지 가능합니다.");
 			}
@@ -590,6 +600,7 @@
 	   	    ad_valcon.value = pre_Aval2 - 1;
 	   	    ad_sum.value = format((ad_price2)*(detail_ad2.value));
 	   	    total_sum.value = format((ad_price2)*(detail_ad2.value)+(ch_price2)*(pre_Cval2));
+	   	 	res_price.value = parseInt((ad_price2)*(detail_ad2.value)+(ch_price2)*(pre_Cval2));
 	  	}else{
 	  		alert("1명이상 예약가능합니다.");
 	  	}
@@ -603,6 +614,7 @@
    	    	detail_ad2.value = e.target.value;
    	    	ad_sum.value = format((ad_price3)*(e.target.value));
    	    	total_sum.value = format((e.target.value)*(ad_price3)+(ch_price3)*(pre_Cval3));
+   	    	res_price.value = parseInt((e.target.value)*(ad_price3)+(ch_price3)*(pre_Cval3));
    	    }else{
    	        alert("1명이상 5명이하로 예약 가능합니다.");
    	    }
@@ -619,6 +631,7 @@
 			ch_valcon.value = pre_Cval4 + 1;
 			ch_sum.value = format((ch_price4)*(detail_ch2.value));
    	     	total_sum.value = format((ch_price4)*(detail_ch2.value)+(ad_price4)*(pre_Aval4));
+   	     	res_price.value = parseInt((ch_price4)*(detail_ch2.value)+(ad_price4)*(pre_Aval4));
    	    }else{
    	        alert("최대4명까지 가능합니다.");
    	    }
@@ -637,6 +650,7 @@
    	    	ch_valcon.value = pre_Cval5 - 1;
    	    	ch_sum.value = format((ch_price5)*(detail_ch2.value));
    	    	total_sum.value = format((ch_price5)*(detail_ch2.value)+(ad_price5)*(pre_Aval5));
+   	    	res_price.value = parseInt((ch_price5)*(detail_ch2.value)+(ad_price5)*(pre_Aval5));
    	    }else{
    	        alert("선택할 수 없습니다.")
    	    }
@@ -650,6 +664,7 @@
    	    	detail_ch2.value = e.target.value;
    	    	ch_sum.value = format((ch_price5)*(detail_ch2.value));
    	    	total_sum.value = format((e.target.value)*(ch_price6)+(ad_price6)*(pre_Aval6));
+   	    	res_price.value = parseInt((e.target.value)*(ch_price6)+(ad_price6)*(pre_Aval6));
    	    }else{
    	        alert("4명이하로 예약 가능합니다.");
    	    }
@@ -657,10 +672,10 @@
 	function btn_goCheck(){
 		let is_checked = goCheck_btn.checked;
 		if(is_checked){
-			k_name.value = "홍길동";
-			birth.value = "20020909";
-			phone.value = "010-2222-3333";
-			e_mail.value = "over@naver.com";
+			k_name.value = "${memvo.name}";
+			birth.value = "${memvo.birth}";
+			phone.value = "${memvo.tel}";
+			e_mail.value = "${memvo.email}";
 		}else{
 			k_name.value ="";
 			birth.value = "";
@@ -704,12 +719,13 @@
 			sex.value = "1";
 		}
 	}
+	/*
 	function res_go(){
 		if(check()){
 			location.href="pay.do?res_price="+total_sum.value;
 		}
 	}
-
+*/
 	function check(){
 		var email_ck = e_mail.value; 
 		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -806,9 +822,10 @@ function realTime_E1check(e){
 	}
 }
 
-var pattern_num =  /^[0-9]+$/;  
+//var pattern_num =  /^[0-9]+$/; 
+var pattern_birth = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 function realTime_birthcheck(e){
-	if(pattern_num.test(e.target.value)){
+	if(pattern_birth.test(e.target.value)){
 		birth.style.border = "2px solid green";
 	}else{
 		birth.style.border = "2px solid red";

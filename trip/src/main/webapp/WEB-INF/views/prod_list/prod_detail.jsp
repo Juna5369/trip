@@ -7,7 +7,7 @@
 	request.setCharacterEncoding("utf-8");
 	session.setAttribute("id", "over");
 	session.setAttribute("prod_name", "대박여행");
-	session.setAttribute("prod_no", "222");
+	//session.setAttribute("prod_no", "222");
 %>
 
 <!DOCTYPE html>
@@ -26,6 +26,8 @@
 <c:forEach var="vo" items="${list }">
 <fmt:parseDate var="start" value="${vo.prod_start_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
 <fmt:parseDate var="end" value="${vo.prod_end_date }" pattern="yyyy-MM-dd HH:mm:ss"/>
+<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.prod_price_adult }" var="price_adult" />
+<fmt:formatNumber type="number" maxFractionDigits="3" value="${vo.prod_price_child }" var="price_child" />
     <div id="wrap">
         <div id="container">
             <div id="product_main">
@@ -89,7 +91,7 @@
 	                        </div>
 						<div class="product_price">
 						<p>성인 1명</p>
-						<p><em style="color:black;font-weight:bold; font-size:23px;">${vo.prod_price_adult } </em> 원</p>
+						<p><em style="color:black;font-weight:bold; font-size:23px;">${price_adult } </em> 원</p>
 						</div>
 	                        
                     </div><!-- 인포끝 -->
@@ -214,9 +216,11 @@
                                 </tr>
                         </thead>
                             <tbody>
+
                                 <td style="border-left: 0px solid white; text-align: center;">기본상품</td><td style="text-align: center;"><em id="product_price">${vo.prod_price_adult}</em>원<br>
                                     유류할증료 104,600원 포함(db)</td>
                                 <td style="text-align: center;"><em id="product_price">${vo.prod_price_child}</em>원<br>
+
                                     유류할증료 104,600원 포함</td>
                                 <td style="border-right: 0px solid white; text-align: center;">
                                     성인 경비의 <em id="product_price">10%</em><br>    
@@ -599,10 +603,6 @@
                              
                     </div>
                 </div>
-                
-                
-                	
-                
             </div>
             <div class="termsmodal">
                 <div class="termsmodal-bg" onclick="goaway()"></div>
@@ -829,7 +829,7 @@
 </c:forEach>
         </section>    
         <%@include file="../footer.jsp" %>
-  <script> 
+   <script> 
   
 	const plus_ad = document.querySelector("#plus_ad");
 	plus_ad.addEventListener('click', ad_plus);
@@ -845,8 +845,8 @@
 	const ch_val = document.querySelector("#ch_val");
 	ch_val.addEventListener('keyup', ch_person);
 
-	const res_many = document.querySelector("#res_many");
-	res_many.addEventListener('click', many_res);
+//	const res_many = document.querySelector("#res_many");
+//	res_many.addEventListener('click', many_res);
 	const res_like = document.querySelector("#res_like");
 	res_like.addEventListener('click', like_res);
 
@@ -873,8 +873,8 @@
 	
 	const star_val = document.querySelector("#star_val");
 	
-	const res_id = document.querySelector("#res_id");
-	const prod_no = document.querySelector("#prod_no");
+//	const res_id = document.querySelector("#res_id");
+//	const prod_pno = document.querySelector("#prod_pno");
 	
     function go(){
         document.querySelector(".termsmodal").style.display='block'; //스타일중에 디스플레이를 블록으로 바꿔라
@@ -1003,7 +1003,7 @@
 				e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.innerHTML += '<div class="con1_review">' 
 					
 				+ '<div id="a1"><input type="text" class="td_con1" value="출발일" readonly><p class="sp_con1">' + obj[i].prod_start_date + '</p>'
-				+ '<input type="text" class="td2_con1" value="여행기간" readonly><p class="sp_con1">' + obj[i].rev_days + '</p><br></div>'
+				+ '<input type="text" class="td2_con1" value="귀국일" readonly><p class="sp_con1">' + obj[i].prod_end_date + '</p><br></div>'
 				+ '<div id="a2"><input type="text" class="td_con1" value="항공사" readonly><p class="sp_con1">' + obj[i].prod_plane + '</p>'
 				+ '<input type="text" class="td2_con1" value="호텔" readonly><p class="sp_con1">' + obj[i].prod_hotel + '</p><br></div>'
 				+ '<div id="a3"><input type="text" class="td3_con1" value="내용" readonly><p class="sp2_con1">' + obj[i].rev_contents + '</p></div></div>'
@@ -1158,18 +1158,18 @@
 			alert("4명이하로 예약 가능합니다.");
 		}
 	}
-
+/*
 	function many_res() {
 		let ad_Aval = ad_val.value;
 		let ch_Cval = ch_val.value;
 		let like_val = like.value;
 		let sum_p = total.value;
-		let user = res_id.value;
-		let pno = prod_no.value;
+		let user = res_id.value; 
+		let pno = prod_pno.value;
 
-		location.href="reservation_page?res_adult="+ad_Aval+"&res_child="+ch_Cval+"&res_like="+like_val+"&res_price="+sum_p+"&prod_no="+1;
+		location.href="reservation_page?res_adult="+ad_Aval+"&res_child="+ch_Cval+"&res_like="+like_val+"&res_price="+sum_p+"&prod_no="+pno+"&id="+user;
 	}
-
+*/
 	function like_res() {
 		let like = document.querySelector("#like");
 		if (like.value === "0") {
