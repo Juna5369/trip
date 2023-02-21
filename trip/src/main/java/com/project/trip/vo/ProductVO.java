@@ -9,7 +9,7 @@ public class ProductVO {
 	private String prod_name;	//상품이름
 	private int prod_price_adult;	//상품가격
 	private int prod_price_child;	//상품가격
-	private int prod_price_baby;	//상품가격
+//	private int prod_price_baby;	//상품가격
 	private String prod_hash;	//해쉬태그
 	private String prod_city;	//주요도시
 	private String prod_img;	//상품이미지

@@ -208,6 +208,7 @@
             height:100%;  
             margin-top:20px;
             border:0px solid red;
+            margin-bottom: 1500px;
         }
         #bar_wrap{
       	    display:flex;

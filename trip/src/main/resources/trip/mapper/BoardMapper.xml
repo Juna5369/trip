@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.trip.mapper.IBoardMapper">
+
+  	<select id="review_selectAll" resultType="com.project.trip.dto.ReviewBoardDTO">
+		SELECT rev.rev_no, rev.prod_no, rev.id, rev.pay_no, rev.rev_title, rev.rev_type, rev.rev_date, rev.rev_contents, rev.rev_img, rev.rev_rating, prod.prod_start_date, prod.prod_end_date, prod.prod_hotel, prod.prod_plane 
+		FROM review_tbl rev, product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
+		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no;
+	</select>
+
+<!--
+  	<select id="review_selectAll" resultType="com.project.trip.dto.ReviewBoardDTO">
+		SELECT * FROM review_tbl
+	</select>
+	
+
+	<select id="selectOne" resultType="com.moohan.res_test.dto.ReviewDTO">
+		SELECT * FROM review_tbl WHERE rev_no = #{rev_no}
+	</select>
+ -->	
+	
+	<select id="review_selectOne" resultType="com.project.trip.dto.ReviewBoardDTO">
+		SELECT rev.rev_no, rev.prod_no, rev.id, rev.pay_no, rev.rev_title, rev.rev_type, rev.rev_date, rev.rev_contents, rev.rev_img, rev.rev_rating, prod.prod_start_date, prod.prod_end_date, prod.prod_hotel, prod.prod_plane 
+		FROM review_tbl rev, product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
+		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no AND rev_no = #{rev_no};
+	</select>
+	
+	
+	
+	<select id="qna_selectAll" resultType="com.project.trip.vo.QNAVO">
+		SELECT * FROM qna_tbl        <!-- 상품번호 같은 qna리스트 불러오기 -->
+	</select>
+	
+	<select id="qna_selectOne" resultType="com.project.trip.vo.QNAVO">
+		SELECT * FROM qna_tbl WHERE qna_no = #{qna_no}     <!--  아이디값과 같은지 비교해보고 같을때만 불러오기 -->
+	</select>
+
+</mapper>
