@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.project.trip.mapper.PayMapper">
+  	<resultMap type="payvo" id="payMap">
+  		<id column="pay_no" property="pay_no"/>
+  		<result column="order_no" property="order_no"/>
+  		<result column="pay_date" property="pay_date"/>
+  		<result column="pay_price" property="pay_price"/>
+  	</resultMap>
+  	
+  	<insert id="insertPay">
+  		INSERT INTO pay_tbl (order_no, pay_date, pay_price) VALUES (#{order_no}, NOW(), #{pay_price})
+  	</insert>
+  	
+  	<select id="getPayList" resultType="payvo">
+  		SELECT * FROM pay_tbl ORDER BY pay_no DESC
+  	</select>
+  	
+  	<select id="getPayOne" resultType="payvo">
+  		SELECT * FROM pay_tbl WHERE pay_no = #{pay_no}
+  	</select>
+
+	<delete id="deletePay">
+		DELETE FROM pay_tbl WHERE pay_no = #{pay_no}
+	</delete>
+  </mapper>

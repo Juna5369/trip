@@ -11,19 +11,23 @@
   	</resultMap>
   	
   	<insert id="insert">
-  		INSERT INTO notice (not_title, not_date, not_contents) VALUES (#{not_title}, #{not_date}, #{not_tel})
+  		INSERT INTO notice_tbl (not_title, not_date, not_contents) VALUES (#{not_title}, #{not_date}, #{not_tel})
   	</insert>
   	
   	<select id="getNoticeList" resultType="noticevo">
-  		SELECT * FROM notice ORDER BY not_no DESC
+  		SELECT * FROM notice_tbl ORDER BY not_no DESC
+  	</select>
+  	
+  	<select id="getNoticeOne" resultType="noticevo">
+  		SELECT * FROM notice_tbl WHERE not_no = #{not_no}
   	</select>
   
 	<select id="getQNAList" resultType="qnavo">
-		SELECT * FROM qna ORDER BY qna_no DESC
+		SELECT * FROM qna_tbl ORDER BY qna_no DESC
 	</select>  
   
   	<select id="getFAQList" resultType="faqvo">
-		SELECT * FROM faq ORDER BY faq_no DESC
+		SELECT * FROM faq_tbl ORDER BY faq_no DESC
 	</select>
   
   </mapper>

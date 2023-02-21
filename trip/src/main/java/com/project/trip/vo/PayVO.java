@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class PayVO {
 	private int pay_no;
-	private int order_no;
+	private String order_no;
 	private Date pay_date;
 	private int pay_price;
 }

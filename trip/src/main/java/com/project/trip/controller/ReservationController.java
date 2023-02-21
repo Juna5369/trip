@@ -5,6 +5,7 @@ package com.project.trip.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.project.trip.dto.ResDataDTO;
@@ -49,7 +50,7 @@ public class ReservationController {
 	
 	@PostMapping("/pay")
 	public void res_go(ReserVO reservation, Model model) {
-		
+		model.addAttribute("reser", reservation);
 		int result = res_mapper.reg_reservation(reservation);
 		System.out.println(reservation.getId());
 		System.out.println(reservation.getRes_price());
