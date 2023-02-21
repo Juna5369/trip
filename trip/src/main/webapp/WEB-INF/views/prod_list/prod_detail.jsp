@@ -873,8 +873,8 @@
 	
 	const star_val = document.querySelector("#star_val");
 	
-//	const res_id = document.querySelector("#res_id");
-//	const prod_pno = document.querySelector("#prod_pno");
+	const res_id = document.querySelector("#res_id");
+	const prod_pno = document.querySelector("#prod_pno");
 	
     function go(){
         document.querySelector(".termsmodal").style.display='block'; //스타일중에 디스플레이를 블록으로 바꿔라
@@ -1170,19 +1170,60 @@
 		location.href="reservation_page?res_adult="+ad_Aval+"&res_child="+ch_Cval+"&res_like="+like_val+"&res_price="+sum_p+"&prod_no="+pno+"&id="+user;
 	}
 */
-	function like_res() {
+	function like_res() { // 회원아이디 상품번호 
+		let id = res_id.value; 
+		let pno = prod_pno.value;
 		let like = document.querySelector("#like");
-		if (like.value === "0") {
-			res_like.style.background = 'url("img/heart_liked.png") no-repeat';
-			res_like.style.backgroundSize = "30px";
-			res_like.style.backgroundPosition = "center";
-			like.value = "1";
-		} else if (like.value === "1") {
-			res_like.style.background = 'url("img/heart.png") no-repeat';
-			res_like.style.backgroundSize = "30px";
-			res_like.style.backgroundPosition = "center";
-			like.value = "0";
+		const xhttp = new XMLHttpRequest();
+		
+		xhttp.onload = function() {
+			alert(this.responseText);
 		}
+		
+		if(res_id.value === null){
+			alert("상품 찜하기는 회원만 가능합니다. 로그인해주세요.");
+		}else{
+			let prod_no = parseInt(pno);
+			let liked = parseInt(like.value);
+			
+			if (like.value === "0") {
+				res_like.style.background = 'url("img/heart_liked.png") no-repeat';
+				res_like.style.backgroundSize = "30px";
+				res_like.style.backgroundPosition = "center";
+				like.value = "1";	
+			} else if (like.value === "1") {
+				res_like.style.background = 'url("img/heart.png") no-repeat';
+				res_like.style.backgroundSize = "30px";
+				res_like.style.backgroundPosition = "center";
+				like.value = "0";
+			}
+			xhttp.open("GET", "like_prod?id="+id+"&prod_no="+prod_no+"&like="+liked, true);  
+			xhttp.send();		
+		}
+	}
+	searchLike();
+	function searchLike(){
+		let id = res_id.value; 
+		let pno = prod_pno.value;
+		let prod_no = parseInt(pno);
+		let like = document.querySelector("#like");
+		const xhttp = new XMLHttpRequest();
+		
+		xhttp.onload = function() {
+			if(this.responseText === "0"){
+				res_like.style.background = 'url("img/heart.png") no-repeat';
+				res_like.style.backgroundSize = "30px";
+				res_like.style.backgroundPosition = "center";
+				like.value = "0";
+			}else if(this.responseText === "1"){
+				res_like.style.background = 'url("img/heart_liked.png") no-repeat';
+				res_like.style.backgroundSize = "30px";
+				res_like.style.backgroundPosition = "center";
+				like.value = "1";
+			}
+		}
+		xhttp.open("GET", "like_search?id="+id+"&prod_no="+prod_no, true);  
+		xhttp.send();
 	}
 	function sld_res() {
 		let slide = document.querySelector("#slide");

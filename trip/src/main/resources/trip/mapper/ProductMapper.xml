@@ -4,7 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.trip.mapper.ProductMapper">
   
-
 	<select id="getList" resultType="com.project.trip.vo.ProductVO">
 	SELECT * FROM product_tbl
 	</select>
@@ -12,4 +11,18 @@
 	<select id="getListOne" resultType="com.project.trip.vo.ProductVO">
 	SELECT * FROM product_tbl WHERE prod_no=#{no} 
 	</select>
+	
+	<insert id="reg_like">
+	INSERT INTO like_tbl (id,prod_no) VALUES (#{id},#{prod_no})
+	</insert>
+	<delete id="remove_like">
+	DELETE FROM like_tbl WHERE id = #{id} AND prod_no = #{prod_no}
+	</delete>
+	
+	<!--  SELECT COUNT(*) FROM like_tbl WHERE id = 'over' AND prod_no = 3;   -->
+	<select id="search_like" resultType="_int">
+	 SELECT COUNT(*) FROM like_tbl WHERE id = #{id} AND prod_no = #{prod_no}
+	</select>
+	
+	
 </mapper>

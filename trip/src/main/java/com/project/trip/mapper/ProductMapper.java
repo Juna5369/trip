@@ -11,6 +11,10 @@ import com.project.trip.vo.ProductVO;
 public interface ProductMapper {
 
 	public List<ProductVO> getList();
-	
 	public ProductVO getListOne(int prod_no);
+	
+	public int reg_like(@Param("id") String id, @Param("prod_no") int prod_no);
+	public int remove_like(@Param("id") String id, @Param("prod_no") int prod_no);
+	public int search_like(@Param("id") String id, @Param("prod_no") int prod_no);
+
 }
