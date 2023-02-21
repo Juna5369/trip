@@ -37,7 +37,7 @@
                     <!-- 국룰 범위(배경색 회색) -->
                     <div id="travel_rool_text">
                         <!-- 국룰 텍스트 -->
-                        여행 전 입국 규정을 확인하세요</div>
+                        여행 전 입국 규정을 확인하세요.</div>
                 </div>
 
                 <div id="product_img">
@@ -52,9 +52,11 @@
                         ${vo.prod_name }</div>
                         <div id="product_info">
 	                        <!-- 프로덕트 내용 -->
+	                        <div style="margin-top:10px;">
 	                        <em id="product_detail">
 	                            ${vo.prod_detail }
 	                        </em>
+	                        </div>
 	                        <div id="hash">
 		                        <em id="product_hash">
 		                            ${vo.prod_hash }
@@ -97,6 +99,93 @@
                 </div>
             </div>
             <div id="travel_info">
+                <aside>
+						<div class="res_travel">
+							<div class="res_form">
+								<form name="frm" action="" method="">
+									<div id="txt_1">인원선택</div>
+									<div id="txt_box">
+										<span id="many_txt">성인</span>
+										<p id="ad_price">${vo.prod_price_adult }</p>
+										<span>원</span>
+									</div>
+
+									<div id="res_box">
+										<div class="many_box">
+											<input type="button" name="minus_ad" id="minus_ad"
+												class="btn_1 minus_1" value=""> <input type="text"
+												name="ad_val" id="ad_val" class="input_1" value="1">
+											<input type="button" name="plus_ad" id="plus_ad"
+												class="btn_1 plus_1" value="">
+										</div>
+									</div>
+									<br>
+
+
+
+									<div id="txt_box">
+										<span id="many_txt">아동</span>
+										<p id="ch_price">${vo.prod_price_child }</p>
+										<span>원</span>
+									</div>
+
+
+									<div id="res_box">
+										<div class="many_box">
+											<input type="button" name="minus_ch" id="minus_ch"
+												class="btn_1 minus_1" value=""> <input type="text"
+												name="ch_val" id="ch_val" class="input_1" value="0">
+											<input type="button" name="plus_ch" id="plus_ch"
+												class="btn_1 plus_1" value="">
+										</div>
+									</div>
+
+									<div id="total_box">
+
+										<div id="total_sum">총금액</div>
+										<input type="text" name="total" id="total" class="input_2"
+											value="0" readonly>
+										<div id="sp">원</div>
+									</div>
+
+									<div id="res_info">
+										<div id="res_infotxt">유류할증료&제세공과금 포함<br></div>
+										
+										<div id="res_infotxt">거긴어때 마일리지 6,546적립예정</div>
+										
+									</div>
+
+
+									<div id="res_slide">
+										<input type="button" name="res_sld" id="res_sld"
+											value="상품가격 안내"> <input type="button" name="sld_img"
+											id="sld_img" class="btn_4" value=""> <input
+											type="hidden" name="slide" id="slide" value="0">
+
+										<div id="slide_box">
+											<ul>
+												<li>유류할증료 및 제세공과금은 유가와 환율에 따라 변동 될 수 있습니다.</li>
+												<li>아동, 유아요금은 성인 2인과 같은 방 사용조건이며, 미충족시 아동추가 요금이 발생합니다.</li>
+												<li>1인 객실 사용시 추가요금 발생됩니다.<br>(1인 객실 사용료 :
+													350,000원)
+												</li>
+											</ul>
+										</div>
+									</div>
+
+									<div id="btn_box">
+										<input type="button" name="res_many" id="res_many"
+											class="btn_2" value="예약하기"> <input type="button"
+											name="res_like" id="res_like" class="btn_3" value="">
+										<input type="hidden" name="like" id="like" value="0">
+										<input type="hidden" name="res_id" id="res_id" value="${sessionScope.id }">
+										<input type="hidden" name="prod_no" id="prod_no" value="1">
+									</div>
+
+								</form>
+							</div>
+						</div>
+					</aside>
                 
                 <!-- 설명전체 -->
                 <div id="travel_main_info">
@@ -127,12 +216,14 @@
                                 </tr>
                         </thead>
                             <tbody>
-                                <td style="border-left: 0px solid white; text-align: center;">기본상품</td><td style="text-align: center;">${price_adult}원<br>
+
+                                <td style="border-left: 0px solid white; text-align: center;">기본상품</td><td style="text-align: center;"><em id="product_price">${vo.prod_price_adult}</em>원<br>
                                     유류할증료 104,600원 포함(db)</td>
-                                <td style="text-align: center;">${price_child}원<br>
+                                <td style="text-align: center;"><em id="product_price">${vo.prod_price_child}</em>원<br>
+
                                     유류할증료 104,600원 포함</td>
                                 <td style="border-right: 0px solid white; text-align: center;">
-                                    성인 경비의 10%<br>    
+                                    성인 경비의 <em id="product_price">10%</em><br>    
                                 </td>                                
                             </tbody>
                         </table>
@@ -163,7 +254,7 @@
                                 <br>휴양+레저
                                 <br>나만의 디자인 투어!
                                 <br>온전한 나만의 시간, must do 액티비티 추천</div>
-                                <img src="../img/theme1_test.jpg" width="870px">
+                                <img src="../img/theme1_test.jpg" width="837px">
                         </div>
                         <div id="theme_detail_title">
                                 <!-- 타이틀 -->
@@ -186,7 +277,7 @@
                                 <li>⑦ 비교필수! 거품없는 합리적 가격의 선택관광</li>
                             </ul>
                             <br>
-                            <h4>하나투어와 함께, 즐거운 안심여행 "SAFETY&JOY"</h4>
+                            <h4>거긴어때와 함께, 즐거운 안심여행 "SAFETY&JOY"</h4>
                             <br>
                             <ul>
                                 <li>① 호텔/관광지: 국가별 안전지침 준수</li>
@@ -328,7 +419,7 @@
                                     </dd>
                                     <ul><br>
                                         <li><em>※터미널과 미팅장소를 꼭 확인하세요!</em></li>
-                                        <li>항공사 탑승수속(선박 승선수속) 마감시간까지 수속을 마치지 못한 경우 출국이 거절될 수 있으며 이 경우 당사의 책임범위가 아님을 알려드립니다. 안전한 출국을 위해 하나투어 미팅시간까지는 반드시 공항(터미널)에 도착해 주시기 바랍니다</li>
+                                        <li>항공사 탑승수속(선박 승선수속) 마감시간까지 수속을 마치지 못한 경우 출국이 거절될 수 있으며 이 경우 당사의 책임범위가 아님을 알려드립니다. 안전한 출국을 위해 거긴어때 미팅시간까지는 반드시 공항(터미널)에 도착해 주시기 바랍니다</li>
                                     </ul>
                                 </div>
                             </div>
@@ -502,6 +593,7 @@
 												</tbody>
 											</table>
 										</div>
+										<hr>
 									</div>
 
 								</div>
@@ -511,88 +603,6 @@
                              
                     </div>
                 </div>
-          <!--       <div id="sticky">  -->
-                
-					<aside>
-
-						<div class="res_travel">
-							<div class="res_form">
-								<form name="frm" action="/reservation_page" method="post">
-									<div id="txt_1">인원선택</div>
-									<div id="txt_box">
-										<span id="many_txt">성인</span>
-										<p id="ad_price">${price_adult}</p>
-										<span>원</span>
-									</div>
-
-									<div id="res_box">
-										<div class="many_box">
-											<input type="button" name="minus_ad" id="minus_ad" class="btn_1 minus_1" value=""> 
-											<input type="text" name="ad_val" id="ad_val" class="input_1" value="1">
-											<input type="button" name="plus_ad" id="plus_ad" class="btn_1 plus_1" value="">
-										</div>
-									</div>
-									<br>
-
-
-									<div id="txt_box">
-										<span id="many_txt">아동</span>
-										<p id="ch_price">${price_child}</p>
-										<span>원</span>
-									</div>
-
-
-									<div id="res_box">
-										<div class="many_box">
-											<input type="button" name="minus_ch" id="minus_ch" class="btn_1 minus_1" value=""> 
-											<input type="text" name="ch_val" id="ch_val" class="input_1" value="0">
-											<input type="button" name="plus_ch" id="plus_ch" class="btn_1 plus_1" value="">
-										</div>
-									</div>
-
-									<div id="total_box">
-										<div id="total_sum">총금액</div>
-										<input type="text" name="total" id="total" class="input_2" value="0" readonly>
-										<div id="sp">원</div>
-									</div>
-
-									<div id="res_info">
-										<p id="res_infotxt">유류할증료&제세공과금 포함</p>
-										<br>
-										<p id="res_infotxt">하나투어 마일리지 6,546적립예정</p>
-									</div>
-
-
-									<div id="res_slide">
-										<input type="button" name="res_sld" id="res_sld" value="상품가격 안내"> 
-										<input type="button" name="sld_img" id="sld_img" class="btn_4" value=""> 
-										<input type="hidden" name="slide" id="slide" value="0">
-
-										<div id="slide_box">
-											<ul>
-												<li>유류할증료 및 제세공과금은 유가와 환율에 따라 변동될 수 있습니다.</li>
-												<li>아동, 유아요금은 성인 2인과 같은 방 사용조건이며, 미충족시 아동추가 요금이 발생합니다.</li>
-												<li>1인 객실 사용시 추가요금 발생됩니다.<br>(1인 객실 사용료 : 350,000원)
-												</li>
-											</ul>
-										</div>
-									</div>
-
-									<div id="btn_box">
-										<input type="submit" name="res_many" id="res_many" class="btn_2" value="예 약"> 
-										<input type="button" name="res_like" id="res_like" class="btn_3" value="">
-										<input type="hidden" name="like" id="like" value="0">
-										<input type="hidden" name="res_id" id="res_id" value="${sessionScope.id }">
-										<input type="hidden" name="prod_pno" id="prod_pno" value="${vo.prod_no }">
-									</div>
-
-								</form>
-							</div>
-						</div>
-
-					</aside>
-
-         <!--        </div> -->
             </div>
             <div class="termsmodal">
                 <div class="termsmodal-bg" onclick="goaway()"></div>
@@ -811,7 +821,7 @@
                     <br>
                     <dd style="font-size:14px; padding-bottom:40px;">
                         <br><em style="color:red">※ 터미널과 미팅장소를 꼭 확인하세요!</em>
-                        <br>※항공사 탑승수속(선박 승선수속) 마감시간까지 수속을 마치지 못한 경우 출국이 거절될 수 있으며 이 경우 당사의 책임 범위가 아님을 알려드립니다. 안전한 출국을 위해 하나투어 미팅시간까지는 반드시 공항(터미널)에 도착해 주시기 바랍니다.
+                        <br>※항공사 탑승수속(선박 승선수속) 마감시간까지 수속을 마치지 못한 경우 출국이 거절될 수 있으며 이 경우 당사의 책임 범위가 아님을 알려드립니다. 안전한 출국을 위해 거긴어때 미팅시간까지는 반드시 공항(터미널)에 도착해 주시기 바랍니다.
                     </dd>
                 </div>
             </div>
