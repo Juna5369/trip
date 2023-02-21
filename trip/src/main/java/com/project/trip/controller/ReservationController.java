@@ -53,6 +53,8 @@ public class ReservationController {
 		int result = res_mapper.reg_reservation(reservation);
 		System.out.println(reservation.getId());
 		System.out.println(reservation.getRes_price());
+		System.out.println(reservation.getRes_desc());
+		System.out.println("동의"+reservation.getRes_third());
 		System.out.println(result);
 
 	}

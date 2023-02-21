@@ -11,5 +11,6 @@ public class ResDataDTO {
 	private String ad_val;
 //	private String like;
 	private String total;
+	private int res_third;
 
 }

@@ -62,5 +62,24 @@ public class ProductController {
 		return q1;
 	}
 	
+	@GetMapping("/like_prod")
+	public @ResponseBody String product_liked(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no, @RequestParam("like") int like) {
+		int result = 0;
+		String msg = null;
+		if(like == 0) {
+			result = mapper.reg_like(id, prod_no);
+			msg = "등록 완료";
+			
+		}else if(like == 1){
+			result = mapper.remove_like(id, prod_no);
+			msg = "제거 완료";
+		}
+		return msg;
+	}
+	@GetMapping("/like_search")
+	public @ResponseBody int search_like(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no) {
+		int result = mapper.search_like(id, prod_no);
+		return result;
+	}
 	
 }

@@ -179,7 +179,7 @@
                  		<input type="button" name="f_nat" id="f_nat" class="info_btns info_btn1" value="외국인"><br>
                  		<input type="hidden" name="nation" id="nation" value="0"> <!-- 0내국인 1외국인 -->
                  		
-                 		<input type="text" name="birth" id="birth" class="info_input info_input1 imp" value="" maxlength="8" placeholder="* 생년월일 8자리">
+                 		<input type="text" name="birth" id="birth" class="info_input info_input1 imp" value="" oninput="oninputBirth(this)" maxlength="8" placeholder="* 생년월일 8자리">
                  	<!-- 	<input type="text" name="phone" id="phone" class="info_input info_input1" value="" placeholder="휴대폰 번호 ('-'없이 숫자만 입력)">    oninput="oninputPhone(this)"-->
                  		<input type="text" name="phone" id="phone" class="info_input info_input1 form-control imp" oninput="oninputPhone(this)" maxlength="13" placeholder="* 휴대폰 번호 (숫자만 입력)">
                  		
@@ -187,7 +187,7 @@
                  		<input type="button" name="male" id="male" class="info_btn info_btn1" value="남자">
                  		<input type="button" name="female" id="female" class="info_btns info_btn1" value="여자"><br>
                  		<input type="hidden" name="sex" id="sex" value="0"> <!-- 0남자 1여자 -->
-                 		<textarea rows="4px" cols="130px" class="area" placeholder="문의/추가요청사항
+                 		<textarea rows="4px" cols="130px" name="res_desc" class="area" placeholder="문의/추가요청사항
 (여행상담용 연락처가 상기 정보와 다를 경우 이름과 전화번호를 별도 기재해 주시기 바랍니다)"></textarea>
         				</form>
                  	<div id="info_warning">
@@ -493,7 +493,8 @@
                 	<input type="submit" name="reservation" id="reservation" class="btn_2" value="결제하기" onclick="return check()">
                 	<input type="hidden" name="id" id="id" value="${sessionScope.id }">
 					<input type="hidden" name="prod_no" id="prod_no" value="${prodvo.prod_no }">
-					<input type="hidden" name="res_price" id="res_price" value="0">
+					<input type="hidden" name="res_third" id="res_third" value="0">
+					<input type="hidden" name="res_price" id="res_price" value="${prodvo.prod_price_adult }">
                 </div>
                 	
             	</div> <!-- travel_info -->
@@ -566,6 +567,7 @@
 	k_nat.addEventListener('click',nat_k);
 	
 	const res_price = document.querySelector("#res_price");
+	const res_third = document.querySelector("#res_third");
 	
 	ad_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
     total_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
@@ -753,9 +755,29 @@
 			return false;
 		}else if(exptext.test(email_ck)==false){
 			alert("이메일 형식이 올바르지 않습니다.");
-			document.frm.email.focus();
+			document.frm.e_mail.focus();
 			return false;
-
+			
+		}else if(ag1_chBtn.value == 0){
+			alert("국외여행특별약관동의는 필수 동의사항입니다.");
+			document.frm.ag1_chBtn.focus();
+			return false;
+		}else if(ag2_chBtn.value == 0){
+			alert("해외여행 보험동의는 필수 동의사항입니다.");
+			document.frm.ag2_chBtn.focus();
+			return false;
+		}else if(ag3_chBtn.value == 0){
+			alert("개인정보 수집, 이용동의는 필수 동의사항입니다.");
+			document.frm.ag3_chBtn.focus();
+			return false;
+		}else if(ag4_chBtn.value == 0){
+			alert("고유식별정보 수집, 이용동의는 필수 동의사항입니다.");
+			document.frm.ag4_chBtn.focus();
+			return false;
+		}else if(ag6_chBtn.value == 0){
+			alert("증빙제공 및 환급규정 동의는 필수 동의사항입니다.");
+			document.frm.ag6_chBtn.focus();
+			return false;
 		}else {
 			return true;
 		}
@@ -841,10 +863,17 @@ function realTime_phonecheck(e){
 		phone.style.border = "2px solid red";
 	}
 }
-function oninputPhone(target) {
-	target.value = target.value
+
+function oninputPhone() {
+	phone.value = phone.value
 	        .replace(/[^0-9]/g, '')
 	        .replace(/^(01[016789]{1})([0-9]{3,4})([0-9]{4})/g, "$1-$2-$3");
+}
+
+function oninputBirth() {
+	birth.value = birth.value
+	        .replace(/[^0-9]/g, '')
+	        .replace(/^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/, "$1-$2-$3");
 }
 
 function won(num){
@@ -922,11 +951,13 @@ function agree(e){
    			ag5_check.style.backgroundSize ="30px";
    			ag5_check.style.backgroundPosition = "center";
    			ag5_chBtn.value="1"
+   			res_third.value="1";
 		}else if(ag5_chBtn.value==="1"){
 			ag5_check.style.background = 'url("../img/check-mark.png") no-repeat';
 			ag5_check.style.backgroundSize ="30px";
 			ag5_check.style.backgroundPosition = "center";
    			ag5_chBtn.value="0";
+   			res_third.value="0";
 		}
 	}
 	if(e.target.id == "ag6_check"){

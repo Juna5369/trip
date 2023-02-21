@@ -13,4 +13,6 @@ public class ReserVO {
 	private int res_child;
 	private int res_adult;
 	private int res_price;
+	private String res_desc;
+	private int res_third;
 }
