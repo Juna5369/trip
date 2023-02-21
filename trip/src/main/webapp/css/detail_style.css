@@ -45,12 +45,19 @@
 
 #travel_price_detail > table > thead > tr > th {
     padding: 20px;
-    border: 1px solid gray;
+    border: 1px solid rgba(156, 156, 156, 0.89);
+	background-color: rgb(240, 240, 240);
+	line-height:1.5;
     
 }
 #travel_price_detail > table >tbody > tr>td{
     padding: 20px;
-     border: 1px solid gray;     
+    border: 1px solid rgba(156, 156, 156, 0.89);
+}
+#product_price{
+	font-style: bolder;
+	color:black;
+	font-size:18px;
 }
 #travel_rool{
     height: 56px;
@@ -85,6 +92,7 @@
     width: 520px;
     font-size: 26px;
     line-height: 1.4;
+    
     /* border: 1px solid black; */
 }
 #product_detail{
@@ -104,15 +112,15 @@
 	margin-left:10px;	
 	float:left;
 	display:flex;
-	border-top : 1px solid gray;
-	border-bottom : 1px solid gray;
+	border-top: 1px solid rgba(211, 211, 211, 0.89);
+	border-bottom: 1px solid rgba(211, 211, 211, 0.89);
 	width:490px;
 	text-align:center;
 	padding-top:20px;
 	padding-bottom:20px;
 }
 #hash{
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 .product_price{
 	position:absolute;
@@ -133,34 +141,38 @@
 }
 #product_main{
     height: 570px;
-    border-bottom: 1px solid gray;
+    border-bottom: 1px solid rgba(211, 211, 211, 0.89);
 }
 #travel_info{
     width: 1430px;
+    height:4400px;
     margin-top:0px;
+    z-index:-1;
 }
 
-#sticky{
+/* #sticky{
 	position:relative;
-    /* border: 1px solid yellow; */
+    border: 1px solid yellow;
     top: 0px;
     height: 3000px;
     width:1380px;
     right:100px;
     z-index:-1;
-}
+} */
 
 aside{
-    margin-top:50px;
+    margin-top:20px;
     right: 300px;
     position: sticky; 
-    left: 900px; 
+    left: 900px;
+    margin-right:150px; 
     top: 170px;
     text-align:center;
-    border: 1px solid red;
+    /* border: 1px solid red; */
     float: right;
-    width: 390px;
+    width: 380px;
     height: 670px;
+    z-index:90;
 }
 
 #travel_main_info{
@@ -168,7 +180,9 @@ aside{
     position: relative;
     float: left;
     width: 870px;
-    
+    height:4300px;
+    border-right: 1px solid rgba(211, 211, 211, 0.89);
+    padding-right:30px;
     /* border: 1px solid black; */
 }
 
@@ -359,6 +373,7 @@ aside{
     background-color: #212226;
     border-radius: 5px;
     cursor: pointer;
+    left:-25px;
 }
 .termsofservice{
     padding-top: 20px;

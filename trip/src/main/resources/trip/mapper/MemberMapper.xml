@@ -4,40 +4,40 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.trip.mapper.IMemberMapper">
 	<insert id="insertMember">
-		INSERT INTO member
+		INSERT INTO member_tbl
 		(id,pw,name,birth,gender,tel,email,email_check,address,address_detail,postalcode)
 		VALUES(#{id},#{pw},#{name},#{birth},#{gender},#{tel},#{email},#{email_check},#{address},#{address_detail},#{postalcode})
 	</insert>
 	<select id="idOverCheck" resultType="_int">
-		SELECT COUNT(*) FROM member WHERE id=#{mid}
+		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid}
 	</select>
 	<select id="login" resultType="_int">
-		SELECT COUNT(*) FROM member WHERE id=#{mid} AND pw=#{mpw}
+		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid} AND pw=#{mpw}
 	</select>
 	<select id="findId" resultType="String">
-		SELECT id FROM member WHERE name=#{fname} AND tel=#{ftel}
+		SELECT id FROM member_tbl WHERE name=#{fname} AND tel=#{ftel}
 	</select>
 	<select id="findPw" resultType="String">
-		SELECT pw FROM member WHERE
+		SELECT pw FROM member_tbl WHERE
 		id=#{param1} AND email=#{param2}
 	</select>
 	<select id="selectOne" resultType="membervo">
-		SELECT * FROM member WHERE id=#{selId}
+		SELECT * FROM member_tbl WHERE id=#{selId}
 	</select>
 	<update id="updateMember">
-		UPDATE member SET pw=#{pw} , name=#{name} ,
+		UPDATE member_tbl SET pw=#{pw} , name=#{name} ,
 		birth=#{birth},email=#{email},email_check=#{email_check},
 		address=#{address} ,address_detail=#{address_detail},
 		postalcode=#{postalcode} WHERE id=#{id}
 	</update>
 	<delete id="deleteMember">
-		DELETE FROM member WHERE id=#{delId}
+		DELETE FROM member_tbl WHERE id=#{delId}
 	</delete>
 	<select id="getReservation" resultType="reservo">
-		SELECT * FROM reservation WHERE id=#{reserId}
+		SELECT * FROM reservation_tbl WHERE id=#{reserId}
 	</select>
 	<select id="getQnA" resultType="qnavo">
-		SELECT * FROM qna WHERE id=#{qid}
+		SELECT * FROM qna_tbl WHERE id=#{qid}
 	</select>
 	<select id="getLike" resultType="com.project.trip.vo.LikeVO">
 		SELECT * FROM like_tbl WHERE id=#{lid}
@@ -49,7 +49,7 @@
 	</select>
 	<select id="getReview" resultType="reviewvo">
 
-		SELECT * FROM review WHERE id=#{reviewId}
+		SELECT * FROM review_tbl WHERE id=#{reviewId}
 
 	</select>
 	<select id="getOrder" resultType="ordervo">
@@ -65,9 +65,9 @@
 	</select>
 		<select id="getPay"
 		resultType="payvo">
-		SELECT * FROM pay WHERE order_no=#{order_no}
+		SELECT * FROM pay_tbl WHERE order_no=#{order_no}
 	</select>
 	<insert id="regReview">
-		INSERT INTO review (rev_no,prod_no,id,pay_no,rev_date,rev_contents,rev_img,rev_rating) VALUES(#{rev_no},#{prod_no},#{id},#{pay_no},#{rev_date},#{rev_contents},#{rev_img},#{rev_rating})
+		INSERT INTO review_tbl (rev_no,prod_no,id,pay_no,rev_date,rev_contents,rev_img,rev_rating) VALUES(#{rev_no},#{prod_no},#{id},#{pay_no},#{rev_date},#{rev_contents},#{rev_img},#{rev_rating})
 	</insert>
 </mapper>
