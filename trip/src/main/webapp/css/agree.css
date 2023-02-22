@@ -1,0 +1,220 @@
+@charset "UTF-8";
+
+.wrap {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.header {
+	width: 1100px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	width: 200px;
+	height: 50px;
+	vertical-align: top;
+}
+
+.h2 {
+	margin-bottom: 60px;
+}
+
+.container {
+	background-color: #f5f6f8;
+}
+
+.container>.inner {
+	width: 1100px;
+	margin: 0 auto;
+}
+
+.step1 .all_agree {
+	border-bottom: 1px solid #bbb;
+	padding-bottom: 30px;
+}
+
+.step1 .all_agree label {
+	font-size: 20px;
+	color: #e82835;
+	letter-spacing: -1.5px;
+	margin-left: 19px;
+	line-height: 16px;
+	padding-bottom: 4px;
+}
+
+.step1 .all_agree span {
+	top: 2px;
+}
+
+.chk_group label span {
+	content: "";
+	background-repeat: no-repeat;
+	background-position: 0px -408px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+}
+
+.step1 {
+	margin-left: 322px;
+	padding-top: 40px;
+	width: 463px;
+	padding-bottom: 64px;
+}
+
+.step1>p {
+	font-size: 15px;
+	color: #e82835;
+	letter-spacing: -1px;
+}
+
+.step1 .check_agree_box label {
+	font-size: 15px;
+	color: #555;
+	letter-spacing: -1px;
+	margin-left: 17px;
+}
+
+.chk_group label {
+	vertical-align: top;
+	cursor: pointer;
+	display: inline-block;
+}
+
+.step1 .check_agree_box ul li {
+	margin-bottom: 15px;
+	height: 16px;
+}
+
+.step1 .check_agree_box ul li .agree_view {
+	position: absolute;
+	display: inline-block;
+	width: 55px;
+	height: 17px;
+	background: url(//img.modetour.com/modetour/2017/join/join_sprite.png)
+		no-repeat -48px -408px;
+		
+}
+
+ul {
+	list-style: none;
+	margin-block-start: 1em;
+	margin-block-end: 1em;
+	margin-inline-start: 0px;
+	margin-inline-end: 0px;
+	padding-inline-start: 40px;
+}
+
+li {
+	list-style: none;
+}
+
+.clearfix {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.chk_group input[type=checkbox] {
+	width: 12px;
+	height: 12px;
+	border: 0 none;
+	margin: 5px 5px 0 5px;
+	vertical-align: top;
+	float: left;
+}
+
+.sel_agree {
+	margin-bottom: 40px;
+}
+
+.blind {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	visibility: hidden;
+	overflow: hidden;
+}
+
+.btn_area {
+	text-align: center;
+	
+}
+
+.btn_agree_ {
+	color:#e82835;
+	display: inline-block;
+	background: url(//img.modetour.com/modetour/2017/join/join_sprite.png)
+		no-repeat 0 -760px;
+	width: 146px;
+	height: 44px;
+	margin-right: 15px;
+}
+
+.btn_no_agree {
+	display: inline-block;
+	background: url(//img.modetour.com/modetour/2017/join/join_sprite.png)
+		no-repeat -152px -760px;
+	width: 191px;
+	height: 44px;
+}
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  height:500px;
+  max-width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: scroll;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
