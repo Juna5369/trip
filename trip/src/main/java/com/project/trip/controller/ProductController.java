@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -15,6 +16,7 @@ import com.project.trip.mapper.IBoardMapper;
 import com.project.trip.mapper.ProductMapper;
 import com.project.trip.vo.ProductVO;
 import com.project.trip.vo.QNAVO;
+import com.project.trip.vo.ReviewVO;
 
 @Controller
 public class ProductController {
@@ -62,6 +64,13 @@ public class ProductController {
 		return q1;
 	}
 	
+	@PostMapping("/reg_review")
+	public @ResponseBody int reviewReg(ReviewVO rev) {
+		int result = b_mapper.insert_review(rev);
+		return result;
+		
+	}
+	
 	@GetMapping("/like_prod")
 	public @ResponseBody String product_liked(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no, @RequestParam("like") int like) {
 		int result = 0;
@@ -80,6 +89,24 @@ public class ProductController {
 	public @ResponseBody int search_like(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no) {
 		int result = mapper.search_like(id, prod_no);
 		return result;
+	}
+	
+	@GetMapping("/prod_list")
+	public @ResponseBody String show_prodName(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no) {
+		String prodName = mapper.search_prodName(id, prod_no);
+		return prodName;
+	}
+	
+	@GetMapping("/prod_list2")
+	public @ResponseBody List<ProductVO> show_prodName2(@RequestParam("id") String id) {
+		List<ProductVO> prodNames = mapper.search_prodName2(id);
+		return prodNames;
+	}
+	
+	@GetMapping("/prod_info")
+	public @ResponseBody ProductVO show_prodInfo(@RequestParam("prod_no") int prod_no) {
+		ProductVO pro1 = mapper.getListOne(prod_no);
+		return pro1;
 	}
 	
 }

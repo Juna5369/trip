@@ -27,7 +27,10 @@
 		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no AND rev_no = #{rev_no};
 	</select>
 	
-	
+	<insert id="insert_review">
+		INSERT INTO review_tbl (prod_no,id,rev_title,rev_type,rev_date,rev_contents,rev_img,rev_rating) 
+		VALUES (#{prod_no},#{id},#{rev_title},#{rev_type},CURDATE(),#{rev_contents},#{rev_img},#{rev_rating})
+	</insert>
 	
 	<select id="qna_selectAll" resultType="com.project.trip.vo.QNAVO">
 		SELECT * FROM qna_tbl        <!-- 상품번호 같은 qna리스트 불러오기 -->

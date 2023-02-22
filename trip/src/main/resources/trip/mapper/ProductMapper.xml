@@ -19,9 +19,16 @@
 	DELETE FROM like_tbl WHERE id = #{id} AND prod_no = #{prod_no}
 	</delete>
 	
-	<!--  SELECT COUNT(*) FROM like_tbl WHERE id = 'over' AND prod_no = 3;   -->
 	<select id="search_like" resultType="_int">
 	 SELECT COUNT(*) FROM like_tbl WHERE id = #{id} AND prod_no = #{prod_no}
+	</select>
+	
+	<select id="search_prodName" resultType="String">
+	SELECT prod.prod_name FROM product_tbl prod, order_tbl orde WHERE orde.prod_no = prod.prod_no AND orde.id = #{id} AND orde.prod_no = #{prod_no}
+	</select>
+	
+	<select id="search_prodName2" resultType="com.project.trip.vo.ProductVO">
+	SELECT prod.prod_name, prod.prod_no FROM product_tbl prod, order_tbl orde WHERE orde.prod_no = prod.prod_no AND orde.id = #{id}
 	</select>
 	
 	

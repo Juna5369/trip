@@ -145,7 +145,7 @@
 }
 #travel_info{
     width: 1430px;
-    height:4400px;
+    height:4800px;
     margin-top:0px;
     z-index:-1;
 }
@@ -180,7 +180,7 @@ aside{
     position: relative;
     float: left;
     width: 870px;
-    height:4300px;
+    height:4700px;
     border-right: 1px solid rgba(211, 211, 211, 0.89);
     padding-right:30px;
     /* border: 1px solid black; */
