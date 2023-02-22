@@ -21,11 +21,11 @@
 					<img src="/img/heart.JPG" style="width: 100px; heigth: 100px">
 					<p class="txt_info">
 						<span style="color: #e82835; font-weight: bold;">
-							${sessionScope.name } 고객님, </span><span>거긴어때를 방문해 주셔서 감사합니다. </span><br>
+							${sessionScope.id }고객님,</span><span>거긴어때를 방문해 주셔서 감사합니다. </span><br>
 						<span>고객님의 즐거운 여행을 위해서 항상 최선을 다하겠습니다.</span>
 					</p>
 					<p class="txt_contact">
-						<span>${mv.email }</span> <span style="margin-left: 10px;">${mv.tel }</span>
+						<span>${mv.email }</span> <span style="margin-left: 40px;">${mv.tel }</span>
 					</p>
 					<div class="update_section">
 						<a href="update?id=${sessionScope.id }">회원정보수정</a>
@@ -131,7 +131,7 @@
 					</c:forEach>
 					<tr>
 						<td colspan="4">
-							<button
+							<button 
 								onclick="location.href='reviewBoard?id=${sessionScope.id}'"
 								class="review_btn">리뷰 작성하기</button>
 						</td>
@@ -151,22 +151,14 @@
 					<sub>내가 찜한 상품을 다시 확인해 보세요.</sub>
 				</div>
 				<div class="like_wrap">
-					<c:forEach var="data" items="${plist }">
+					<c:forEach var="pv" items="${plist }">
 						<ul>
 							<li
-								style="float: left; list-style: none; position: relative; width: 323px;">
-								<a href="/prod_detail?no=${data.prod_no }"> <img
-									src="../img/${data.prod_img }" id="slide_img"><br>
-									<div id="slide_info">
-										<!-- 게시글 제목1 -->
-										<span class="prod_title"> ${data.prod_name }<br>
-										</span>
-										<!-- 게시글 가격1 -->
-										<span class="price"> ${data.prod_price_adult } </span> 원
-									</div>
-							</a>
+								style="float: left; list-style: none; position: relative; width: 325px;">
+								<img src="/img/${pv.prod_img }"> <span><a
+									href="prod_detail?prod_no=${pv.prod_no }">${pv.prod_name }</a></span>
+								<span>${pv.prod_theme }</span> <span>${pv.prod_price}</span>
 							</li>
-
 
 						</ul>
 
