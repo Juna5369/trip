@@ -18,8 +18,10 @@
 			<div class="pay_cont">
 				<h3 class="cont_title">결제상세 내역</h3>
 				<div class="cont_inner">
-					<input type="hidden" id="prod_no" value="${prod.prod_no }">
 					<!-- value는 서버에서-->
+					<input type="text" class="prod_name" value="${prod.prod_name }" >
+					<img class="prd_img" alt="prod_img" src="${prod.prod_img }">
+					
 					<span class="cont_inner_left"> 총 결제 완료 금액 </span>
 					<span class="cont_inner_right"><input type="text" id="price" value="${pay.pay_price }" readonly>원</span><br>
 				</div>

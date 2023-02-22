@@ -21,7 +21,7 @@
                     <ul>
                         <li><a href="faq">자주찾는 질문</a></li>
                         <li><a href="qna">1:1 문의</a></li>
-                        <li><a href="#">1:1 문의내역</a></li>
+                        <li><a href="res_qna_list">1:1 문의내역</a></li>
                         <li><a href="notice">공지사항</a></li>
                     </ul>
                 </div>
@@ -37,11 +37,15 @@
                             <tbody>
                                 <tr>
                                     <th>작성자</th>
-                                    <td>누구누구</td>
+                                    <td>${name }</td>
                                 </tr>
                                 <tr>
-                                    <th>예약코드</th>
-                                    <td>누구누구</td>
+                                    <th>예약번호</th>
+                                    <td>
+	                                    <select name="res_no">
+	                                    
+	                                    </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>제목</th>
@@ -64,5 +68,51 @@
     </section>
 	<%@ include file="../footer.jsp"%>
 	<script src="js/cuc.js"></script>
+	<script>
+		$(document).ready(function(){
+			$.ajax({
+				type: 'get',
+				url: '/getResInfo',
+				data: {
+					id: '${sessionScope.id }'
+				},
+				success: function(data){
+					
+					for(i = 0; i < data.length; i++){
+						$("select[name='res_no']").append('<option>' 
+								+ data[i].res_no + '</option>');
+					}
+				}
+
+			});
+		});
+		
+		$(".btn_s").click(function(){
+			
+			let id = '${sessionScope.id }';
+			let res_no = $("select[name='res_no']").val();
+			let res_qna_title = $(".qna_subj").val();
+			let res_qna_contents = $(".qna_cont").val();
+			
+			$.ajax({
+				type: 'post',
+				url: '/postQna',
+				data: {
+					id: id,
+					res_no: res_no,
+					res_qna_title: res_qna_title,
+					res_qna_contents: res_qna_contents
+				},
+				success: function(data){
+					alert("1:1 문의 등록이 완료되었습니다.");
+					location.href="res_qna_list";
+				}
+			});
+		});
+		
+		$(".btn_c").click(function(){
+			location.href="cust_center";
+		});
+	</script>
 </body>
 </html>

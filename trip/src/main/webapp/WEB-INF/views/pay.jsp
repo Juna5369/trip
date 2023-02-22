@@ -21,7 +21,6 @@
 				<div class="cont_inner">
 					<input type="hidden" id="pcode" value="">
 					<!-- value는 서버에서-->
-					
 					<span class="cont_inner_left"> 총 결제 금액 </span>
 					<span class="cont_inner_right"><input type="text" id="price" value="${reser.res_price }" readonly>원</span><br>
 					<br>

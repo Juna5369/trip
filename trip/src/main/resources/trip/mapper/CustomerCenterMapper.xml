@@ -24,10 +24,21 @@
   
 	<select id="getQNAList" resultType="qnavo">
 		SELECT * FROM qna_tbl ORDER BY qna_no DESC
-	</select>  
+	</select>
   
   	<select id="getFAQList" resultType="faqvo">
 		SELECT * FROM faq_tbl ORDER BY faq_no DESC
 	</select>
-  
+
+	<insert id="insertQNA">
+		INSERT INTO res_qna_tbl (id, res_no, res_qna_title, res_qna_contents, res_qna_date) VALUES (#{id}, #{res_no}, #{res_qna_title}, #{res_qna_contents}, NOW())
+	</insert>
+	
+	<select id="getResQNAList" resultType="resqnavo">
+		SELECT * FROM res_qna_tbl WHERE id = #{id} ORDER BY res_qna_no DESC
+	</select>
+	
+	<select id="getResQNAOne" resultType="resqnavo">
+		SELECT * FROM res_qna_tbl WHERE res_qna_no = #{res_qna_no}
+	</select>
   </mapper>

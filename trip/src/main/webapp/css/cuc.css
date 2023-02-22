@@ -299,7 +299,7 @@
 	width: 800px;
 	height: 55px;
 	float: left;
-	padding: 15px 20px;
+	padding: 20px 20px;
 	text-align: left;
 	font-size: 18px;
 }
@@ -307,7 +307,7 @@
 	width: 260px;
 	height: 55px;
 	float: left;
-	padding: 18px 20px;
+	padding: 22px 20px;
 	text-align: right;
 	font-size: 15px;
 }
@@ -348,6 +348,7 @@
 }
 table {
 	border-collapse: collapse;
+	
 }
 th, td {
 	border-top : 1px solid #ccc;
@@ -362,11 +363,20 @@ th:first-child {
 td:first-child {
 	border-left: none;
 }
+.notice_tbl {
+	width:100%;
+}
 .notice_tbl > thead {
 	background-color: #E6E6E6;
 }
 .notice_tbl > thead > tr > th{
 	text-align: center;
+}
+.notice_tbl > thead > tr > th:first-child{
+	width:10%;
+}
+.notice_tbl > thead > tr > th:last-child{
+	width:15%;
 }
 .notice_tbl > tbody > tr > td:first-child {
 	width: 10%;

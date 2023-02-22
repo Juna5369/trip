@@ -17,7 +17,6 @@
 						<li>|</li>
 						<li><a href="logout.do">로그아웃</a></li>
 						<li>|</li> 
-						<li><a href="mypage?id=${sessionScope.id }">마이페이지</a></li>
 						<li style="font-size:13px;padding-top:3px;">${sessionScope.name }님 환영합니다</li>
 					</ul>
 				</c:if>

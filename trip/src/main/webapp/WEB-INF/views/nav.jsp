@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,9 +19,16 @@
 			</div>
 			<span id="red_line"></span><!--nav line 빨간줄-->
 			<div class="right_nav">
-				<div class="like_icon"><a href="#">찜 목록</a></div>
-				<div class="res_icon"><a href="#">예약 내역</a></div>
-				<div class="myp_icon"><a href="#">내 정보</a></div>
+				<c:if test="${sessionScope.id != null }">
+					<div class="like_icon"><a href="#">찜 목록</a></div>
+					<div class="res_icon"><a href="#">예약 내역</a></div>
+					<div class="myp_icon"><a href="mypage?id=${sessionScope.id }">내 정보</a></div>
+				</c:if>
+				<c:if test="${sessionScope.id == null }">
+					<div class="like_icon"><a href="login">찜 목록</a></div>
+					<div class="res_icon"><a href="login">예약 내역</a></div>
+					<div class="myp_icon"><a href="login">내 정보</a></div>
+				</c:if>
 			</div> 
 			<ul class="nav_list">
 				<!-- 해외/테마/국내 nav_list  -->
@@ -38,7 +46,7 @@
 									<li><a href="#">인도/네팔</a></li>
 								</ul>
 							</li>
-							<li><a href="#">일본/몽골/홍콩</a>
+							<li><a href="list">일본/몽골/홍콩</a>
 								<ul class="nav_sub2 sub2">
 									<li><a href="#">도쿄</a></li>
 									<li><a href="#">오사카</a></li>

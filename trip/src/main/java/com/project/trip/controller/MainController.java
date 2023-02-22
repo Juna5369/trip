@@ -9,13 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.trip.mapper.CustomerCenterMapper;
 import com.project.trip.mapper.IMemberMapper;
+import com.project.trip.mapper.IReservationMapper;
 import com.project.trip.vo.MemberVO;
 import com.project.trip.vo.NoticeVO;
+import com.project.trip.vo.ResQNAVO;
+import com.project.trip.vo.ReserVO;
 
 @Controller
 public class MainController {
@@ -24,6 +28,8 @@ public class MainController {
 	CustomerCenterMapper cMapper;
 	@Autowired
 	IMemberMapper mMapper;
+	@Autowired
+	IReservationMapper rMapper;
 	
 	@GetMapping("/")
 	public String root() {
@@ -56,8 +62,53 @@ public class MainController {
 	}
 	
 	@GetMapping("/qna")
-	public String qna() {
+	public String qna(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
+		MemberVO member = mMapper.selectOne(id);
+		String name = member.getName();
+		
+		model.addAttribute("name", name);
+		
 		return "/cust_center/qna";
+	}
+	
+	@GetMapping("/getResInfo")
+	public @ResponseBody List<ReserVO> getResInfo(@RequestParam String id) {
+
+		return rMapper.getResInfoById(id);
+	}
+	
+	@PostMapping("/postQna")
+	public @ResponseBody String postQna(ResQNAVO rq) {
+		
+		cMapper.insertQNA(rq);
+		
+		return "";
+	}
+	
+	@GetMapping("/res_qna_list")
+	public String res_qna_list() {
+		return "cust_center/res_qna_list";
+	}
+	
+	@GetMapping("/res_qna_post")
+	public String res_qna_post(@RequestParam String res_qna_no, Model model) {
+		int no = Integer.parseInt(res_qna_no);
+		
+		model.addAttribute("post", cMapper.getResQNAOne(no));
+		
+		return "/cust_center/res_qna_post";
+	}
+	
+	@GetMapping("/getQNAList")
+	public @ResponseBody List<ResQNAVO> getQNAList(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+
+		return cMapper.getResQNAList(id);
 	}
 	
 	@GetMapping("/getNoticeList.do")

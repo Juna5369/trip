@@ -21,7 +21,7 @@
                     <ul>
                         <li><a href="faq">자주찾는 질문</a></li>
                         <li><a href="qna">1:1 문의</a></li>
-                        <li><a href="#">1:1 문의내역</a></li>
+                        <li><a href="res_qna_list">1:1 문의내역</a></li>
                         <li><a href="notice">공지사항</a></li>
                     </ul>
                 </div>
@@ -49,5 +49,10 @@
         </div>
     </section>
 	<%@ include file="../footer.jsp"%>
+	<script>
+		$(".l_btn").click(function(){
+			location.href="notice";
+		})
+	</script>
 </body>
 </html>
