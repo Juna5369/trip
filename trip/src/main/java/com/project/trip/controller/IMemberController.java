@@ -59,17 +59,14 @@ public class IMemberController {
 	}
 
 	@PostMapping("login.do")
-	public @ResponseBody String loginCheck(String id, String pw, HttpServletRequest request,Model model) {
+	public @ResponseBody String loginCheck(String id, String pw, HttpServletRequest request) {
 		int result = mapper.login(id, pw);
 		HttpSession session = request.getSession();
 		String out = "";
-		MemberVO mv = mapper.selectOne(id);
-		String name = mv.getName();
+
 		if (result == 1) {
-			out = "<script>alert('" + mv.getName() + "님 로그인 성공!');location.href='/';</script>";
+			out = "<script>alert('" + id + "님 로그인 성공!');location.href='/';</script>";
 			session.setAttribute("id", id);
-			session.setAttribute("name", name);
-			
 		} else {
 			out = "<script>alert('아이디 비밀번호를 확인해주세요');location.href='login';</script>";
 		}
@@ -162,9 +159,5 @@ public class IMemberController {
 
 
 		return view;
-	}
-	@GetMapping("/agree")
-	public void agree() {
-		
 	}
 }

@@ -1,7 +1,3 @@
-*{
-	font-family: 'Pretendard-Regular';
-	line-height:1.7;
-}
 #find {
 	margin-top: 100px;
 }
@@ -124,12 +120,6 @@ sub {
 	cursor:pointer;
 	
 }
-.like_section{
-	width:100%;
-	height:100%;
-	margin-bottom:50px;
-	
-}
 
 .like_section img {
 	width: 280px;
@@ -163,14 +153,13 @@ sub {
 }
 
 .list_section {
+
 	width: 100%;
-	height: 500px;
+	height: 450px;
 	padding: 5px;
 	margin: 0 auto;
 	border-bottom:1px solid #ccc;
-	margin-bottom:50px;
 	width: 1280px;
-	overflow:scroll;
 	
 }
 
@@ -181,10 +170,4 @@ div {
 @font-face {
 	src: url("/fonts/Jalnan.ttf");
 	font-family: "jalnan";
-}
-@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
 }
