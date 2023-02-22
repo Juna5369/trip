@@ -221,7 +221,7 @@
                                 <td style="text-align: center;"><em id="product_price">${vo.prod_price_child}</em>원<br>
 
                                     유류할증료 104,600원 포함</td>
-                                <td style="border-right: 0px solid white; text-align: center;">
+                                <td style="border-right: 0px solid white; text-align: center;"> 
                                     성인 경비의 <em id="product_price">10%</em><br>    
                                 </td>                                
                             </tbody>

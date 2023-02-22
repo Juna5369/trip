@@ -143,11 +143,12 @@
     height: 570px;
     border-bottom: 1px solid rgba(211, 211, 211, 0.89);
 }
-#travel_info{
+#travel_info{ /* 감싼부분 */
     width: 1430px;
     height:4800px;
     margin-top:0px;
     z-index:-1;
+    
 }
 
 /* #sticky{
@@ -157,10 +158,10 @@
     height: 3000px;
     width:1380px;
     right:100px;
-    z-index:-1;
+    z-index:-1; 
 } */
 
-aside{
+aside{ /* 오른쪽 스티키 */
     margin-top:20px;
     right: 300px;
     position: sticky; 
@@ -175,7 +176,7 @@ aside{
     z-index:90;
 }
 
-#travel_main_info{
+#travel_main_info{ /* 왼쪽 */
     
     position: relative;
     float: left;
@@ -405,4 +406,12 @@ em{
     margin: 10px;
 }
 
+
+
+#tbl_con1> tbody > tr > td {
+	text-align : center;
+}
+#tbl_con2> tbody > tr > td {
+	text-align : center;
+}
 
