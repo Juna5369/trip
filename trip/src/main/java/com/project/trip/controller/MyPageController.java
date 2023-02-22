@@ -171,13 +171,9 @@ public class MyPageController {
 		
 		System.out.println("리뷰 :" +rv.toString());
 		if(mapper.regReview(rv) == 1) {
-			page="<scrip>alert(리뷰작성 완료)"
-					+ "location.href=index.jsp"
-					+ "</script>";
+			page= "<script>alert('리뷰등록 완료');location.href='/';</script>";
 		}else {
-			page="<scrip>alert(리뷰실패 )"
-					+ "location.href=review.jsp"
-					+ "</script>";
+			page= "<script>alert('리뷰실패');location.href='/';</script>";
 		}
 		
 		
