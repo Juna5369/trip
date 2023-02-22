@@ -102,11 +102,11 @@
                 <aside>
 						<div class="res_travel">
 							<div class="res_form">
-								<form name="frm" action="" method="">
+								<form name="frm" action="/reservation_page" method="post">
 									<div id="txt_1">인원선택</div>
 									<div id="txt_box">
 										<span id="many_txt">성인</span>
-										<p id="ad_price">${vo.prod_price_adult }</p>
+										<p id="ad_price">${price_adult}</p>
 										<span>원</span>
 									</div>
 
@@ -125,7 +125,7 @@
 
 									<div id="txt_box">
 										<span id="many_txt">아동</span>
-										<p id="ch_price">${vo.prod_price_child }</p>
+										<p id="ch_price">${price_child}</p>
 										<span>원</span>
 									</div>
 
@@ -174,12 +174,11 @@
 									</div>
 
 									<div id="btn_box">
-										<input type="button" name="res_many" id="res_many"
-											class="btn_2" value="예약하기"> <input type="button"
-											name="res_like" id="res_like" class="btn_3" value="">
+										<input type="submit" name="res_many" id="res_many" class="btn_2" value="예 약"> 
+										<input type="button" name="res_like" id="res_like" class="btn_3" value="">
 										<input type="hidden" name="like" id="like" value="0">
 										<input type="hidden" name="res_id" id="res_id" value="${sessionScope.id }">
-										<input type="hidden" name="prod_no" id="prod_no" value="1">
+										<input type="hidden" name="prod_pno" id="prod_pno" value="${vo.prod_no }">
 									</div>
 
 								</form>
@@ -489,7 +488,7 @@
 														<label for="type4">부모님 동반</label>
 														<input type="radio" name="types" id="type5" class="types" value="5" onclick="write_rewiew(this)">
 														<label for="type5">대가족 / 모임</label>
-														<input type="hidden" name="sel_types" id="sel_type" value="">
+														<input type="hidden" name="sel_types" id="sel_types" value="0">
 													</div>
 												</div>
 												
@@ -511,7 +510,7 @@
 													<div id="re_prod" class="re_box2">
 														<div class="re_tag"><span>여행 상품</span></div>
 														<div id="prod_select">
-															<select name="prod_list" id="prod_list" class="review_select">
+															<select name="prod_list" id="prod_list" onchange="sel_prod()" class="review_select">
    		 														<option value="0">상품 목록</option>
 
 															</select>
@@ -526,8 +525,8 @@
 														<div id="prod_detail">
 															<label for="start_date">출발일</label>
 															<input type="text" name="start_date" id="start_date" class="pr_de de1" value="" readonly>
-															<label for="days">여행 기간</label>
-															<input type="text" name="days" id="days" class="pr_de de2" value="" readonly><br>
+															<label for="days">귀국일</label>
+															<input type="text" name="days" id="end_date" class="pr_de de2" value="" readonly><br>
 															<label for="plane">항공사</label>
 															<input type="text" name="plane" id="plane" class="pr_de de3" value="" readonly>
 															<label for="hotel">호텔</label>
@@ -567,6 +566,7 @@
 													
 													<div id="re_btn" class="re_box5">
 														<input type="button" name="review_submit" id="review_submit" class="btn_2" value="등록 하기">
+														<input type="hidden" name="rev_prodno" id="rev_prodno" value="">
 													</div>
 													
 												</div>
@@ -868,13 +868,16 @@
 	tbody_con2.addEventListener('click', con2_tbody);
 	
 	const types = document.getElementsByName("types");
-	const sel_types = document.querySelector("#sel_type");
+	const sel_types = document.querySelector("#sel_types");
 	const re_wrap = document.querySelector("#re_wrap");
 	
 	const star_val = document.querySelector("#star_val");
 	
 	const res_id = document.querySelector("#res_id");
 	const prod_pno = document.querySelector("#prod_pno");
+	
+	const review_submit = document.querySelector("#review_submit");
+	review_submit.addEventListener('click', submit_review);
 	
     function go(){
         document.querySelector(".termsmodal").style.display='block'; //스타일중에 디스플레이를 블록으로 바꿔라
@@ -895,17 +898,6 @@
      function goawaymeeting(){
         document.querySelector(".meetingmodal").style.display='none'; //스타일중에 디스플레이를 블록으로 바꿔라
      }
-
- 	prod_show();
-	function prod_show(){
-		$("#prod_list option:eq(0)").after("<option value='${sessionScope.prod_no}'>'${sessionScope.prod_name}'</option>");
-	}
-	
-	$(function(){
-		$("#prod_list").change(function(){
-			alert(this.value); // 마찬가지로 ajax로 구현하고 상품번호로 상품정보 들고와서 값 넣어주면 됨
-		});
-	});
 
 	function rating_stars(n){
 		let star_1 = document.querySelector('label[for="star1"]');
@@ -960,9 +952,95 @@
 	let type_string = ["홀로 여행", "친구 / 커플", "아동 동반", " 부모님 동반", "대가족 / 모임"];
 	function write_rewiew(e){
 		var tmp_value = $('input:radio[name=types]:checked').val();
-		sel_type.value=type_string[parseInt(tmp_value)-1];
+		sel_types.value=type_string[parseInt(tmp_value)-1];
 		re_wrap.style.display="block";
 	}
+	
+    function submit_review(){
+ 		const xhttp = new XMLHttpRequest();	
+     	let review_title = document.querySelector("#review_title").value;
+     	let review_name = document.querySelector("#review_name").value;
+     	let star_val = document.querySelector("#star_val").value;
+     	let sel_type2 = sel_types.value;
+     	let re_text = document.querySelector("#re_text").value;
+     	let rev_prodno = document.querySelector("#rev_prodno").value;
+     	
+     	let prod_no = parseInt(rev_prodno);
+     	let stars = parseInt(star_val);
+     	
+ 		
+ 		xhttp.onload = function() {
+ 			alert(this.responseText); 
+ 		}
+ 		
+ 		xhttp.open("POST", "reg_review",true);
+ 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 		
+ 		let data = "id=" + review_name + "&prod_no=" + prod_no + "&rev_title=" + review_title + "&rev_type=" + sel_type2 + "&rev_contents=" + re_text + "&rev_rating=" +stars;
+ 		xhttp.send(data);
+ 		alert("클릭2");
+      }
+
+  	prod_show2();
+ 	function prod_show(){
+ 		const xhttp = new XMLHttpRequest();
+ 		
+ 		let id = res_id.value; 
+ 		let pno = prod_pno.value;
+ 		let prod_no = parseInt(pno);
+ 		
+ 		xhttp.onload = function() {
+ 			let prodName = this.responseText; 
+ 			$("#prod_list option:eq(0)").after("<option value="+prod_no+">"+prodName+"</option>");
+ 		}
+ 		xhttp.open("GET", "prod_list?prod_no="+prod_no+"&id="+id, true); 
+// 		xhttp.open("GET", "prod_list2?prod_no="+prod_no+"&id="+id, true);
+ 		xhttp.send();
+ 	}
+ 	
+ 	function prod_show2(){
+ 		const xhttp = new XMLHttpRequest();	
+ 		
+ 		let id = res_id.value; 
+ 		let pno = prod_pno.value;
+ 		let prod_no = parseInt(pno);
+ 		let rev_prodno = document.querySelector("#rev_prodno");
+ 		
+ 		xhttp.onload = function() {
+ 			let jsonStr = this.responseText; 
+ 			let obj = JSON.parse(jsonStr);
+ 			for(let i = 0; i < obj.length; i++){
+ 				$("#prod_list option:eq(0)").after("<option value="+obj[i].prod_no+">"+obj[i].prod_name+"</option>");
+ 				rev_prodno.value = obj[i].prod_no;
+ 			}
+ 		}
+ 		xhttp.open("GET", "prod_list2?id="+id, true);
+ 		xhttp.send();
+ 	}
+ 	
+ 	function sel_prod(){
+ 		const xhttp = new XMLHttpRequest();
+ 		
+ 		var prod_nos = document.getElementById("prod_list");    
+		var prod_no = prod_nos.options[prod_nos.selectedIndex].value;  
+		let s_date = document.querySelector("#start_date");
+		let e_date = document.querySelector("#end_date");
+		let s_plane = document.querySelector("#plane");
+		let s_hotel = document.querySelector("#hotel");
+
+ 		xhttp.onload = function() {
+ 			let jsonStr = this.responseText; 
+ 			let obj = JSON.parse(jsonStr);
+
+ 			s_date.value = obj.prod_start_date;
+ 			e_date.value = obj.prod_end_date;
+ 			s_plane.value = obj.prod_plane;
+ 			s_hotel.value = obj.prod_hotel;
+ 		}
+ 		xhttp.open("GET", "prod_info?prod_no="+prod_no, true);
+ 		xhttp.send();
+ 		
+ 	}
 	
 	const new_num = document.querySelector("#new_num");
 	const security = document.querySelector("#security");
@@ -1158,19 +1236,8 @@
 			alert("4명이하로 예약 가능합니다.");
 		}
 	}
-/*
-	function many_res() {
-		let ad_Aval = ad_val.value;
-		let ch_Cval = ch_val.value;
-		let like_val = like.value;
-		let sum_p = total.value;
-		let user = res_id.value; 
-		let pno = prod_pno.value;
 
-		location.href="reservation_page?res_adult="+ad_Aval+"&res_child="+ch_Cval+"&res_like="+like_val+"&res_price="+sum_p+"&prod_no="+pno+"&id="+user;
-	}
-*/
-	function like_res() { // 회원아이디 상품번호 
+	function like_res() {
 		let id = res_id.value; 
 		let pno = prod_pno.value;
 		let like = document.querySelector("#like");

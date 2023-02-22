@@ -17,4 +17,7 @@ public interface ProductMapper {
 	public int remove_like(@Param("id") String id, @Param("prod_no") int prod_no);
 	public int search_like(@Param("id") String id, @Param("prod_no") int prod_no);
 
+	public String search_prodName(@Param("id") String id, @Param("prod_no") int prod_no);
+	public List<ProductVO> search_prodName2(@Param("id") String id);
+	
 }

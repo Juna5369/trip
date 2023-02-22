@@ -721,13 +721,7 @@
 			sex.value = "1";
 		}
 	}
-	/*
-	function res_go(){
-		if(check()){
-			location.href="pay.do?res_price="+total_sum.value;
-		}
-	}
-*/
+
 	function check(){
 		var email_ck = e_mail.value; 
 		var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
