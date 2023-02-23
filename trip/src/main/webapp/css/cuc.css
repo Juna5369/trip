@@ -1,4 +1,7 @@
 @charset "UTF-8";
+a {
+	cursor: pointer;
+}
 .cuc_box {
 	width: 1280px;
 	height: 100%;
@@ -51,7 +54,7 @@
 .middle_content {
 	float: left;
 	width: 750px;
-	height: 700px;
+	height: 100%;
 }
 
 .search_box{
@@ -83,7 +86,7 @@
 }
 .guidance {
 	width: 750px;
-	height: 640px;
+	height: 100%;
 	
 }
 .guide_title {
@@ -185,11 +188,11 @@
 .main_faq {
 	float: left;
 	width: 1070px;
-	height: 800px;
+	height: 100%;
 }
 .faq_board {
 	width: 1070px;
-	height: 800px;
+	height: 100%;
 }
 .faq_title {
 	width: 1070px;
@@ -227,6 +230,44 @@
 	color: #e82835;
 }
 
+.faq_cont{
+	display:none;
+	margin-top: 20px;
+	height: 100%;
+	white-space: normal;
+}
+.faq_list {
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.faq_list > li {
+	padding: 20px 0 20px 15px;
+	border-top: 1px solid #ccc;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+.faq_list > li:last-child {
+	text-align: center;
+}
+.faq_subj {
+	cursor: pointer;
+}
+.faq_subj > strong {
+	pointer-events: none;
+}
+.downside{
+	float:right;
+	width:50px;
+	height:19px;
+	background-image: url(/img/downside.png);
+	background-size:50%;
+	background-repeat: no-repeat;
+	background-position: center;
+	pointer-events: none;
+}
+
 /* notice page */
 .main_notice {
 	float: left;
@@ -246,12 +287,12 @@
 	margin-top: 30px;
 	margin-bottom: 34px;
 }
-.notice_search {
+.cuc_search {
 	width: 500px;
 	height: 50px;
 	float: right;
 }
-.notice_search_input {
+.cuc_search_input {
 	width: 200px;
 	height: 40px;
 	float: right;
@@ -259,10 +300,10 @@
 	padding: 3px 10px;
 	border: #ccc solid 1px;
 }
-.notice_search_input:focus {
+.cuc_search_input:focus {
 	border: #e82835 solid 1px;
 }
-.notice_search_btn {
+.cuc_search_btn {
 	width: 100px;
 	height: 40px;
 	float: right;
@@ -335,7 +376,7 @@
 	padding-top: 30px;
 	text-align: left;
 	font-weight: bold;
-	font-size: 18px;
+	font-size: 22px;
 }
 
 .qna_sub {

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.project.trip.mapper.CustomerCenterMapper;
 import com.project.trip.mapper.IMemberMapper;
 import com.project.trip.mapper.IReservationMapper;
+import com.project.trip.vo.FAQVO;
 import com.project.trip.vo.MemberVO;
 import com.project.trip.vo.NoticeVO;
 import com.project.trip.vo.ResQNAVO;
@@ -56,9 +57,32 @@ public class MainController {
 		return "/cust_center/faq";
 	}
 	
+	@GetMapping("/getFAQList")
+	public @ResponseBody List<FAQVO> getFAQList(){
+		return cMapper.getFAQList();
+	}
+	
+	@GetMapping("/getFAQListByTitle")
+	public @ResponseBody List<FAQVO> getFAQListByTitle(@RequestParam String faq_title){
+		return cMapper.getFAQListByTitle(faq_title);
+	}
+	
 	@GetMapping("/notice")
 	public String notice() {
 		return "/cust_center/notice";
+	}
+	
+	@GetMapping("/getNoticeSearch")
+	public @ResponseBody List<NoticeVO> getNoticeSearch(@RequestParam String not_title) {
+		
+		return cMapper.getNoticeListByTitle(not_title);
+	}
+	
+	
+	@GetMapping("/searchFAQ")
+	public String searchFAQ(@RequestParam String keyword , Model model) {
+		model.addAttribute("keyword", keyword);
+		return "/cust_center/faq";
 	}
 	
 	@GetMapping("/qna")

@@ -43,30 +43,15 @@
 	</section>
 	<%@ include file="footer.jsp"%>
 	<script>
-		
-/*	
-	$(document).ready(function(){
-		$.ajax({
-			type: 'get',
-			url: '/getInfo',
-			dataType: "text",
-			success: function(data){
-				let obj = JSON.parse(data);
-				
-				$("#name").val(obj.name);
-				$("#tel").val(obj.tel);
-				$("#email").val(obj.email);
-			}
-		});
-	});
-*/
+
 	$("#btn-kakao-pay").click(function(){
 
 		// 필수입력값을 확인.
 		// 결제 정보를 form에 저장한다.
-		// let totalPayPrice = parseInt($("#total-pay-price").text().replace(",", ""))
+
 		let prod_no = $("#prod_no").val();
 		let totalPrice = $("#price").val();
+		
 		// 카카오페이 결제전송
 		$.ajax({
 			type:'get',

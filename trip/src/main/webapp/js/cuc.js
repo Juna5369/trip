@@ -2,6 +2,10 @@ $("input[value='문의하기']").click(function(){
 	location.href="qna"
 });
 
+$("input[value='문의내역 확인']").click(function(){
+	location.href="res_qna_list"
+});
+
 $(".q_btn").mouseenter(function(e){
 	$(e.target).css("color", "#e82835");
 	$(e.target).css("border", "#e82835 solid 1px");

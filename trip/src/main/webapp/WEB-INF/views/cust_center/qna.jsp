@@ -20,8 +20,8 @@
                     </div>
                     <ul>
                         <li><a href="faq">자주찾는 질문</a></li>
-                        <li><a href="qna">1:1 문의</a></li>
-                        <li><a href="res_qna_list">1:1 문의내역</a></li>
+                        <li><a onclick="goQNA()">1:1 문의</a></li>
+                        <li><a onclick="go_res_qna_list()">1:1 문의내역</a></li>
                         <li><a href="notice">공지사항</a></li>
                     </ul>
                 </div>
@@ -30,7 +30,7 @@
                     <div class="qna_sub">
                         <strong>문의하시기 전 확인해 주세요</strong>
                         <p>고객님의 소중한 의견을 빠르고 정확하게 해결하기 위해 최선을 다하겠습니다.</p>
-                        <p>문의에 대한 답변은 <em>[마이메뉴>마이페이지>1:1 게시판 문의내역]</em> 에서 확인할 수 있습니다.</p>
+                        <p>문의에 대한 답변은 <em>[1:1 문의내역]</em> 에서 확인할 수 있습니다.</p>
                     </div>
                     <div class="qna_tbl_box">
                         <table class="qna_tbl">
@@ -113,6 +113,22 @@
 		$(".btn_c").click(function(){
 			location.href="cust_center";
 		});
+		
+		function goQNA(){
+			if('${sessionScope.id }' == ""){
+				location.href="login";
+			}else{
+				location.href="qna";
+			}
+		}
+		
+		function go_res_qna_list(){
+			if('${sessionScope.id }' == ""){
+				location.href="login";
+			}else{
+				location.href="res_qna_list";
+			}
+		}
 	</script>
 </body>
 </html>
