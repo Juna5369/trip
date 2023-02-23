@@ -5,22 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>거긴어때</title>
 <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/review.css">
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 </head>
 <body>
 	<%@include file="header.jsp"%>
 	<%@include file="nav.jsp"%>
-	<h1>리뷰페이지</h1>
 	<div class="review_section">
-		<form action="reviewBoard" method="post">
+	<h1>리뷰페이지</h1>
+		<form action="reviewBoard" method="post" class="form">
 
 			<table border="1">
-				<input type="hidden"  name="id" value="${sessionScope.id }">
+				<input type="hidden" name="id" value="${sessionScope.id }">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title"></td>
+					<td><input type="text" name="title" class="title"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
@@ -38,29 +39,34 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="rev_contents"></textarea></td>
+					<td><textarea name="rev_contents" cols="70" rows="10"></textarea></td>
 				</tr>
-				<tr>
+				
+				
+					<tr>
 					<td>상품평점</td>
-					<td>
-					<img src="/img/fiveStars.JPG">
-					<input type="radio" value="5" name="rev_rating">
-					
-					<img src="/img/fourStars.JPG">
-					<input type="radio" value="4" name="rev_rating">
-					
-					<img src="/img/threeStars.JPG">
-					<input type="radio" value="3" name="rev_rating">
-					
-					<img src="/img/twoStars.JPG">
-					<input type="radio" value="2" name="rev_rating">
-					
-					<img src="/img/oneStar.JPG">
-					<input type="radio" value="1" name="rev_rating">
-					</td>
-				</tr>
+					<td><div id="re_star" class="re_box">
+						<div class="re_tag">
+							<span>서비스에 대하여 전반적으로 만족하셨나요?</span>
+						</div>
+						<div class="star_rating">
+							<!-- &#9733;  -->
+							<input type="radio" name="rev_rating" id="star1" class="stars"
+								value="1" onclick="rating_stars(1)"> <label for="star1"></label>
+							<input type="radio" name="rev_rating" id="star2" class="stars"
+								value="2" onclick="rating_stars(2)"> <label for="star2"></label>
+							<input type="radio" name="rev_rating" id="star3" class="stars"
+								value="3" onclick="rating_stars(3)"> <label for="star3"></label>
+							<input type="radio" name="rev_rating" id="star4" class="stars"
+								value="4" onclick="rating_stars(4)"> <label for="star4"></label>
+							<input type="radio" name="rev_rating" id="star5" class="stars"
+								value="5" onclick="rating_stars(5)"> <label for="star5"></label>
+							<input type="hidden" name="star_val" id="star_val" value="">
+						</div>
+					</div></td>
+					<tr>
 				<tr>
-					<td><input type="submit" value="리뷰등록"></td>
+					<td style="border:none;"><input type="submit" value="리뷰등록"></td>
 				</tr>
 			</table>
 
@@ -69,9 +75,57 @@
 
 	</div>
 	<%@include file="footer.jsp"%>
-<script>
-	
-</script>	
+	<script>
+		function rating_stars(n) {
+			let star_1 = document.querySelector('label[for="star1"]');
+			let star_2 = document.querySelector('label[for="star2"]');
+			let star_3 = document.querySelector('label[for="star3"]');
+			let star_4 = document.querySelector('label[for="star4"]');
+			let star_5 = document.querySelector('label[for="star5"]');
+
+			if (n == "1") {
+				//	star_val.value = e.target.value;
+				star_val.value = 1;
+				star_1.style.backgroundColor = "#e82835";
+				star_2.style.backgroundColor = "#f0f0f0";
+				star_3.style.backgroundColor = "#f0f0f0";
+				star_4.style.backgroundColor = "#f0f0f0";
+				star_5.style.backgroundColor = "#f0f0f0";
+			} else if (n == "2") {
+				//	star_val.value = e.target.value;
+				star_val.value = 2;
+				star_1.style.backgroundColor = "#e82835";
+				star_2.style.backgroundColor = "#e82835";
+				star_3.style.backgroundColor = "#f0f0f0";
+				star_4.style.backgroundColor = "#f0f0f0";
+				star_5.style.backgroundColor = "#f0f0f0";
+			} else if (n == "3") {
+				//	star_val.value = e.target.value;
+				star_val.value = 3;
+				star_1.style.backgroundColor = "#e82835";
+				star_2.style.backgroundColor = "#e82835";
+				star_3.style.backgroundColor = "#e82835";
+				star_4.style.backgroundColor = "#f0f0f0";
+				star_5.style.backgroundColor = "#f0f0f0";
+			} else if (n == "4") {
+				//	star_val.value = e.target.value;
+				star_val.value = 4;
+				star_1.style.backgroundColor = "#e82835";
+				star_2.style.backgroundColor = "#e82835";
+				star_3.style.backgroundColor = "#e82835";
+				star_4.style.backgroundColor = "#e82835";
+				star_5.style.backgroundColor = "#f0f0f0";
+			} else if (n == "5") {
+				//	star_val.value = e.target.value;
+				star_val.value = 5;
+				star_1.style.backgroundColor = "#e82835";
+				star_2.style.backgroundColor = "#e82835";
+				star_3.style.backgroundColor = "#e82835";
+				star_4.style.backgroundColor = "#e82835";
+				star_5.style.backgroundColor = "#e82835";
+			}
+		}
+	</script>
 </body>
 
 </html>

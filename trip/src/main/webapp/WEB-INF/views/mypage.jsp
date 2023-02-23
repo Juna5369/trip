@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>거긴어때</title>
 
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/mypage.css">
@@ -92,7 +92,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="list_section">
+		<div class="list_section overflow">
 
 			<div class="review_section">
 
@@ -108,7 +108,7 @@
 
 					<tr style="border-bottom: 2px">
 
-						<th><h3>리뷰번호</h3></th>
+						<th><h3>리뷰점수</h3></th>
 
 						<th><h3>상품번호</h3></th>
 						<th><h3>상품사진</h3></th>
@@ -120,7 +120,8 @@
 
 						<tr>
 
-							<td>${review.rev_no }</td>
+				
+							<td>${review.rev_rating }</td>
 
 							<td>${review.prod_no }</td>
 							<td><img src="img/${review.rev_img }"></td>
@@ -144,7 +145,7 @@
 
 		</div>
 
-		<div class="list_section">
+		<div class="ggim_section">
 			<div class="like_section">
 				<div class="section_title">
 					<h1>찜한 상품</h1>

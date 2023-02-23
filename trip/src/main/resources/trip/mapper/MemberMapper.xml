@@ -36,8 +36,14 @@
 	<select id="getReservation" resultType="reservo">
 		SELECT * FROM reservation_tbl WHERE id=#{reserId}
 	</select>
+	<select id="show_reservation" resultType="reservo">
+		SELECT * FROM reservation_tbl
+	</select>
 	<select id="getQnA" resultType="qnavo">
 		SELECT * FROM qna_tbl WHERE id=#{qid}
+	</select>
+		<select id="getQnAList" resultType="qnavo">
+		SELECT * FROM qna_tbl 
 	</select>
 	<select id="getLike" resultType="com.project.trip.vo.LikeVO">
 		SELECT * FROM like_tbl WHERE id=#{lid}
@@ -52,6 +58,11 @@
 		SELECT * FROM review_tbl WHERE id=#{reviewId}
 
 	</select>
+		<select id="getReviewAll" resultType="reviewvo">
+
+		SELECT * FROM review_tbl
+
+	</select>
 	<select id="getOrder" resultType="ordervo">
 		SELECT * FROM order_tbl WHERE id=#{orderid}
 	</select>
@@ -60,7 +71,7 @@
 		SELECT * FROM product_tbl WHERE prod_name=#{prod_name}
 	</select>
 	<select id="getOrderOne"
-		resultType="_int">
+		resultType="String">
 		SELECT order_no FROM order_tbl WHERE id=#{order_id} AND prod_no=#{order_prod}
 	</select>
 		<select id="getPay"

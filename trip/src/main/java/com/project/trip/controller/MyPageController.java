@@ -155,7 +155,7 @@ public class MyPageController {
 		Date date = new Date();
 		ProductVO pv = mapper.getProductByName(request.getParameter("prod_name"));
 		System.out.println("상품번호 :"+pv.getProd_no());
-		int order_no = mapper.getOrderOne(id,pv.getProd_no());
+		String order_no = mapper.getOrderOne(id,pv.getProd_no());
 		System.out.println("주문번호 :"+order_no);
 		
 		PayVO payv = mapper.getPay(order_no);
