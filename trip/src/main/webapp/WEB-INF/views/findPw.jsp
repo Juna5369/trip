@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>거긴어때</title>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/find.css">
 

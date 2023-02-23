@@ -1,107 +1,128 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>거긴어때</title>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="/css/login.css">
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 </head>
 <body>
-<%@include file="header.jsp"%>
-<%@include file="nav.jsp"%>
+	<%@include file="header.jsp"%>
+	<%@include file="nav.jsp"%>
 
-<h1 style=font-weight:bold;text-align:center;margin-top:100px;>로그인</h1>
-<h3 style=font-weight:nomal;text-align:center;color:white;background-color:gray;margin-bottom:50px;>회원님의 아이디 비밀번호를 입력해주세요</h3>
+	<h1 style="font-weight: bold; text-align: center; margin-top: 100px;">로그인</h1>
+	<h3
+		style="font-weight: nomal; text-align: center; color: white; background-color: gray; margin-bottom: 50px;">회원님의
+		아이디 비밀번호를 입력해주세요</h3>
 	<div class="btn">
-		<button id="btn1" onclick="login()" >로그인</button>
+		<button id="btn1" onclick="login()">로그인</button>
 		<button id="btn2" onclick="nonlogin()">비로그인 예약조회</button>
 	</div>
-<div id="demo">
+	<div id="demo"></div>
 	
-</div>	
-<form action="login.do" method="post" name="frm" id="form">
-<table>
-	<tr>
-		<td><input type="text" name="id" class="input" placeholder="아이디 입력"></td>
-	</tr>
-	<tr>
-		
-		<td><input type="password" name="pw" class="input" placeholder="비밀번호 입력"></td>
-	</tr>
-	<td><input type="submit" value="로그인" onclick="return check()" id="submit"></td>
-	
+	<form action="login.do" method="post" name="frm" id="form">
+		<table>
+			<tr>
+				<td><input type="text" name="id" class="input"
+					placeholder="아이디 입력"></td>
+			</tr>
+			<tr>
 
-</table>
-<hr>
-	<div id="find" style=border:1px;hegith:50px;width:500px>
-		<a href='javascript:void(0);' onclick="findId();">아이디 찾기 | </a>
-		<a href='javascript:void(0);' onclick="findPw()"> 비밀번호 찾기 | </a>
-		<a href="regMember"> 회원가입</a>
-	</div>
-</form>
-<form action="findPw" method="post" name="frm2" class="form2">
-					<input type="text" name="id" class="input" placeholder="아이디 입력">
-					<div class="wholeemail">
-						<input type="text" name="email" id="email">@<input
-						type="text" name="email2" id="email2"><select id="select"
-						class="input"><option>직접입력</option>
-							<option>naver.com</option><option>daum.net</option>
-							<option>nate.com</option></select></div>
-					<input type="submit" value="비밀번호 찾기" onclick="return pwCheck()" id="submit2">
-					</form>
-<%@include file="footer.jsp"%>
-	<script>
+				<td><input type="password" name="pw" class="input"
+					placeholder="비밀번호 입력"></td>
+			</tr>
+			<td><input type="submit" value="로그인" onclick="return check1()"
+				id="submit"></td>
+
+
+		</table>
+		<hr>
+		<div id="find" style="border: 1px; hegith: 50px; width: 500px">
+			<a href='javascript:void(0);' onclick="findId();">아이디 찾기 | </a> <a
+				href='javascript:void(0);' onclick="findPw()"> 비밀번호 찾기 | </a> <a
+				href="agree"> 회원가입</a>
+		</div>
+	</form>
 	
-	window.addEventListener("load", function() {
-		
-		button1.style.backgroundColor = "white";
-		button1.style.color = "black";
-		button2.style.backgroundColor = "gray";
-		button2.style.color = "white";
-		
-	});
-	$("#select").change(function(){
-		if($("#select").val()=="직접입력"){
-			$("input[name=email2]").val("");
-		}else{
-			$("input[name=email2]").val($("#select").val());
-		}
-	});
-		
+	<form action="findPw" method="post" name="frm2" class="form2">
+		<input type="text" name="id" class="input_find" placeholder="아이디 입력">
+		<div class="wholeemail">
+			<input type="text" name="email" id="email" placeholder="이메일 입력">@<input
+				type="text" name="email2" id="email2"><select id="select"
+				class="input_find"><option>직접입력</option>
+				<option>naver.com</option>
+				<option>daum.net</option>
+				<option>nate.com</option></select>
+		</div>
+		<input type="submit" value="비밀번호 찾기" onclick="return pwCheck()"
+			id="submit2">
+	</form>
+
+	<form action="nonMember" method="get" name="frm2" id="form2">
+		<table>
+			<tr>
+				<td><input type="text" name="res_no" id="input_res"
+					placeholder="예약번호 입력"></td>
+			</tr>
+
+			<tr>
+				<td><input type="password" name="prod_no" id="input_pro"
+					placeholder="상품번호 입력"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="예약조회하기"
+					onclick="return check2()" id="submit_2"></td>
+			</tr>
+		</table>
+		<hr>
+		<div id="find" style="border: 1px; hegith: 50px; width: 500px">
+			<a href='javascript:void(0);' onclick="findId();">아이디 찾기 | </a> <a
+				href='javascript:void(0);' onclick="findPw()"> 비밀번호 찾기 | </a> <a
+				href="agree"> 회원가입</a>
+		</div>
+	</form>
+	<%@include file="footer.jsp"%>
+	<script>
+		window.addEventListener("load", function() {
+
+			button1.style.backgroundColor = "white";
+			button1.style.color = "black";
+			button2.style.backgroundColor = "gray";
+			button2.style.color = "white";
+
+		});
+		$("#select").change(function() {
+			if ($("#select").val() == "직접입력") {
+				$("input[name=email2]").val("");
+			} else {
+				$("input[name=email2]").val($("#select").val());
+			}
+		});
 
 		const button1 = document.querySelector("#btn1");
 		const button2 = document.querySelector("#btn2");
 		function login() {
 
 			var login = document.querySelector("#form");
-			login.style.display = "none";
-
-			const xhttp = new XMLHttpRequest();
-			xhttp.onload = function() {
-
-				document.getElementById("demo").innerHTML = this.responseText;
-			}
-			xhttp.open("GET", "openlogin.do", true);
-			xhttp.send();
+			var login2 = document.querySelector("#form2");
+			login2.style.display = "none";
+			login.style.display = "block";
+			
 
 		}
 		function nonlogin() {
 
-			var login = document.querySelector("#form");
-			login.style.display = "none";
+			var login1 = document.querySelector("#form");
+			var login2 = document.querySelector("#form2");
+			login1.style.display = "none";
+			login2.style.display = "block";
 
-			const xhttp = new XMLHttpRequest();
-			xhttp.onload = function() {
-
-				document.getElementById("demo").innerHTML = this.responseText;
-			}
-			xhttp.open("GET", "nonlogin.do", true);
-			xhttp.send();
+			
 		}
-		function check() {
+		function check1() {
 			if (document.frm.id.value == "") {
 				alert("아이디를 입력해주세요");
 				document.frm.id.focus;
@@ -109,6 +130,19 @@
 			} else if (document.frm.pw.value == "") {
 				alert("패스워드를 입력해주세요");
 				document.frm.pw.focus;
+				return false;
+			} else {
+				return true;
+			}
+		}
+		function check2() {
+			if (document.frm2.res_no.value == "") {
+				alert("예약번호를 입력해주세요");
+				document.frm2.res_no.focus;
+				return false;
+			} else if (document.frm2.prod_no.value == "") {
+				alert("상품번호를 입력해주세요");
+				document.frm2.prod_no.focus;
 				return false;
 			} else {
 				return true;
@@ -178,12 +212,12 @@
 
 		}
 		function findPw() {
-			
+
 			document.querySelector("h3").innerText = "회원님의 아이디와 이메일을 입력해주세요";
 			document.querySelector("h1").innerText = "비밀번호찾기";
 			var login = document.querySelector("#form");
 			const form = document.querySelector(".form2");
-			form.style.display="block";
+			form.style.display = "block";
 			login.style.display = "none";
 			button1.style.display = "none";
 			button2.style.display = "none";

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>거긴어때</title>
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/reg.css">

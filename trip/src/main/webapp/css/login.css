@@ -25,11 +25,29 @@
 	src: url("/fonts/Jalnan.ttf");
 	font-family: "jalnan";
 }
-
+#input_res{
+	
+	width: 500px;
+	height: 51px;
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+#input_pro{
+	
+	width: 500px;
+	height: 51px;
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
 .input {
 	width: 100%;
 	height: 51px;
-	
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
+.input_find {
+	width: 351px;
+	height: 51px;
 	src: url("/fonts/Jalnan.ttf");
 	font-family: "jalnan";
 }
@@ -43,8 +61,29 @@
 	src: url("/fonts/Jalnan.ttf");
 	font-family: "jalnan";
 }
+#email2 {
+	display: inline;
+	width: 351px;
+	height: 51px;
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+}
 
 #submit {
+	height:100px;
+	margin: 0 auto;
+	width: 500px;
+	background-color: #DC143C;
+	color: white;
+	font-family: 'UhBeeSe_hyun';
+	font-family: 'Pretendard-Regular';
+	src: url("/fonts/Jalnan.ttf");
+	font-family: "jalnan";
+	font-size: 20px;
+}
+#submit_2 {
 	height:100px;
 	margin: 0 auto;
 	width: 500px;
@@ -88,10 +127,19 @@ form {
 	font-size: 20px;
 	border-top: 2px solid gray;
 	
-	border-bottom: 2px solid gray;
+	
 	margin: 0 auto;
 }
-
+#form2{
+	width: 100%;
+	height: 600px; margin : 0 auto;
+	font-size: 20px;
+	border-top: 2px solid gray;
+	
+	
+	margin: 0 auto;
+	display:none
+}
 #btn2 {
 	
 	font-family: 'UhBeeSe_hyun';
