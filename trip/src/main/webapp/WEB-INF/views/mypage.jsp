@@ -21,7 +21,7 @@
 					<img src="/img/heart.JPG" style="width: 100px; heigth: 100px">
 					<p class="txt_info">
 						<span style="color: #e82835; font-weight: bold;">
-							${sessionScope.name } 고객님, </span><span>거긴어때를 방문해 주셔서 감사합니다. </span><br>
+							${sessionScope.name } 고객님</span><span>, 거긴어때를 방문해 주셔서 감사합니다. </span><br>
 						<span>고객님의 즐거운 여행을 위해서 항상 최선을 다하겠습니다.</span>
 					</p>
 					<p class="txt_contact">
@@ -92,7 +92,7 @@
 				</table>
 			</div>
 		</div>
-		<div class="list_section overflow">
+		<div class="list_section">
 
 			<div class="review_section">
 

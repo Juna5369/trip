@@ -1,6 +1,6 @@
 *{
 	font-family: 'Pretendard-Regular';
-	line-height:1.7;
+
 }
 #find {
 	margin-top: 100px;
@@ -77,8 +77,18 @@ sub {
 	height: 300px;
 	display: block;
 	background-color: #e4f5ff;
-	margin-top: 100px;
-	margin-bottom: 100px;
+
+}
+.section_title {
+	text-align: left;
+	margin-bottom: 20px;
+}
+.txt_info {
+	margin-bottom: 20px;
+}
+.update_section {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .section_content {
@@ -87,9 +97,10 @@ sub {
 	margin: 0 auto;
 	height: 236px;
 	width: 1280px;
-	padding: 44px 0 0 130px;
+	padding: 20px 0 0 70px;
 	font-size: 20px;
 	letter-spacing: -0.07em;
+	text-align: left;
 }
 
 .qna_section {
@@ -169,7 +180,7 @@ sub {
 	border-top: 1px solid #ccc; border-right : none;
 	height: 300px;
 	border-right: none;
-	overflow-x:scroll;
+
 	
 }
 
@@ -178,7 +189,6 @@ sub {
 	height: 500px;
 	padding: 5px;
 	margin: 0 auto;
-	border-bottom:1px solid #ccc;
 	margin-bottom:50px;
 	width: 1280px;
 	
