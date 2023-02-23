@@ -3,13 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<%	
-	request.setCharacterEncoding("utf-8");
-	session.setAttribute("id", "over");
-	session.setAttribute("prod_name", "대박여행");
-	//session.setAttribute("prod_no", "222");
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -174,7 +167,12 @@
 									</div>
 
 									<div id="btn_box">
-										<input type="submit" name="res_many" id="res_many" class="btn_2" value="예 약"> 
+										<c:if test="${sessionScope.id eq null }">
+										<input type="button" name="res_no_many" id="res_no_many" class="btn_2" value="비회원 예약">
+										</c:if>
+										<c:if test="${sessionScope.id ne null }">
+										<input type="submit" name="res_many" id="res_many" class="btn_2" value="예 약">
+										</c:if> 
 										<input type="button" name="res_like" id="res_like" class="btn_3" value="">
 										<input type="hidden" name="like" id="like" value="0">
 										<input type="hidden" name="res_id" id="res_id" value="${sessionScope.id }">
@@ -185,6 +183,7 @@
 							</div>
 						</div>
 					</aside>
+					
                 
                 <!-- 설명전체 -->
                 <div id="travel_main_info">
@@ -458,10 +457,10 @@
 										<hr><br><br>
 										<p style="margin:10px">여행 후기를 작성해 보세요.</p>
 										<div class="re2">
-											<form>
+											<form name="frm2">
 												<div id="re_star" class="re_box">
 													<div class="re_tag"><span>서비스에 대하여 전반적으로 만족하셨나요?</span></div>
-													<div class="star_rating"> <!-- &#9733;  -->
+													<div class="star_rating" id="star_rating"> <!-- &#9733;  -->
 														<input type="radio" name="star" id="star1" class="stars" value="1" onclick="rating_stars(1)">
 														<label for="star1"></label>
 														<input type="radio" name="star" id="star2" class="stars" value="2" onclick="rating_stars(2)">
@@ -538,7 +537,7 @@
 													
 													<div id="re_area" class="re_box3">
 															<div class="re_tag"><span>내용</span></div>
-														<textarea cols="95px" rows="5px" id="re_text" class="re_text"></textarea>
+														<textarea cols="95px" rows="5px" name="re_text" id="re_text" class="re_text"></textarea>
 													</div>
 													
 													<div id="re_security" class="re_box3">
@@ -567,6 +566,7 @@
 													<div id="re_btn" class="re_box5">
 														<input type="button" name="review_submit" id="review_submit" class="btn_2" value="등록 하기">
 														<input type="hidden" name="rev_prodno" id="rev_prodno" value="">
+														<input type="hidden" name="pay_num" id="pay_num" value="">
 													</div>
 													
 												</div>
@@ -585,7 +585,7 @@
 												<tbody id="tbody_con2">
 												<c:forEach var="qna" items="${qnas }" varStatus="status" >
 													<tr>
-														<td class="t1">${qna.qna_no }</td><td class="t1" id="qna_title">${qna.qna_title }</td><td class="t1">${qna.id }</td>
+														<td class="t1">${qna.qna_no }</td><td class="t1" id="qna_title"><span class="t1_btn">${qna.qna_title }</span></td><td class="t1">${qna.id }</td>
 														<td class="t1">${qna.qna_date }</td><td class="t1">없음</td></tr> <!--  reply과 같이 쿼리 돌려서 -->
 													<tr><td colspan="5"></td></tr>
 													<tr><td><input type="hidden" id="con2_tVal" class="con2_tVal" value="0"></td></tr>
@@ -803,7 +803,44 @@
                         <br><br><br><br>
                     </div>
                 </div>
-            </div>
+                
+               	<div class="termsmodal_res">
+       				<div class="termsmodal-bg_no" onclick="goaway_no()"></div>
+                		<div class="termsmodal-wrap_no">
+                        	<div class="termsmodal-title_no">
+                            	<em class="termsmodal-close_no" onclick="goaway_no()">×</em>
+                            	<h1 style="display:inline-block;">비회원 예약</h1>
+                            	
+                            	<div id="box_no">
+                            	<form name="frm_mo" action="#" method="post" id="fmo">
+                       
+                            		<label for="no_id" id="lbl_no">예약번호</label>
+                            		<input type="text" name="no_id"id="no_id"class="no_res" value="" readonly><br>
+                            		<label for="no_pw" id="lbl_no">비밀번호</label>
+                            		<input type="password" name="no_pw"id="no_pw"class="no_res" required ><br>
+                            		<label for="no_name" id="lbl_no">이름</label>
+                            		<input type="text" name="no_name"id="no_name"class="no_res" required ><br>
+                            		<label for="no_tel" id="lbl_no">연락처</label>
+                            		<input type="text" name="no_tel"id="no_tel"class="no_res" required ><br>
+                            		<input type="submit" id="no_btn" class="no_btn_1"value="예약하기">
+                            		<input type="reset" class="no_btn_2"value="초기화">
+                            	
+                            	<!-- 
+								<table id="tbl1">
+									<tr><th>예약번호</th><td><input type="text" name="no_id"id="no_id"class="no_res"style="border:0px" value="" readonly></td></tr>
+									<tr><th>비밀번호</th><td><input type="password" name="no_pw"id="no_pw"class="no_res" style="border:0px"required ></td></tr>
+									<tr><th>이름</th><td><input type="text" name="no_name"id="no_name"class="no_res" style="border:0px"required ></td></tr>
+									<tr><th>연락처</th><td><input type="text" name="no_tel"id="no_tel"class="no_res"style="border:0px" required ></td></tr>
+									<tr><td colspan="2"><input type="submit" id="no_btn" class="no_btn_1"value="예약하기">
+									<input type="reset" class="no_btn_2"value="초기화"></td></tr>
+								</table> -->
+								</form>
+								</div>
+                            	
+   
+    						</div>
+						</div>
+           	 	</div>
             <div class="meetingmodal">
                 <div class="meetingmodal-bg" onclick="goawaymeeting()"></div>
                 <div class="meetingmodal-wrap">
@@ -845,8 +882,6 @@
 	const ch_val = document.querySelector("#ch_val");
 	ch_val.addEventListener('keyup', ch_person);
 
-//	const res_many = document.querySelector("#res_many");
-//	res_many.addEventListener('click', many_res);
 	const res_like = document.querySelector("#res_like");
 	res_like.addEventListener('click', like_res);
 
@@ -878,26 +913,39 @@
 	
 	const review_submit = document.querySelector("#review_submit");
 	review_submit.addEventListener('click', submit_review);
+	const pay_num = document.querySelector("#pay_num");
+	
+	const res_no_many = document.querySelector("#res_no_many");
+	res_no_many.addEventListener('click', many_res_no);
+	
 	
     function go(){
         document.querySelector(".termsmodal").style.display='block'; //스타일중에 디스플레이를 블록으로 바꿔라
      
      }
-     
-     function goaway(){
+    function goaway(){
         document.querySelector(".termsmodal").style.display='none'; //스타일중에 디스플레이를 블록으로 바꿔라
+        
+     }
+    function goaway_no(){
+        document.querySelector(".termsmodal_res").style.display='none'; //스타일중에 디스플레이를 블록으로 바꿔라
         
      }
      // const meetingplace = document.getElementById("meeitingplace");
      // meetingplace.addEventListener("click", gomeeting);
-     function gomeeting(){
+    function gomeeting(){
         document.querySelector(".meetingmodal").style.display='block'; //스타일중에 디스플레이를 블록으로 바꿔라
      
      }
      
-     function goawaymeeting(){
+    function goawaymeeting(){
         document.querySelector(".meetingmodal").style.display='none'; //스타일중에 디스플레이를 블록으로 바꿔라
      }
+    
+    function many_res_no(){
+    //	alert("예약");
+    	document.querySelector(".termsmodal_res").style.display="block";
+    }
 
 	function rating_stars(n){
 		let star_1 = document.querySelector('label[for="star1"]');
@@ -907,7 +955,6 @@
 		let star_5 = document.querySelector('label[for="star5"]');
 		
 		if(n == "1"){
-		//	star_val.value = e.target.value;
 			star_val.value = 1;
 			star_1.style.backgroundColor="#e82835";
 			star_2.style.backgroundColor="#f0f0f0";
@@ -915,7 +962,6 @@
 			star_4.style.backgroundColor="#f0f0f0";
 			star_5.style.backgroundColor="#f0f0f0";
 		}else if(n == "2"){
-		//	star_val.value = e.target.value;
 			star_val.value = 2;
 			star_1.style.backgroundColor="#e82835";
 			star_2.style.backgroundColor="#e82835";
@@ -923,7 +969,6 @@
 			star_4.style.backgroundColor="#f0f0f0";
 			star_5.style.backgroundColor="#f0f0f0";
 		}else if(n == "3"){
-		//	star_val.value = e.target.value;
 			star_val.value = 3;
 			star_1.style.backgroundColor="#e82835";
 			star_2.style.backgroundColor="#e82835";
@@ -931,7 +976,6 @@
 			star_4.style.backgroundColor="#f0f0f0";
 			star_5.style.backgroundColor="#f0f0f0";
 		}else if(n == "4"){
-		//	star_val.value = e.target.value;
 			star_val.value = 4;
 			star_1.style.backgroundColor="#e82835";
 			star_2.style.backgroundColor="#e82835";
@@ -939,7 +983,6 @@
 			star_4.style.backgroundColor="#e82835";
 			star_5.style.backgroundColor="#f0f0f0";
 		}else if(n == "5"){
-		//	star_val.value = e.target.value;
 			star_val.value = 5;
 			star_1.style.backgroundColor="#e82835";
 			star_2.style.backgroundColor="#e82835";
@@ -956,6 +999,45 @@
 		re_wrap.style.display="block";
 	}
 	
+	function review_check(){
+		let review_title = document.querySelector("#review_title");
+		let re_text = document.querySelector("#re_text");
+		let security = document.querySelector("#security");
+		let security_num = document.querySelector("#security_num");
+		
+		var prod_value = $("#prod_list option").val();
+		let prod_list = document.querySelector("#prod_list");
+		var prod_value = prod_list.options[prod_list.selectedIndex].value;
+		
+		if(review_title.value == ""){
+			alert("제목이 입력되지 않았습니다.");
+			document.frm2.review_title.focus();
+			return false;
+		}else if(star_val.value == ""){
+			alert("별점을 입력해 주세요.");
+			$("#star_rating").attr("tabindex", -1).focus();
+			return false;
+		}else if(re_text.value == ""){
+			alert("내용이 입력되지 않았습니다.");
+			document.frm2.re_text.focus();
+			return false;
+		}else if(security_num.value == ""){
+			alert("보안문자가 입력되지 않았습니다.");
+			document.frm2.security_num.focus();
+			return false;
+		}else if(security.value != security_num.value){
+			alert("보안문자가 일치하지 않습니다.");
+			document.frm2.security_num.focus();
+			return false;
+		}else if(prod_value == 0){
+			alert("선택된 상품이 없습니다.");
+			document.frm2.prod_list.focus();
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
     function submit_review(){
  		const xhttp = new XMLHttpRequest();	
      	let review_title = document.querySelector("#review_title").value;
@@ -964,43 +1046,41 @@
      	let sel_type2 = sel_types.value;
      	let re_text = document.querySelector("#re_text").value;
      	let rev_prodno = document.querySelector("#rev_prodno").value;
-     	
+     
      	let prod_no = parseInt(rev_prodno);
      	let stars = parseInt(star_val);
-     	
+     	let pay_no = parseInt(pay_num.value);
  		
  		xhttp.onload = function() {
- 			alert(this.responseText); 
+ 			document.location.reload();
+ 			document.location.replace("#bar1");
  		}
- 		
- 		xhttp.open("POST", "reg_review",true);
- 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
- 		
- 		let data = "id=" + review_name + "&prod_no=" + prod_no + "&rev_title=" + review_title + "&rev_type=" + sel_type2 + "&rev_contents=" + re_text + "&rev_rating=" +stars;
- 		xhttp.send(data);
- 		alert("클릭2");
+ 		if(review_check()){
+	 		xhttp.open("POST", "reg_review",true);
+	 		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	 		
+	 		let data = "id=" + review_name + "&prod_no=" + prod_no + "&rev_title=" + review_title + "&rev_type=" + sel_type2 + "&rev_contents=" + re_text + "&rev_rating=" +stars + "&pay_no="+ pay_no;
+	 		xhttp.send(data);	
+ 		}
       }
-
   	prod_show2();
- 	function prod_show(){
+ 	function prod_show(number){
  		const xhttp = new XMLHttpRequest();
- 		
  		let id = res_id.value; 
- 		let pno = prod_pno.value;
+ 		let pno = number;
  		let prod_no = parseInt(pno);
  		
  		xhttp.onload = function() {
- 			let prodName = this.responseText; 
- 			$("#prod_list option:eq(0)").after("<option value="+prod_no+">"+prodName+"</option>");
- 		}
- 		xhttp.open("GET", "prod_list?prod_no="+prod_no+"&id="+id, true); 
-// 		xhttp.open("GET", "prod_list2?prod_no="+prod_no+"&id="+id, true);
+ 			if(this.responseText != null){
+	 			pay_num.value = this.responseText;
+ 			}
+		}
+ 		xhttp.open("GET", "payno?prod_no="+prod_no+"&id="+id, true);
  		xhttp.send();
  	}
  	
  	function prod_show2(){
  		const xhttp = new XMLHttpRequest();	
- 		
  		let id = res_id.value; 
  		let pno = prod_pno.value;
  		let prod_no = parseInt(pno);
@@ -1017,16 +1097,17 @@
  		xhttp.open("GET", "prod_list2?id="+id, true);
  		xhttp.send();
  	}
- 	
+
  	function sel_prod(){
  		const xhttp = new XMLHttpRequest();
- 		
  		var prod_nos = document.getElementById("prod_list");    
-		var prod_no = prod_nos.options[prod_nos.selectedIndex].value;  
+		var prod_no = prod_nos.options[prod_nos.selectedIndex].value;
+
 		let s_date = document.querySelector("#start_date");
 		let e_date = document.querySelector("#end_date");
 		let s_plane = document.querySelector("#plane");
 		let s_hotel = document.querySelector("#hotel");
+		prod_show(prod_no);
 
  		xhttp.onload = function() {
  			let jsonStr = this.responseText; 
@@ -1039,7 +1120,6 @@
  		}
  		xhttp.open("GET", "prod_info?prod_no="+prod_no, true);
  		xhttp.send();
- 		
  	}
 	
 	const new_num = document.querySelector("#new_num");
@@ -1056,11 +1136,10 @@
 	}
 	
 	function con1_tbody(e){
+		const xhttp = new XMLHttpRequest();
 		const con1_tVal = document.querySelector("#con1_tVal");
 		var con1_review = document.querySelector(".con1_review");
 		
-		const xhttp = new XMLHttpRequest();
-
 		xhttp.onload = function() {
 			let jsonStr = this.responseText; 
 			let obj = JSON.parse(jsonStr);
@@ -1087,7 +1166,6 @@
 				+ '<div id="a3"><input type="text" class="td3_con1" value="내용" readonly><p class="sp2_con1">' + obj[i].rev_contents + '</p></div></div>'
 			}
 		}
-
 		if(e.target.className == "t1_btn"){
 			let reno = e.target.parentElement.previousElementSibling.innerHTML;
 			let no = parseInt(reno);
@@ -1096,40 +1174,37 @@
 		}
 	}
 	
-	function con2_tbody(e){   // 제목 클릭시 아이디 값 넘겨 받아서 일치 여부 확인 후 일치시 혹은 관리자일시 내용 뜨게 하면 될듯
+	function con2_tbody(e){
+		const xhttp = new XMLHttpRequest();
 		const con2_tVal = document.querySelector("#con2_tVal");
 		var con2_review = document.querySelector(".con2_review");
-		
-		const xhttp = new XMLHttpRequest();
 
 		xhttp.onload = function() {
 			let jsonStr = this.responseText; 
 			let obj = JSON.parse(jsonStr);
-
-			var con2_Val = e.target.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value;
-				
-				if(e.target.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value === "0"){
-					e.target.previousElementSibling.parentElement.nextElementSibling.firstElementChild.style.display = "table-cell";
-					e.target.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value = 1;
-				}else if(e.target.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value === "1"){
-					e.target.previousElementSibling.parentElement.nextElementSibling.firstElementChild.style.display = "none";
-					e.target.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value = 0;
+			e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.replaceChildren();
+			var con2_Val = e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value;
+			var writerId = e.target.parentElement.nextElementSibling.innerHTML;
+			let userId = res_id.value; 
+			
+				if(e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value === "0"){
+					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.style.display = "table-cell";
+					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value = 1;
+				}else if(e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value === "1"){
+					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.style.display = "none";
+					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value = 0;
 				}
-				
-				
-			for(let i = 0; i < obj.length; i++){
-				e.target.previousElementSibling.parentElement.nextElementSibling.firstElementChild.innerHTML += '<div class="con2_review">' 
-					
-	//			+ '<div id="a1"><input type="text" class="td_con1" value="출발일" readonly><p class="sp_con1">' + obj[i].start_date + '</p>'
-	//			+ '<input type="text" class="td2_con1" value="여행기간" readonly><p class="sp_con1">' + obj[i].days + '</p><br></div>'
-	//			+ '<div id="a2"><input type="text" class="td_con1" value="항공사" readonly><p class="sp_con1">' + obj[i].plane + '</p>'
-	//			+ '<input type="text" class="td2_con1" value="호텔" readonly><p class="sp_con1">' + obj[i].hotel + '</p><br></div>'
-				+ '<div id="a3"><input type="text" class="td3_con1" value="내용" readonly><p class="sp2_con1">' + obj[i].qna_contents + '</p></div></div>'
+			if(writerId === userId ){
+				for(let i = 0; i < obj.length; i++){
+					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.innerHTML += '<div class="con2_review">' 
+					+ '<div id="a3"><input type="text" class="td3_con1" value="내용" readonly><p class="sp2_con1">' + obj[i].qna_contents + '</p></div></div>'
+				}
+			}else{
+				alert("작성자만 열람할 수 있습니다.");
 			}
 		}
-
-		if(e.target.id == "qna_title"){
-			let reno = e.target.previousElementSibling.innerHTML;
+		if(e.target.className == "t1_btn"){
+			let reno = e.target.parentElement.previousElementSibling.innerHTML;
 			let no = parseInt(reno);
 			xhttp.open("GET", "board2?qna_no="+no,true);  
 			xhttp.send();
@@ -1315,8 +1390,6 @@
 		let result = a.toLocaleString('ko-KR');
 		return result;
 	}
-    
-     
-    </script>
+</script>
 </body>
 </html>

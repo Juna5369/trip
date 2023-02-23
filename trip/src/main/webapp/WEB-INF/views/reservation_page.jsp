@@ -32,27 +32,6 @@
                     		<div id="many_2">
                     			<div id="many_txt"><span id="sp_txt">인원별 금액</span></div>
                     			<div id="many_con">
-                    <!-- 			
-                    				<div id="many_ad">  
-                    					<label id="detail_lbl" for="detail_ad">성인</label>
-                    					<input type="text" name="detail_ad1" id="detail_ad1" class="input_sum_2" value="799,000" readonly>
-                    					<label id="detail_lbl" for="detail_ad">원 x </label>
-                    					<input type="text" name="detail_ad2" id="detail_ad2" class="input_sum_2" value="1" readonly>
-                    					<label id="detail_lbl" for="detail_ad">명</label>
-                    					<input type="text" name="ad_sum" id="ad_sum" class="input_sum" value="" readonly>
-                    					<span id="sp_won">원</span>
-                    				</div>
-                      			
-                    				<div id="many_ch">
-                    				    <label id="detail_lbl" for="detail_ch">아동</label>
-                    					<input type="text" name="detail_ch1" id="detail_ch1" class="input_sum_2" value="499,000" readonly>
-                    					<label id="detail_lbl" for="detail_ch">원 x</label>
-                    					<input type="text" name="detail_ch2" id="detail_ch2" class="input_sum_2" value="0" readonly>
-                    					<label id="detail_lbl" for="detail_ch">명</label>
-                    					<input type="text" name="ch_sum" id="ch_sum" class="input_sum" value="" readonly>
-                    					<span id="sp_won">원</span>
-                    				</div>
-                    -->
                     			   	<div id="many_ad">  
                     					<label id="detail_lbl" for="detail_ad">성인</label>
                     					<input type="text" name="detail_ad1" id="detail_ad1" class="input_sum_2" value="${prodvo.prod_price_adult }" readonly>
@@ -111,25 +90,7 @@
                  		<div><h3>총 여행 인원</h3></div>
                  	</div>
                  	<div class="infoCon_2">
-                 		<div id="con_2">
-                 		
-                <!--  		
-         					<div id="res_boxcon_ad">
-        					<label for="boxcon1" id="lbl"> <span id="sp_t">성인</span> (만 12세 이상) </label>
-       			 				<div class="many_boxcon" id="boxcon1">
-            						<input type="button" name="minus_adcon" id="minus_adcon" class="btn_1 minus_1" value="" >
-            						<input type="text" name="ad_valcon" id="ad_valcon" class="input_1" value="1">
-            						<input type="button" name="plus_adcon" id="plus_adcon" class="btn_1 plus_1" value="" >
-        					</div></div>
-        					<div id="res_boxcon_ch"> 
-        					<label for="boxcon2" id="lbl"> <span id="sp_t">아동</span> (만 12세 미만) </label>
-        						<div class="many_boxcon" id="boxcon2">
-            						<input type="button" name="minus_chcon" id="minus_chcon" class="btn_1 minus_1" value="" >
-            						<input type="text" name="ch_valcon" id="ch_valcon" class="input_1" value="0">
-            						<input type="button" name="plus_chcon" id="plus_chcon" class="btn_1 plus_1" value="" >
-       	 					</div></div>
-       	 	 	 -->	
-       	 	 
+                 		<div id="con_2">		 	 
        	 	 				<div id="res_boxcon_ad">
         					<label for="boxcon1" id="lbl"> <span id="sp_t">성인</span> (만 12세 이상) </label>
        			 				<div class="many_boxcon" id="boxcon1">
@@ -169,7 +130,7 @@
                  		<div id="sub_right">MT번호 인증 시<span id="mile"> 7,137마일</span> 적립가능</div>
                  	</div>
                  	<div class="info_member">
-                 	<form name="frm">
+                 	
                  	 	<input type="text" name="k_name" id="k_name" class="info_input info_input1 imp" value="" placeholder="* 한글 이름">   
                  	 	
                  	<!--	<input type="text"  name="k_name" id="k_name" class="info_input info_input1 imp" value="" placeholder="* 한글 이름" onkeyup="name_han('test')"/> -->
@@ -189,7 +150,7 @@
                  		<input type="hidden" name="sex" id="sex" value="0"> <!-- 0남자 1여자 -->
                  		<textarea rows="4px" cols="130px" name="res_desc" class="area" placeholder="문의/추가요청사항
 (여행상담용 연락처가 상기 정보와 다를 경우 이름과 전화번호를 별도 기재해 주시기 바랍니다)"></textarea>
-        				</form>
+        			
                  	<div id="info_warning">
                  		<div>
                  			<p><span id="in_wn">영문이름, 생년월일, 여권만료일 등 여권정보가 잘못되어 있을 경우, 출국이 불가</span>하니 다시 한번 확인 부탁드립니다.</p>
@@ -198,6 +159,7 @@
                  	</div>
                  	
                  	</div>
+                 	
 
                 </div>
                 
@@ -571,9 +533,6 @@
 	
 	ad_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
     total_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
-    
-//	const reservation = document.querySelector("#reservation");
-//	reservation.addEventListener('click',res_go);
   
 	function ad_pluscon(){
 		let ad_price1 = won(detail_ad1.value); // 현재 성인 가격
@@ -779,12 +738,8 @@
 	
 	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	function check_email(){
-		//const e_mail = document.querySelector("#e_mail");
 		var email_ck = e_mail.value; 
-	//	var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 		if(exptext.test(email_ck)==false){
-		//	alert("이메일형식이 올바르지 않습니다.");
-		//k_name.style.border = "1px solid red";
 			document.frm.e_mail.style.border = "2px solid red";
 			document.frm.e_mail.focus();
 			return false;
@@ -817,7 +772,6 @@ function realTime_Kcheck2(e){
 	}
 }
 
-//var pattern_e = /^[^a-z|A-Z]+$/;
 var pattern_e2 = /^[a-z|A-Z]+$/;
 
 function onlyEnglish(e){
@@ -837,8 +791,7 @@ function realTime_E1check(e){
 		e_sec.style.border = "2px solid red";
 	}
 }
-
-//var pattern_num =  /^[0-9]+$/; 
+ 
 var pattern_birth = /^(19[0-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 function realTime_birthcheck(e){
 	if(pattern_birth.test(e.target.value)){
@@ -848,8 +801,7 @@ function realTime_birthcheck(e){
 	}
 }
 
-var pattern_phone = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;
-		
+var pattern_phone = /01[016789]-[^0][0-9]{2,3}-[0-9]{3,4}/;	
 function realTime_phonecheck(e){
 	if(pattern_phone.test(e.target.value)){
 		phone.style.border = "2px solid green";

@@ -43,11 +43,11 @@ public class ProductController {
 		List<ProductVO> list = new ArrayList<>();
 		list.add(vo);
 		model.addAttribute("list", list);
-		
-		List<ReviewBoardDTO> review = b_mapper.review_selectAll();
-		List<QNAVO> qna = b_mapper.qna_selectAll();
-		model.addAttribute("reviews", review);
-		model.addAttribute("qnas", qna);
+
+		List<ReviewBoardDTO> review_prod = b_mapper.review_selectProduct(prod_no);
+		model.addAttribute("reviews", review_prod);
+		List<QNAVO> qna_prod = b_mapper.qna_selectProduct(prod_no);
+		model.addAttribute("qnas", qna_prod);
 		
 		
 	return "prod_list/prod_detail";
@@ -91,10 +91,12 @@ public class ProductController {
 		return result;
 	}
 	
-	@GetMapping("/prod_list")
-	public @ResponseBody String show_prodName(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no) {
-		String prodName = mapper.search_prodName(id, prod_no);
-		return prodName;
+	@GetMapping("/payno")
+	public @ResponseBody int show_payNo(@RequestParam("id") String id, @RequestParam("prod_no") int prod_no) {
+	//	String prodName = mapper.search_prodName(id, prod_no);
+	//	return prodName;
+		int payNo = b_mapper.pay_no_one(id, prod_no);
+		return payNo;
 	}
 	
 	@GetMapping("/prod_list2")
@@ -108,5 +110,5 @@ public class ProductController {
 		ProductVO pro1 = mapper.getListOne(prod_no);
 		return pro1;
 	}
-	
+	// pay_no_one
 }
