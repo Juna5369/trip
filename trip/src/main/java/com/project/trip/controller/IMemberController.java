@@ -101,9 +101,9 @@ public class IMemberController {
 	@GetMapping("/idPop")
 	public @ResponseBody String idPop() {
 		String out = "<form action=\"findId\" method=\"post\" name=\"frm1\" id=\"form\">\r\n" + "\r\n"
-				+ "		<input type=\"text\" name=\"name\" id=\"input\" placeholder=\"이름을 입력해주세요\">\r\n" + "\r\n"
-				+ "		<input type=\"text\" name=\"tel\" id=\"input\" placeholder=\"전화번호를 입력해주세요\">\r\n" + "\r\n"
-				+ "	<input type=\"submit\" value=\"아이디찾기\" onclick=\"return idCheck()\" id=\"input\">\r\n" + "</form>";
+				+ "		<input type=\"text\" name=\"name\" class=\"input2\" placeholder=\"이름을 입력해주세요\">\r\n" + "\r\n"
+				+ "	<br><input type=\"text\" name=\"tel\" class=\"input2\" placeholder=\"전화번호를 입력해주세요\">\r\n" + "\r\n"
+				+ "	<br><input type=\"submit\" value=\"아이디찾기\" onclick=\"return idCheck()\" class=\"input2\">\r\n" + "</form>";
 
 		return out;
 	}

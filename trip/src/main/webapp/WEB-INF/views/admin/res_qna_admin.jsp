@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/cuc.css">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/cuc.css">
 </head>
 <body>
 	<%@ include file="../header.jsp"%>
@@ -16,13 +16,13 @@
             <div class="cuc_box">
                 <div class="lnb">
                     <div class="lnb_title">
-                        <a href="cust_center">고객센터</a>
+                        <a href="cust_center">관리자 페이지</a>
                     </div>
                     <ul>
-                        <li><a href="faq">자주찾는 질문</a></li>
-                        <li><a onclick="goQNA()">1:1 문의</a></li>
-                        <li><a onclick="go_res_qna_list()">1:1 문의내역</a></li>
-                        <li><a href="notice">공지사항</a></li>
+                        <li><a href="#">요소</a></li>
+                        <li><a href="#">요소</a></li>
+                        <li><a href="#">요소</a></li>
+                        <li><a href="#">요소</a></li>
                     </ul>
                 </div>
                 <div class="main_notice">
@@ -53,7 +53,7 @@
 	$(document).ready(function(){
 		
 	   	$.ajax({
-	   		url: "getQNAList",
+	   		url: "getResQNAListForAdmin",
 	   		type: "get",
 	   		dataType: "text",
 	   		success: function(data){ 
@@ -103,7 +103,7 @@
 	
 			$("tbody").empty();
 			$.ajax({
-				url: "getNoticeList.do",
+				url: "getResQNAListForAdmin",
 				type: "get",
 				dataType: "text",
 				success: function(data){ 
@@ -130,7 +130,7 @@
 				   						+ obj[i].res_qna_date + '</td></tr>'
 				   						);
 				   				}
-				   			$(".notice_tbl > tbody").append('<tr><td id="page" colspan="4"></td></tr>');
+							$("tbody").append('<tr><td id="page" colspan="4"></td></tr>');
 
 							if(obj.length > (targetnum+19)*10){
 								$("#page").append("<span><</span>");
@@ -167,7 +167,7 @@
 				   						+ obj[i].res_qna_date + '</td></tr>'
 				   						);
 				   				}
-				   			$(".notice_tbl > tbody").append('<tr><td id="page" colspan="4"></td></tr>');
+							$("tbody").append('<tr><td id="page" colspan="4"></td></tr>');
 							if(targetnum > 12){
 								$("#page").append("<span><</span>");
 							}
@@ -205,7 +205,7 @@
 			   						+ obj[i].res_qna_date + '</td></tr>'
 			   						);
 			   				}
-			   			$(".notice_tbl > tbody").append('<tr><td id="page" colspan="4"></td></tr>');
+						$("tbody").append('<tr><td id="page" colspan="4"></td></tr>');
 					
 						if(targetnum > 10){
 							$("#page").append("<span><</span>");
@@ -234,32 +234,15 @@
 					alert("error.....");
 				}
 			});
-
 		}
-
 	});
 	
 	$(".notice_tbl > tbody").on('click', function(e){
 		if(e.target.parentNode.tagName == 'TR' && e.target.parentNode.firstChild.id != 'page'){
-			location.href="res_qna_post?res_qna_no="+e.target.parentElement.firstChild.innerText;
+			location.href="res_qna_adminpost?res_qna_no="+e.target.parentElement.firstChild.innerText;
 		}
 	});
 	
-	function goQNA(){
-		if('${sessionScope.id }' == ""){
-			location.href="login";
-		}else{
-			location.href="qna";
-		}
-	}
-	
-	function go_res_qna_list(){
-		if('${sessionScope.id }' == ""){
-			location.href="login";
-		}else{
-			location.href="res_qna_list";
-		}
-	}
 	</script>
 </body>
 </html>

@@ -26,49 +26,35 @@ import com.project.trip.vo.ReviewVO;
 
 @Controller
 public class MyPageController {
+	
 	@Autowired
 	IMemberMapper mapper;
 
 	@GetMapping("/mypage")
-
 	public void mypage(Model model,String id) {
 
+		MemberVO mv = mapper.selectOne(id);
+	
+		List<ReviewVO> reviewList= mapper.getReview(id);
+		List<ReserVO> rlist = mapper.getReservation(id);
+		List<QNAVO> qlist = mapper.getQnA(id);
+		List<LikeVO> likeList = mapper.getLike(id);
+		List<ProductVO> plist = new ArrayList<>() ;
+	
+		for(int i =0;i<likeList.size();i++) {
+	
+			int product_no=likeList.get(i).getProd_no();
+			ProductVO pv = mapper.getProduct(product_no);
+			plist.add(pv);
+		}
 
-	MemberVO mv = mapper.selectOne(id);
+		model.addAttribute("reviewList",reviewList);
+		model.addAttribute("plist",plist);
+		model.addAttribute("rlist", rlist);
+		model.addAttribute("qlist",qlist);
+		model.addAttribute("mv",mv);
 
-	List<ReviewVO> reviewList= mapper.getReview(id);
-
-	List<ReserVO> rlist = mapper.getReservation(id);
-
-	List<QNAVO> qlist =mapper.getQnA(id);
-
-	List<LikeVO> likeList = mapper.getLike(id);
-
-	List<ProductVO> plist = new ArrayList<>() ;
-
-	for(int i =0;i<likeList.size();i++) {
-
-	int product_no=likeList.get(i).getProd_no();
-
-	ProductVO pv = mapper.getProduct(product_no);
-
-
-	plist.add(pv);
-
-	}
-
-	model.addAttribute("reviewList",reviewList);
-
-	model.addAttribute("plist",plist);
-
-	model.addAttribute("rlist", rlist);
-
-	model.addAttribute("qlist",qlist);
-
-	model.addAttribute("mv",mv);
-
-
-	}
+		}
 
 	@GetMapping("/update")
 	public void update(Model model, String id) {
@@ -76,7 +62,6 @@ public class MyPageController {
 		String email = mv.getEmail();
 		String[] email_ = email.split("@");
 		mv.setEmail(email_[0]);
-
 		model.addAttribute("mv", mv);
 	}
 
@@ -84,7 +69,6 @@ public class MyPageController {
 	public String update_do(MemberVO mv) {
 		mv.setEmail(mv.getEmail() + "@" + mv.getEmail2());
 		mapper.updateMember(mv);
-
 		return "index";
 	}
 
@@ -93,15 +77,11 @@ public class MyPageController {
 	public @ResponseBody String deleteMember(String id, HttpServletRequest request, String contents) {
 
 		mapper.deleteMember(id);
-
 		HttpSession session = request.getSession();
-
 		session.invalidate();
-
 		String out = "<script>alert('회원탈퇴 완료');location.href='/';</script>";
-
-		return out;
-
+		
+		return out;	
 	}
 
 	@GetMapping("/deleteMember")
@@ -109,23 +89,18 @@ public class MyPageController {
 	public String delejsp(String id, Model model) {
 
 		MemberVO mv = mapper.selectOne(id);
-
 		model.addAttribute("mv", mv);
-
+		
 		return "withdrawal";
-
 	}
 
 	@GetMapping("/qna_detail")
-
 	public String qnaDetail() {
 
 		return "";
-		
 	}
 
 	@GetMapping("/reviewBoard")
-
 	public String review(String id ,Model model) {
 		
 		MemberVO mv= mapper.selectOne(id);
@@ -135,10 +110,7 @@ public class MyPageController {
 		for(int i =0;i<ovList.size();i++) {
 
 			int product_no=ovList.get(i).getProd_no();
-
 			ProductVO pv = mapper.getProduct(product_no);
-
-
 			plist.add(pv);
 		}
 		
@@ -151,6 +123,7 @@ public class MyPageController {
 	
 	@PostMapping("/reviewBoard")
 	public @ResponseBody String reviewdo(ReviewVO rv,HttpServletRequest request,String id) {
+		
 		String page = "";
 		Date date = new Date();
 		ProductVO pv = mapper.getProductByName(request.getParameter("prod_name"));
@@ -175,8 +148,6 @@ public class MyPageController {
 		}else {
 			page= "<script>alert('리뷰실패');location.href='/';</script>";
 		}
-		
-		
 		
 		return page;
 	}

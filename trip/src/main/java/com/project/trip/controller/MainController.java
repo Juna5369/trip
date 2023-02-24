@@ -20,6 +20,7 @@ import com.project.trip.vo.FAQVO;
 import com.project.trip.vo.MemberVO;
 import com.project.trip.vo.NoticeVO;
 import com.project.trip.vo.ResQNAVO;
+import com.project.trip.vo.ResReplyVO;
 import com.project.trip.vo.ReserVO;
 
 @Controller
@@ -49,21 +50,25 @@ public class MainController {
 	
 	@GetMapping("/cust_center")
 	public String customer_center() {
+		
 		return "/cust_center/center_main";
 	}
 	
 	@GetMapping("/faq")
 	public String faq() {
+		
 		return "/cust_center/faq";
 	}
 	
 	@GetMapping("/getFAQList")
 	public @ResponseBody List<FAQVO> getFAQList(){
+		
 		return cMapper.getFAQList();
 	}
 	
 	@GetMapping("/getFAQListByTitle")
 	public @ResponseBody List<FAQVO> getFAQListByTitle(@RequestParam String faq_title){
+		
 		return cMapper.getFAQListByTitle(faq_title);
 	}
 	
@@ -81,7 +86,9 @@ public class MainController {
 	
 	@GetMapping("/searchFAQ")
 	public String searchFAQ(@RequestParam String keyword , Model model) {
+		
 		model.addAttribute("keyword", keyword);
+		
 		return "/cust_center/faq";
 	}
 	
@@ -93,7 +100,7 @@ public class MainController {
 		
 		MemberVO member = mMapper.selectOne(id);
 		String name = member.getName();
-		
+
 		model.addAttribute("name", name);
 		
 		return "/cust_center/qna";
@@ -106,24 +113,23 @@ public class MainController {
 	}
 	
 	@PostMapping("/postQna")
-	public @ResponseBody String postQna(ResQNAVO rq) {
+	public @ResponseBody void postQna(ResQNAVO rq) {
 		
 		cMapper.insertQNA(rq);
-		
-		return "";
 	}
 	
 	@GetMapping("/res_qna_list")
 	public String res_qna_list() {
+		
 		return "cust_center/res_qna_list";
 	}
 	
 	@GetMapping("/res_qna_post")
 	public String res_qna_post(@RequestParam String res_qna_no, Model model) {
+		
 		int no = Integer.parseInt(res_qna_no);
-		
 		model.addAttribute("post", cMapper.getResQNAOne(no));
-		
+		model.addAttribute("post2", cMapper.getResReplyOne(no));
 		return "/cust_center/res_qna_post";
 	}
 	
@@ -145,7 +151,6 @@ public class MainController {
 	public String notice_post(@RequestParam("not_no") String not_no, Model model) {
 		
 		int no = Integer.parseInt(not_no);
-		
 		model.addAttribute("post", cMapper.getNoticeOne(no));
 		
 		return "/cust_center/notice_post";
@@ -156,9 +161,42 @@ public class MainController {
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		
 		mMapper.selectOne(id);
 		
 		return mMapper.selectOne(id);
+	}
+	
+	@GetMapping("/res_qna_admin")
+	public String res_qna_admin() {
+		
+		return "/admin/res_qna_admin";
+	}
+	
+	@GetMapping("/getResQNAListForAdmin")
+	public @ResponseBody List<ResQNAVO> getResQNAListForAdmin() {
+		
+		return cMapper.getResQNAListForAdmin();
+	}
+	
+	@GetMapping("/res_qna_adminpost")
+	public String qna_post(@RequestParam("res_qna_no") String res_qna_no, Model model) {
+		
+		int no = Integer.parseInt(res_qna_no);
+		model.addAttribute("post", cMapper.getResQNAOne(no));
+		if(cMapper.getResReplyOne(no) != null) {
+			model.addAttribute("post2", cMapper.getResReplyOne(no));
+		}
+		
+		return "/admin/res_qna_adminpost";
+	}
+	
+	@PostMapping("/res_qna_reply")
+	public @ResponseBody void res_qna_reply(ResQNAVO rq, ResReplyVO rr) {
+		cMapper.updateResQNAEan(rq);
+		if(rr.getRes_reply_no() != 0) {
+			cMapper.updateResReply(rr);
+		}else {
+			cMapper.insertResReply(rr);
+		}
 	}
 }

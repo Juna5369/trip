@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import com.project.trip.vo.FAQVO;
 import com.project.trip.vo.NoticeVO;
 import com.project.trip.vo.ResQNAVO;
+import com.project.trip.vo.ResReplyVO;
 
 @Mapper
 public interface CustomerCenterMapper {
@@ -20,7 +21,14 @@ public interface CustomerCenterMapper {
 	
 	public void insertQNA(ResQNAVO rq);
 	public List<ResQNAVO> getResQNAList(@Param("id") String id);
+	public List<ResQNAVO> getResQNAListForAdmin();
 	public ResQNAVO getResQNAOne(@Param("res_qna_no") int res_qna_no);
+	
+	public void insertResReply(ResReplyVO rep);
+	public void updateResQNA(ResQNAVO rq);
+	public void updateResQNAEan(ResQNAVO rq);
+	public void updateResReply(ResReplyVO rep);
+	public ResReplyVO getResReplyOne(@Param("res_qna_no") int res_qna_no);
 	
 	public List<FAQVO> getFAQList();
 	public List<FAQVO> getFAQListByTitle(@Param("faq_title") String faq_title);

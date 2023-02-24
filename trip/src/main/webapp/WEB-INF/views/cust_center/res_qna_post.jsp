@@ -27,7 +27,7 @@
                 </div>
                 <div class="main_post">
                     <div class="notice_post">
-                        <div class="notice_title">1:1문의내역
+                        <div class="notice_title">1:1문의 내역
                         </div>
                         <div class="title_area">
 							<div class="post_title">
@@ -39,7 +39,22 @@
                         </div>
 						<div class="post_contents">
 							${post.res_qna_contents }
-						</div>        
+						</div>
+						<c:if test="${post2.res_reply_title != null }">
+							<div class="notice_title">1:1문의 답변 내역
+	                        </div>
+							<div class="title_area">
+								<div class="post_title">
+									${post2.res_reply_title }
+								</div>
+								<div class="post_date">
+									${post2.res_reply_date }
+								</div>
+	                        </div>
+							<div class="post_contents">
+								${post2.res_reply_contents }
+							</div>
+						</c:if>        
 						<div class="btn_area">
 							<input type="button" class="l_btn" value="목록">
 						</div>

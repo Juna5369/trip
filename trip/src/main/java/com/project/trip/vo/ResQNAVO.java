@@ -13,4 +13,5 @@ public class ResQNAVO {
 	private String res_qna_title;
 	private String res_qna_contents;
 	private Date res_qna_date;
+	private String res_qna_ean;
 }

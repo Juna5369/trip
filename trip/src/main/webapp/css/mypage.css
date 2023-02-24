@@ -33,9 +33,7 @@ sub {
 	table-layout: fixed;
 	width: 1280px;
 	border-top: 1px solid #111;
-	
 	text-align:cetner;
-	
 }
 
 .tb_mypage tr {
@@ -44,7 +42,6 @@ sub {
 	border-color: inherit;
 	height: 50px;
 	width:1280px;
-	
 }
 .tb_mypage tr {
 	display: table-row;
@@ -52,10 +49,7 @@ sub {
 	border-color: inherit;
 	height: 50px;
 	width:1280px;
-	
 }
-
-
 
 .tb_mypage th {
 	padding: 15px 15px 16px 15px;
@@ -105,7 +99,6 @@ sub {
 
 .qna_section {
 	width: 1280px;
-	
 	text-align: center;
 	margin: 0 auto;
 }
@@ -144,8 +137,6 @@ sub {
 	width:100%;
 	height:500px;
 	margin-bottom:50px;
-	
-	
 }
 
 .like_section img {
@@ -172,7 +163,6 @@ sub {
 	margin-block-end: 1em;
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
-	
 }
 
 .like_wrap {
@@ -180,22 +170,17 @@ sub {
 	border-top: 1px solid #ccc; border-right : none;
 	height: 300px;
 	border-right: none;
-
-	
 }
 
 .list_section {
 	width: 100%;
-	height: 500px;
+	height: 100%;
 	padding: 5px;
 	margin: 0 auto;
 	margin-bottom:50px;
 	width: 1280px;
-	
 }
-.overflow{
-	overflow-y:scroll;	
-}
+
 .ggim_section{
 	width: 100%;
 	height: 500px;
@@ -204,9 +189,7 @@ sub {
 	border-bottom:1px solid #ccc;
 	margin-bottom:50px;
 	width: 1280px;
-	
-	
-	
+
 }
 
 div {

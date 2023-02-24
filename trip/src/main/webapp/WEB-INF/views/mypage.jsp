@@ -41,7 +41,7 @@
 		<div class="list_section">
 			<div class="reservation_section">
 				<div class="section_title">
-					<h1>예약 목록</h1>
+					<h1>나의 예약 목록</h1>
 					<sub>나의 예약목록을 확인해보세요.</sub>
 				</div>
 				<table class="tb_mypage">
@@ -53,7 +53,7 @@
 						<th><h3>성인</h3></th>
 						<th><h3>상품가격</h3></th>
 					</tr>
-					<c:forEach var="rv" items="${rlist }">
+					<c:forEach var="rv" items="${rlist }" begin="0" end="4">
 						<tr>
 							<td>${rv.res_no }</td>
 							<td>${rv.prod_no }</td>
@@ -66,12 +66,10 @@
 				</table>
 			</div>
 		</div>
-
-
 		<div class="list_section">
 			<div class="qna_section">
 				<div class="section_title">
-					<h1>문의 내역</h1>
+					<h1>나의 문의 내역</h1>
 					<sub>나의 문의내역을 확인해보세요.</sub>
 				</div>
 				<table class="tb_mypage">
@@ -81,7 +79,7 @@
 						<th><h3>제목</h3></th>
 						<th><h3>문의날짜</h3></th>
 					</tr>
-					<c:forEach var="qv" items="${qlist }">
+					<c:forEach var="qv" items="${qlist }" begin="0" end="4">
 						<tr>
 							<td>${qv.qna_no }</td>
 							<td>${qv.prod_no }</td>
@@ -93,89 +91,59 @@
 			</div>
 		</div>
 		<div class="list_section">
-
 			<div class="review_section">
-
 				<div class="section_title">
-
 					<h1>나의 여행 후기</h1>
-
 					<sub>나의 여행 후기를 확인해보세요.</sub>
-
 				</div>
-
 				<table class="tb_mypage">
-
 					<tr style="border-bottom: 2px">
-
 						<th><h3>리뷰점수</h3></th>
-
 						<th><h3>상품번호</h3></th>
 						<th><h3>상품사진</h3></th>
 						<th><h3>리뷰작성날짜</h3></th>
-
 					</tr>
-
-					<c:forEach var="review" items="${reviewList }">
-
+					<c:forEach var="review" items="${reviewList }" begin="0" end="4">
 						<tr>
-
-				
 							<td>${review.rev_rating }</td>
-
 							<td>${review.prod_no }</td>
 							<td><img src="img/${review.rev_img }"></td>
 							<td>${review.rev_date }</td>
-
 						</tr>
-
 					</c:forEach>
 					<tr>
 						<td colspan="4">
-							<button
-								onclick="location.href='reviewBoard?id=${sessionScope.id}'"
-								class="review_btn">리뷰 작성하기</button>
+							<button onclick="location.href='reviewBoard?id=${sessionScope.id}'"
+							 class="review_btn">리뷰 작성하기</button>
 						</td>
 					</tr>
 				</table>
-
 			</div>
-
-
-
 		</div>
-
 		<div class="ggim_section">
 			<div class="like_section">
 				<div class="section_title">
-					<h1>찜한 상품</h1>
+					<h1>내가 찜한 상품</h1>
 					<sub>내가 찜한 상품을 다시 확인해 보세요.</sub>
 				</div>
 				<div class="like_wrap">
-					<c:forEach var="data" items="${plist }">
+					<c:forEach var="data" items="${plist }" begin="0" end="3">
 						<ul>
-							<li
-								style="float: left; list-style: none; position: relative; width: 323px;">
-								<a href="/prod_detail?no=${data.prod_no }"> <img
-									src="../img/${data.prod_img }" id="slide_img"><br>
-									<div id="slide_info">
-										<!-- 게시글 제목1 -->
-										<span class="prod_title"> ${data.prod_name }<br>
-										</span>
-										<!-- 게시글 가격1 -->
-										<span class="price"> ${data.prod_price_adult } </span> 원
-									</div>
-							</a>
+							<li style="float: left; list-style: none; position: relative; width: 323px;">
+								<a href="/prod_detail?no=${data.prod_no }"> 
+								<img src="../img/${data.prod_img }" id="slide_img"><br>
+									<!-- 게시글 제목1 -->
+									<span class="prod_title"> ${data.prod_name }</span>
+									<br>
+									<!-- 게시글 가격1 -->
+									<span class="price"> ${data.prod_price_adult } </span> 원
+								</a>
 							</li>
-
-
 						</ul>
-
 					</c:forEach>
 				</div>
 			</div>
 		</div>
-
 	</section>
 	<%@include file="footer.jsp"%>
 </body>
