@@ -95,9 +95,6 @@ public class IMemberController {
 
 	}
 
-
-
-
 	@GetMapping("/idPop")
 	public @ResponseBody String idPop() {
 		String out = "<form action=\"findId\" method=\"post\" name=\"frm1\" id=\"form\">\r\n" + "\r\n"
@@ -135,7 +132,6 @@ public class IMemberController {
 		String pw = mapper.findPw(mv.getId(), mv.getEmail());
 
 		model.addAttribute("pw", pw);
-
 
 		return view;
 	}
