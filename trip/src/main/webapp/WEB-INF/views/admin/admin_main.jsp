@@ -88,7 +88,7 @@
     			let obj = JSON.parse(data);
     			
     			for (i = 0; i < 5; i++) {
-    				$("#ad_prod_list").append('<li><a href="admin_prod_update?prod_no=' 
+    				$("#ad_prod_list").append('<li><a href="admin_prod_detail?prod_no=' 
     						+ obj[i].prod_no + '"><span>' 
     						+ obj[i].prod_name + '</span></a></li>');
     				}

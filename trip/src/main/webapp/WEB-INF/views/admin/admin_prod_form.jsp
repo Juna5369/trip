@@ -39,7 +39,14 @@
 							<th>부가설명</th><td><input type="text" name="prod_detail"></td>
 						</tr>
 						<tr>
-							<th>테마</th><td><input type="text" name="prod_theme"></td>
+							<th>테마</th><td>
+								<select id="prod_theme" name="prod_theme">
+									<option value="">없음</option>
+									<option value="honey">허니문</option>
+									<option value="golf">골프</option>
+									<option value="cruise">크루즈</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<th>최대인원(좌석)</th><td><input type="text" name="prod_max_person"></td>

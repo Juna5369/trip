@@ -38,7 +38,7 @@
 									<th>상품이름(상품 타이틀 명)</th><td><input type="text" name="prod_name" value="${post.prod_name }"></td>
 								</tr>
 								<tr>
-									<th>이미지</th><td><input type="file" name="prod_iii" value="${post.prod_img }"></td>
+									<th>이미지</th><td><input type="file" name="prod_iii"></td>
 								</tr>
 								<tr>
 									<th>성인</th><td><input type="text" name="prod_price_adult" value="${post.prod_price_adult }"style="width:130px;padding-right:10px;"> 원</td>
@@ -56,7 +56,35 @@
 									<th>부가설명</th><td><input type="text" name="prod_detail" value="${post.prod_detail }"></td>
 								</tr>
 								<tr>
-									<th>테마</th><td><input type="text" name="prod_theme" value="${post.prod_theme }"></td>
+									<th>테마</th>
+									<td>
+										<select id="prod_theme" name="prod_theme">
+											<c:if test="${post.prod_theme eq '' }">
+												<option value="">없음</option>
+												<option value="honey">허니문</option>
+												<option value="golf">골프</option>
+												<option value="cruise">크루즈</option>
+											</c:if>
+											<c:if test="${post.prod_theme eq 'honey' }">
+												<option value="honey">허니문</option>
+												<option value="golf">골프</option>
+												<option value="cruise">크루즈</option>
+												<option value="">없음</option>
+											</c:if>
+											<c:if test="${post.prod_theme eq 'golf' }">
+												<option value="golf">골프</option>
+												<option value="honey">허니문</option>
+												<option value="cruise">크루즈</option>
+												<option value="">없음</option>
+											</c:if>
+											<c:if test="${post.prod_theme eq 'cruise' }">
+												<option value="cruise">크루즈</option>
+												<option value="honey">허니문</option>
+												<option value="golf">골프</option>
+												<option value="">없음</option>
+											</c:if>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>최대인원(좌석)</th><td><input type="text" name="prod_max_person" value="${post.prod_max_person }"></td>
