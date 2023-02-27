@@ -26,6 +26,7 @@
                         <li><a href="#">문의 답변</a></li>
 	                </ul>
 	            </div>
+	            <div class="middle_title">상품관리</div>
 				<table class="prod_tbl">
 					<thead>
 						<tr>
@@ -39,7 +40,7 @@
 					</tbody>
 				</table>
                 <div class="btn_area">
-                	<input type="button" class="r_btn" value="등록하기">
+                	<input type="button" class="r_btn" style="margin-left:500px;" value="상품등록">
 				</div>
 			</div>
 		</div>
@@ -47,9 +48,10 @@
 	<%@ include file="../footer.jsp"%>
 	<script src="js/admin.js"></script>
 	<script>
-	$(".btn_area").click(function(){
+	$(".r_btn").click(function(){
 		location.href="prodform";
 	})
+
 	$(document).ready(function(){
 		
     	$.ajax({

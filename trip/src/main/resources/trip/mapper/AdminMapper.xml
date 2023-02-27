@@ -40,5 +40,7 @@
   		 prod_end_date=#{prod_end_date}, prod_hotel=#{prod_hotel}, prod_plane=#{prod_plane}, prod_category=#{prod_category}
   		 WHERE prod_no=#{prod_no}
   	</update>
-  	
+  	<delete id="deleteProd">
+  	DELETE FROM product_tbl WHERE prod_no=#{prod_no}
+  	</delete>
   </mapper>

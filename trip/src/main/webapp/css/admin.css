@@ -4,7 +4,7 @@
 }
 .admin_box {
 	width: 1280px;
-	height: 100vh;
+	height: 100%;
 	
 }
 .lnb {
@@ -60,7 +60,7 @@
 	bottom:700px;
 	width:1080px;
 	height:1000px;
-	border:1px solid black;
+	/* border:1px solid black; */
 }
 
 .middle_main {
@@ -68,7 +68,7 @@
 	width: 1080px;
 	height: 900px;
 	margin-bottom:10px;
-	border:1px solid black;
+	/* border:1px solid black; */
 	text-align: left;
 }
 .main_title {
@@ -100,32 +100,32 @@
 
 .middle1{
 	position: relative;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	width:400px;
 	height:400px;
 }
 .middle2{
 	position: relative;
 	right:-450px;
-	bottom:400px;
-	border: 1px solid black;
+	bottom:440px;
+	/* border: 1px solid black; */
 	width:400px;
 	height:400px;
 }
 .middle3{
 	position: relative;
-	right: px;
+	right: 0px;
 	bottom:400px;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	width:400px;
 	height:400px;
 	margin-top:20px;
 }
 .middle4{
 	position: relative;
-	bottom:800px;
+	bottom:840px;
 	right:-450px;
-	border: 1px solid black;
+	/* border: 1px solid black; */
 	width:400px;
 	height:400px;
 
@@ -209,6 +209,9 @@ td {
 	text-align: left;
 	padding: 30px 30px;
 }
+.btn_area{
+margin-left:550px;	
+}
 .l_btn {
 	width: 150px;
 	height: 70px;
@@ -216,10 +219,44 @@ td {
 	margin-bottom: 50px;
 	border: 1px solid #ccc;
 	background-color: white;
-	
+	cursor:pointer;
 	font-size: 18px;
 }
-
+.u_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: 1px solid #ccc;
+	background-color: white;
+	cursor:pointer;
+	font-size: 18px;
+	
+}
+.r_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left:370px;
+	border: 1px solid #ccc;
+	background-color: white;
+	cursor:pointer;
+	font-size: 18px;
+	
+}
+.d_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left:0px;
+	border: 1px solid #ccc;
+	background-color: white;
+	cursor:pointer;
+	font-size: 18px;
+	
+}
 #page > span {
 	margin-left: 20px;
 	cursor: pointer;

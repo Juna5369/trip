@@ -209,6 +209,9 @@ td {
 	text-align: left;
 	padding: 30px 30px;
 }
+.btn_area{
+margin-left:550px;	
+}
 .l_btn {
 	width: 150px;
 	height: 70px;
@@ -236,7 +239,19 @@ td {
 	height: 70px;
 	margin-top: 50px;
 	margin-bottom: 50px;
-	margin-left:230px;
+	margin-left:370px;
+	border: 1px solid #ccc;
+	background-color: white;
+	cursor:pointer;
+	font-size: 18px;
+	padding-left:30px;
+}
+.d_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left:0px;
 	border: 1px solid #ccc;
 	background-color: white;
 	cursor:pointer;
