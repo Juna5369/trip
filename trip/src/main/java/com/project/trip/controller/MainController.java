@@ -135,6 +135,16 @@ public class MainController {
 		return "/cust_center/res_qna_post";
 	}
 	
+	@PutMapping("updateResQNA")
+	public @ResponseBody void updateResQNA(ResQNAVO rq) {
+		cMapper.updateResQNA(rq);
+	}
+	
+	@DeleteMapping("deleteResQNA")
+	public @ResponseBody void deleteResQNA(ResQNAVO rq) {
+		cMapper.deleteResQNA(rq.getRes_qna_no());
+	}
+	
 	@GetMapping("/getQNAList")
 	public @ResponseBody List<ResQNAVO> getQNAList(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -202,6 +212,11 @@ public class MainController {
 		}
 	}
 	
+	@DeleteMapping("deleteResReply")
+	public @ResponseBody void deleteResReply(ResReplyVO rr) {
+		cMapper.deleteNotice(rr.getRes_reply_no());
+	}
+	
 	@GetMapping("writeNoticeForm")
 	public String writeNoticeForm() {
 		return "admin/writeNotice";
@@ -232,6 +247,11 @@ public class MainController {
 		return "admin/admin_faq";
 	}
 	
+	@PostMapping("writeFAQ")
+	public @ResponseBody void writeFAQ(FAQVO faq) {
+		cMapper.insertFAQ(faq);
+	}
+	
 	@PutMapping("updateFAQ")
 	public @ResponseBody void updateFAQ(FAQVO faq) {
 		cMapper.updateFAQ(faq);
@@ -242,9 +262,5 @@ public class MainController {
 		cMapper.deleteFAQ(faq.getFaq_no());
 	}
 	
-	@PostMapping("writeFAQ")
-	public @ResponseBody void writeFAQ(FAQVO faq) {
-		cMapper.insertFAQ(faq);
-	}
 	
 }

@@ -11,6 +11,12 @@
 	<select id="getListOne" resultType="com.project.trip.vo.ProductVO">
 	SELECT * FROM product_tbl WHERE prod_no=#{no} 
 	</select>
+	<select  id="getListCategory" resultType="com.project.trip.vo.ProductVO">
+	SELECT * FROM product_tbl WHERE prod_category=#{prod_category}
+	</select>
+	<select  id="getListTheme" resultType="com.project.trip.vo.ProductVO">
+	SELECT * FROM product_tbl WHERE prod_theme=#{prod_theme}
+	</select>
 	
 	<insert id="reg_like">
 	INSERT INTO like_tbl (id,prod_no) VALUES (#{id},#{prod_no})

@@ -14,17 +14,7 @@
 	<section class="main">
 	    <div class="box">
 	        <div class="admin_box">
-	            <div class="lnb">
-	                <div class="lnb_title">
-	                    <a href="#">관리페이지</a>
-	                </div>
-	                <ul>
-	                    <li><a href="admin_notice">공지사항</a></li>
-                        <li><a href="admin_prod_list">상품</a></li>
-                        <li><a href="#">조회/통계</a></li>
-                        <li><a href="#">문의 답변</a></li>
-	                </ul>
-	            </div>
+	            <%@include file="admin_nav.jsp"%>
 				<form action="insertProd.do" method="post" enctype="multipart/form-data"><br>
 					<table>
 						<tr>
@@ -49,7 +39,14 @@
 							<th>부가설명</th><td><input type="text" name="prod_detail"></td>
 						</tr>
 						<tr>
-							<th>테마</th><td><input type="text" name="prod_theme"></td>
+							<th>테마</th><td>
+								<select id="prod_theme" name="prod_theme">
+									<option value="">없음</option>
+									<option value="honey">허니문</option>
+									<option value="golf">골프</option>
+									<option value="cruise">크루즈</option>
+								</select>
+							</td>
 						</tr>
 						<tr>
 							<th>최대인원(좌석)</th><td><input type="text" name="prod_max_person"></td>

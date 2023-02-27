@@ -30,8 +30,7 @@ sub {
 }
 
 .tb_mypage {
-	table-layout: fixed;
-	width: 1280px;
+	width: 100%;
 	border-top: 1px solid #111;
 	text-align:cetner;
 }
@@ -98,13 +97,13 @@ sub {
 }
 
 .qna_section {
-	width: 1280px;
+	width: 100%;
 	text-align: center;
 	margin: 0 auto;
 }
 
 .reservation_section {
-	width: 1280px;
+	width: 100%;
 	margin: 0 auto;
 	text-align: center;
 }
@@ -147,15 +146,22 @@ sub {
 	overflow: clip;
 	vertical-align: top;
 }
+.like_wrap {
+	width:1280px;
+	height: 100%;
+	border-bottom: 1px solid #ccc;
+}
 
 .like_wrap > ul > li {
-	width: 327px !important;
+	width: 320px !important;
 	height: 310px;
 	padding: 20px;
-	border-right: 1px solid #ccc;
+
+	float: left; 
+	position: relative;
 }
 .like_wrap > ul:last-child > li {
-	border-right: transparent;
+	margin-bottom: 100px;
 } 
 
 .like_section ul {
@@ -166,26 +172,17 @@ sub {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 }
-
-.like_wrap {
-	width:1280px;
-	height: 311px;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-}
-
 .list_section {
 	width: 100%;
 	height: 100%;
 	padding: 5px;
 	margin: 0 auto;
 	margin-bottom:50px;
-	width: 1280px;
 }
 
 .ggim_section{
-	width: 1280px;
-	height: 450px;
+	width: 100%;
+	height: 100%;
 	padding: 5px;
 	margin: 0 auto;
 	margin-bottom:50px;

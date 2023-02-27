@@ -13,34 +13,41 @@
 <body>
 	<%@include file="../header.jsp"%>
 	<%@include file="../nav.jsp"%>
-	<div class="list_section">
-		<div class="reservation_section">
-			<div class="section_title">
-				<h1>나의 예약 목록</h1>
-				<sub>나의 예약목록을 확인해보세요.</sub>
+	<section class="main">
+		<div class="box">
+			<div class="cuc_box">
+				<div class="list_section">
+					<div class="reservation_section">
+						<div class="section_title">
+							<h1>나의 예약 목록</h1>
+							<sub>나의 예약목록을 확인해보세요.</sub>
+						</div>
+						<table class="tb_mypage">
+							<tr style="border-bottom: 2px">
+								<th><h3>예약번호</h3></th>
+								<th><h3>상품번호</h3></th>
+								<th><h3>예약날짜</h3></th>
+								<th><h3>어린이</h3></th>
+								<th><h3>성인</h3></th>
+								<th><h3>상품가격</h3></th>
+							</tr>
+							<c:forEach var="rv" items="${rlist }">
+								<tr>
+									<td>${rv.res_no }</td>
+									<td>${rv.prod_no }</td>
+									<td>${rv.res_date }</td>
+									<td>${rv.res_child }</td>
+									<td>${rv.res_adult }</td>
+									<td>${rv.res_price }</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
+				</div>
 			</div>
-			<table class="tb_mypage">
-				<tr style="border-bottom: 2px">
-					<th><h3>예약번호</h3></th>
-					<th><h3>상품번호</h3></th>
-					<th><h3>예약날짜</h3></th>
-					<th><h3>어린이</h3></th>
-					<th><h3>성인</h3></th>
-					<th><h3>상품가격</h3></th>
-				</tr>
-				<c:forEach var="rv" items="${rlist }" begin="0" end="4">
-					<tr>
-						<td>${rv.res_no }</td>
-						<td>${rv.prod_no }</td>
-						<td>${rv.res_date }</td>
-						<td>${rv.res_child }</td>
-						<td>${rv.res_adult }</td>
-						<td>${rv.res_price }</td>
-					</tr>
-				</c:forEach>
-			</table>
 		</div>
-	</div>
+	</section>
+	
 	<%@include file="../footer.jsp"%>
 </body>
 </html>

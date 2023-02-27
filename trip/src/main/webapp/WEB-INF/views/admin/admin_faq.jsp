@@ -14,17 +14,7 @@
 	<section class="main">
     	<div class="box">
 			<div class="cuc_box">
-                <div class="lnb">
-                    <div class="lnb_title">
-	                    <a href="admin">관리페이지</a>
-	                </div>
-	                <ul>
-	                    <li><a href="admin_notice">공지사항</a></li>
-                        <li><a href="admin_prod_list">상품관리</a></li>
-                        <li><a href="#">매출 통계</a></li>
-                        <li><a href="#">문의 답변</a></li>
-	                </ul>
-	            </div>
+                <%@include file="admin_nav.jsp"%>
                 <div class="main_faq">
                     <div class="faq_board">
                         <div class="faq_title">자주 찾는 질문
@@ -36,12 +26,14 @@
                         <ul class="faq_list">
 							
                         </ul>
+                        <input type="button" class="a_l_btn" value="FAQ 작성">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 	<%@ include file="../footer.jsp"%>
+	<script src="js/cuc.js"></script>
 	<script>
 
 		$(document).on("click", ".s_btn_mini", function(e){
@@ -60,7 +52,6 @@
 				},
 				success: function() {
 					alert('수정 완료');
-					location.href="adminFAQ";
 				}
 				
 			});

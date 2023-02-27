@@ -15,17 +15,7 @@
 	<section class="main">
      <div class="box">
 	        <div class="admin_box">
-	            <div class="lnb">
-	                <div class="lnb_title">
-	                    <a href="#">관리페이지</a>
-	                </div>
-	                <ul>
-	                    <li><a href="admin_prod">공지사항</a></li>
-                        <li><a href="admin_prod_list">상품관리</a></li>
-                        <li><a href="#">매출 통계</a></li>
-                        <li><a href="#">문의 답변</a></li>
-	                </ul>
-	            </div>
+	            <%@include file="admin_nav.jsp"%>
                 <div class="main_post">
                     <div class="prod_post">
 						
@@ -48,7 +38,7 @@
 									<th>상품이름(상품 타이틀 명)</th><td><input type="text" name="prod_name" value="${post.prod_name }"></td>
 								</tr>
 								<tr>
-									<th>이미지</th><td><input type="file" name="prod_iii" value="${post.prod_img }"></td>
+									<th>이미지</th><td><input type="file" name="prod_iii"></td>
 								</tr>
 								<tr>
 									<th>성인</th><td><input type="text" name="prod_price_adult" value="${post.prod_price_adult }"style="width:130px;padding-right:10px;"> 원</td>
@@ -66,7 +56,35 @@
 									<th>부가설명</th><td><input type="text" name="prod_detail" value="${post.prod_detail }"></td>
 								</tr>
 								<tr>
-									<th>테마</th><td><input type="text" name="prod_theme" value="${post.prod_theme }"></td>
+									<th>테마</th>
+									<td>
+										<select id="prod_theme" name="prod_theme">
+											<c:if test="${post.prod_theme eq '' }">
+												<option value="">없음</option>
+												<option value="honey">허니문</option>
+												<option value="golf">골프</option>
+												<option value="cruise">크루즈</option>
+											</c:if>
+											<c:if test="${post.prod_theme eq 'honey' }">
+												<option value="honey">허니문</option>
+												<option value="golf">골프</option>
+												<option value="cruise">크루즈</option>
+												<option value="">없음</option>
+											</c:if>
+											<c:if test="${post.prod_theme eq 'golf' }">
+												<option value="golf">골프</option>
+												<option value="honey">허니문</option>
+												<option value="cruise">크루즈</option>
+												<option value="">없음</option>
+											</c:if>
+											<c:if test="${post.prod_theme eq 'cruise' }">
+												<option value="cruise">크루즈</option>
+												<option value="honey">허니문</option>
+												<option value="golf">골프</option>
+												<option value="">없음</option>
+											</c:if>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<th>최대인원(좌석)</th><td><input type="text" name="prod_max_person" value="${post.prod_max_person }"></td>

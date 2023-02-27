@@ -14,17 +14,7 @@
 	<section class="main">
         <div class="box">
             <div class="cuc_box">
-                <div class="lnb">
-                    <div class="lnb_title">
-                        <a href="cust_center">고객센터</a>
-                    </div>
-                    <ul>
-                        <li><a href="#">요소</a></li>
-                        <li><a href="#">요소</a></li>
-                        <li><a href="#">요소</a></li>
-                        <li><a href="#">요소</a></li>
-                    </ul>
-                </div>
+                <%@include file="admin_nav.jsp"%>
                 <div class="main_post">
                     <div class="notice_post">
                         <div class="notice_title">1:1 고객 문의
@@ -46,7 +36,7 @@
 							<div class="ad_post_title">
 								<input class="qna_subj" id="rs" type="text" placeholder="제목을 입력해 주세요." value="${post2.res_reply_title }">
 							</div>
-							<div class="post_date">
+							<div class="ad_date">
 								${post2.res_reply_date }
 							</div>
                         </div>
@@ -57,6 +47,9 @@
 						<div class="btn_area">
 							<input type="button" class="l_btn" value="목록">
 							<input type="button" class="s_btn" value="등록/수정">
+							<c:if test="${post2.res_reply_no != null}">
+							<input type="button" class="d_btn" value="삭제">
+							</c:if>
 							<input type="hidden" class="rno" value="${post2.res_reply_no }">
 						</div>
                     </div>
@@ -97,7 +90,23 @@
 				}
 				
 			});
-		})
+		});
+		$(".d_btn").click(function(){
+			let rno = $(".rno").val();
+			
+			$.ajax({
+				url: 'deleteResReply',
+				type: 'delete',
+				data: {
+					res_reply_no: rno,
+				},
+				success: function() {
+					alert('삭제 완료');
+					location.href="res_qna_admin";
+				}
+				
+			});
+		});
 
 	</script>
 </body>

@@ -16,6 +16,22 @@ $(".q_btn").mouseleave(function(e){
 	$(e.target).css("border", "#ccc solid 1px");
 });
 
+$(".cuc_search_btn").mouseenter(function(e){
+	$(e.target).css("border", "#e82835 solid 1px");
+});
+
+$(".cuc_search_btn").mouseleave(function(e){
+	$(e.target).css("border", "#ccc solid 1px");
+});
+
+$(".a_l_btn").mouseenter(function(e){
+	$(e.target).css("border", "#e82835 solid 1px");
+});
+
+$(".a_l_btn").mouseleave(function(e){
+	$(e.target).css("border", "#ccc solid 1px");
+});
+
 $(".lnb > ul > li > a").mouseenter(function(e){
 	$(e.target).css("color", "#e82835");
 });

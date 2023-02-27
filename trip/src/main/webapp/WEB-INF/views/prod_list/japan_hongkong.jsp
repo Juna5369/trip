@@ -29,7 +29,7 @@
                     <div id="slide1">
                         <!-- 슬라이드1 제목ㅎㅇㅇ -->
                         <div id="slide_title">
-                            <h3>22년 일본 여행지</h3>
+                            <h3>23년 일본 여행지</h3>
                         </div>
                         <div id="slide1_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
@@ -224,50 +224,66 @@
                             </div>
                             <ul>
                                 <li>
-                                    <div class="weekly_theme_img">
-                                        <img src="resources/img/tokyo_gaseongbi1.jpg">
-                                    </div>
-                                    <div class="weekly_theme_info">
-                                        <span>자유로운 일정의 일본여행</span>
-                                    </div>
-                                    <div class="weekly_theme_info2">
-                                        <p>최고의 가성비!</p>
-                                    </div>
+                      				<c:forEach var="data" items="${list }" varStatus="status" begin="12" end="12">
+	                                    <div class="weekly_theme_img">
+	                                    	<a href="/prod_detail?no=${data.prod_no }">
+	                                        	<img src="../img/${data.prod_img }">
+	                                        </a>
+	                                    </div>
+	                                    <div class="weekly_theme_info">
+	                                        <span>${data.prod_detail }</span>
+	                                    </div>
+	                                    <div class="weekly_theme_info2">
+	                                        <p>최고의 가성비!</p>
+	                                    </div>
+                                    </c:forEach>
                                 </li>
                                 <li>
-                                    <div class="weekly_theme_img">
-                                        <img src="resources/img/tokyo_hakone_yokohama1.jpg">
-                                    </div>
-                                    <div class="weekly_theme_info">
-                                        <span>자유로운 일정의 일본여행</span>
-                                    </div>
-                                    <div class="weekly_theme_info2">
-                                        <p>최고의 가성비!</p>
-                                    </div>
-                                </li>
-                             
-                                <li>
-                                    <div class="weekly_theme_img">
-                                        <img src="resources/img/tokyo_sizuoka1.png">
-                                    </div>
-                                    <div class="weekly_theme_info">
-                                        <span>자유로운 일정의 일본여행</span>
-                                    </div>
-                                    <div class="weekly_theme_info2">
-                                        <p>최고의 가성비!</p>
-                                    </div>
+                      				<c:forEach var="data" items="${list }" varStatus="status" begin="2" end="2">
+	                                    <div class="weekly_theme_img">
+		                                    <a href="/prod_detail?no=${data.prod_no }">
+		                                        <img src="../img/${data.prod_img }">
+		                                    </a>
+	                                    </div>
+	                                    <div class="weekly_theme_info">
+	                                        <span>${data.prod_detail }</span>
+	                                    </div>
+	                                    <div class="weekly_theme_info2">
+	                                        <p>낭만 넘치는 도시!</p>
+	                                    </div>
+                                    </c:forEach>
                                 </li>
                              
-                                <li>
-                                    <div class="weekly_theme_img">
-                                        <img src="resources/img/tokyo_disney1.png">
-                                    </div>
-                                    <div class="weekly_theme_info">
-                                        <span>자유로운 일정의 일본여행</span>
-                                    </div>
-                                    <div class="weekly_theme_info2">
-                                        <p>최고의 가성비!</p>
-                                    </div>
+                              	<li>
+                      				<c:forEach var="data" items="${list }" varStatus="status" begin="6" end="6">
+	                                    <div class="weekly_theme_img">
+		                                    <a href="/prod_detail?no=${data.prod_no }">
+		                                        <img src="../img/${data.prod_img }">
+		                                    </a>
+	                                    </div>
+	                                    <div class="weekly_theme_info">
+	                                        <span>${data.prod_detail }</span>
+	                                    </div>
+	                                    <div class="weekly_theme_info2">
+	                                        <p>최고의 아름다움!</p>
+	                                    </div>
+                                    </c:forEach>
+                                </li>
+                             
+   								<li>
+                      				<c:forEach var="data" items="${list }" varStatus="status" begin="7" end="7">
+	                                    <div class="weekly_theme_img">
+	                                        <a href="/prod_detail?no=${data.prod_no }">
+	                                        	<img src="../img/${data.prod_img }">
+	                                        </a>
+	                                    </div>
+	                                    <div class="weekly_theme_info">
+	                                        <span>${data.prod_detail }</span>
+	                                    </div>
+	                                    <div class="weekly_theme_info2">
+	                                        <p>감성 넘치는 여행!</p>
+	                                    </div>
+                                    </c:forEach>
                                 </li>
                              
                             </ul>

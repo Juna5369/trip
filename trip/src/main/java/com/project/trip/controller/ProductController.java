@@ -32,15 +32,78 @@ public class ProductController {
 	IBoardMapper b_mapper;
 	
 	@GetMapping("/list")
-	public String japanList(Model model) {
-		List<ProductVO> list = mapper.getList();
+	public String japanList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
 		System.out.println("리스트 : "+list.toString());
 		model.addAttribute("list", list);
 	return "prod_list/japan_hongkong";
 	}
 
+	@GetMapping("/list2")
+	public String seasiaList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+	return "prod_list/seasia";
+	}
 	
-//	@GetMapping("/prod_detail")
+	@GetMapping("/list3")
+	public String euafreecaList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+	return "prod_list/eu_afreeca";
+	}
+	@GetMapping("/list4")
+	public String auList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+	return "prod_list/au";
+	}
+	@GetMapping("/list5")
+	public String usaList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+	return "prod_list/usa";
+	}
+	@GetMapping("/list6")
+	public String krList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+		return "prod_list/kr";
+	}
+	@GetMapping("/list7")
+	public String honeyList(@RequestParam("prod_theme")String prod_theme, Model model) {
+		List<ProductVO> list = mapper.getListTheme(prod_theme);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+		return "prod_list/honey";
+	}
+	@GetMapping("/list8")
+	public String golfList(@RequestParam("prod_theme")String prod_theme, Model model) {
+		List<ProductVO> list = mapper.getListTheme(prod_theme);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+		return "prod_list/golf";
+	}
+	@GetMapping("/list9")
+	public String cruiseList(@RequestParam("prod_theme")String prod_theme, Model model) {
+		List<ProductVO> list = mapper.getListTheme(prod_theme);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+		return "prod_list/cruise";
+	}
+	@GetMapping("/list10")
+	public String natList(@RequestParam("prod_category")String prod_category, Model model) {
+		List<ProductVO> list = mapper.getListCategory(prod_category);
+		System.out.println("리스트 : "+list.toString());
+		model.addAttribute("list", list);
+		return "prod_list/nat";
+	}
+
 	
 	@RequestMapping("/prod_detail")
 	public String prod_detail(@RequestParam("no") String prod_nol, @RequestParam(value="pageNum_review", required=false) String pageNum_review, @RequestParam(value="start_review", required=false) String start_review, Model model) {

@@ -14,17 +14,7 @@
 	<section class="main">
         <div class="box">
             <div class="cuc_box">
-                <div class="lnb">
-                    <div class="lnb_title">
-                        <a href="cust_center">고객센터</a>
-                    </div>
-                    <ul>
-                        <li><a href="faq">자주찾는 질문</a></li>
-                        <li><a onclick="goQNA()">1:1 문의</a></li>
-                        <li><a onclick="go_res_qna_list()">1:1 문의내역</a></li>
-                        <li><a href="notice">공지사항</a></li>
-                    </ul>
-                </div>
+                <%@include file="cust_nav.jsp"%>
                 <div class="main_notice">
                     <div class="notice_board">
                         <div class="notice_title">공지사항
