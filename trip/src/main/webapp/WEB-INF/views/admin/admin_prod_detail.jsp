@@ -26,6 +26,7 @@
                         <li><a href="#">문의 답변</a></li>
 	                </ul>
 	            </div>
+						<div class="middle_title">상품관리</div>
                 <div class="main_post">
                     <div class="prod_post">
 						
@@ -97,6 +98,7 @@
 						
 						<div class="btn_area">
 							<input type="button" class="u_btn" value="수정">
+							<input type="button" class="d_btn" value="삭제">
 							<input type="button" class="l_btn" value="목록">
 						</div>
                     </div>
@@ -106,11 +108,19 @@
     </section>
 	<%@ include file="../footer.jsp"%>
 	<script>
+		
+	
 		$(".l_btn").click(function(){
 			location.href="admin_prod_list";
 		})
 		$(".u_btn").click(function(){
 			location.href="admin_prod_update?prod_no="+$("#prod_no").text();
+		})
+		$(".d_btn").click(function(){
+			if(confirm('삭제하시면 복구할 수 없습니다. \n정말로 삭제하시겠습니까?')){
+				location.href="admin_prod_delete?prod_no="+ $("#prod_no").text();
+				alert("삭제 되었습니다.");
+			}
 		})
 	</script>
 

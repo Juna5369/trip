@@ -67,11 +67,27 @@ public class AdminController {
 		return"/admin/admin_prod_form";
 	}
 	@PostMapping("/insertProd.do")
-	public @ResponseBody String insertProd(ProductVO vo) {
-		String url="";
+	public @ResponseBody String insertProd(ProductVO vo, @RequestParam("prod_iii")MultipartFile uploadFile,HttpServletRequest request, Model model) {
+		String fileName = uploadFile.getOriginalFilename();
+		log.info(fileName);
+		vo.setProd_img(fileName);
+	      ServletContext ctx = request.getServletContext();
+	      String uploadFolder = "/img";
+	      String path = ctx.getRealPath(uploadFolder);
+	      log.info("path : " +path);
+	         File saveFile = new File(path, uploadFile.getOriginalFilename());
+	         try {
+	            uploadFile.transferTo(saveFile);
+	         } catch (IllegalStateException | IOException e) {
+	            log.error(e.getMessage());
+	         }
+	         // }//end for
+		
 		int result = adMapper.insertProd(vo);
+		System.out.println(vo.getProd_no());
+		String url ="";
 		if(result==1) {
-			url="<script>alert('완료(수정예정)'; location.href='/admin'</script> ";
+			url="<script>alert('완료'); location.href='/admin_prod_list';</script> ";
 		}else {
 			url="<script>alert('실패'); location.back()</script>";
 		}
@@ -131,6 +147,12 @@ public class AdminController {
 		rs.addAttribute("prod_no",vo.getProd_no());  //redirect값에 attribute를 하기위해 redirectAttribute사용
 		return url;
 
+	}
+	
+	@GetMapping("/admin_prod_delete")
+	public String deleteProd(int prod_no) {
+		adMapper.deleteProd(prod_no);
+		return "admin/admin_prod_list";
 	}
 }
 

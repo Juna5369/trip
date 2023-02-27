@@ -76,7 +76,7 @@
 
     			let obj = JSON.parse(data);
     			
-    			for (i = 0; i < 5; i++) {
+    			for (i = 0; i < 4; i++) {
     				$("#admin_not_list").append('<li><a href="#"><span>' 
     						+ obj[i].not_title + '</span></a><input type="hidden" value="'
     						+ obj[i].not_no + '"></li>');

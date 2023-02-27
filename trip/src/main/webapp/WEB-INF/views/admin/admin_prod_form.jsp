@@ -25,7 +25,7 @@
                         <li><a href="#">문의 답변</a></li>
 	                </ul>
 	            </div>
-				<form action="insertProd.do" method="post"><br>
+				<form action="insertProd.do" method="post" enctype="multipart/form-data"><br>
 					<table>
 						<tr>
 							<th>상품이름(상품 타이틀 명)</th><td><input type="text" name="prod_name"></td>
