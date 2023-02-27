@@ -199,4 +199,9 @@ public class MainController {
 			cMapper.insertResReply(rr);
 		}
 	}
+	
+	@GetMapping("writeNotice")
+	public String writeNotice() {
+		return "admin/writeNotice";
+	}
 }

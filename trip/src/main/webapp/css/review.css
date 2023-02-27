@@ -30,7 +30,6 @@
 }
 .star_rating{
 	padding:10px;
-	
 }
 .select{
 	width:100%;
@@ -40,4 +39,15 @@
 }
 .form{
 	margin:0 auto;
+}
+.review_section {
+	text-align: center;
+}
+h1 {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
 }

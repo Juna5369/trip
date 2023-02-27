@@ -491,3 +491,7 @@ td {
 	font-size: 16px;
 }
 
+#rs, #rc {
+	width: 1000px;
+}
+
