@@ -11,5 +11,15 @@
 	<select id="getResInfoById" resultType="reservo">
 		SELECT * FROM reservation_tbl WHERE id = #{id}
 	</select>
+	
+	<select id="getResNonMember" resultType="com.project.trip.dto.Non_resDTO">
+	SELECT res.res_no, res.id, mem.name, mem.tel, res.prod_no, pro.prod_name, res.res_date, pro.prod_price_adult, res.res_adult, pro.prod_price_child, res.res_child, res.res_price, pro.prod_detail, res.res_desc  
+	FROM reservation_tbl res, member_tbl mem, product_tbl pro 
+	WHERE res.id = mem.id AND res.prod_no = pro.prod_no AND res.id = #{id} AND mem.pw = #{pw} AND mem.authority = 'g'
+	</select>
+	
+	<select id="non_idCheck" resultType="int">
+  		SELECT COUNT(*) FROM member_tbl WHERE id=#{id} AND authority = 'g'
+  	</select>
 
 </mapper>

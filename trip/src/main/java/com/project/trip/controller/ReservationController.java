@@ -2,14 +2,18 @@ package com.project.trip.controller;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.trip.dto.Non_resDTO;
 import com.project.trip.dto.ResDataDTO;
 import com.project.trip.dto.Res_noDTO;
 import com.project.trip.mapper.IMemberMapper;
@@ -100,6 +104,17 @@ public class ReservationController {
 		System.out.println(no_id);
 		System.out.println(msg);
 		return msg;
+	}
+	
+	@GetMapping("/no_res")
+	public @ResponseBody List<Non_resDTO> get_noRes(@RequestParam("id") String id, @RequestParam("pw") String pw, Model model){
+		int result = res_mapper.non_idCheck(id);
+		if(result == 1) {
+			List<Non_resDTO> no_list = res_mapper.getResNonMember(id, pw);
+			return no_list;
+		}else{
+			return null;
+		}
 	}
 	
 }

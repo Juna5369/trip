@@ -7,6 +7,7 @@
 <title>거긴어때</title>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="/css/login.css">
+<link rel="stylesheet" href="/css/login2.css">
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 </head>
 <body>
@@ -65,7 +66,7 @@
 			<input type="submit" value="비밀번호 찾기" onclick="return pwCheck()" id="submit2" class="input2">
 		</form>
 
-		<form action="nonMember" method="get" name="frm2" id="form2">
+		<form action="" method="get" name="frm3" id="form2">
 			<table>
 				<tr>
 					<td><input type="text" name="res_no" id="input_res"
@@ -73,12 +74,16 @@
 				</tr>
 	
 				<tr>
-					<td><input type="password" name="prod_no" id="input_pro"
-						placeholder="상품번호 입력"></td>
+					<td><input type="password" name="pw" id="input_pro"
+						placeholder="예약 비밀번호 입력"></td>
 				</tr>
-				<tr>
+	<!-- 			<tr>
 					<td><input type="submit" value="예약조회하기"
 						onclick="return check2()" id="submit_2"></td>
+				</tr>
+	 -->			
+	 			<tr>
+					<td><input type="button" value="예약조회하기" id="submit_2"></td>
 				</tr>
 			</table>
 	
@@ -88,6 +93,34 @@
 				<a href="agree">회원가입</a>
 			</div>
 		</form>
+		
+		<div class="termsmodal_res">
+       		<div class="termsmodal-bg_no" onclick="goaway_no()"></div>
+                <div class="termsmodal-wrap_no">
+               		<div class="termsmodal-title_no">
+                    	<em class="termsmodal-close_no" onclick="goaway_no()">×</em>
+                     	<h2 style="display:inline-block;">비회원 예약확인</h2>
+                            	
+                       	<div id="box_no">
+						<table border="1" id="no_tbl">
+							<thead>
+					<!-- 			<tr><th>예약번호</th><th>상품번호</th><th>상품명</th><th>예약일</th><th>예약인원 (성인)</th><th>가격 (성인)</th><th>예약인원 (아동)</th><th>가격 (아동)</th><th>결제금액</th>
+								</tr>   -->
+								<tr><th>예약번호</th><th>상품번호</th><th colspan="2">상품명</th><th>예약일</th>
+							<!-- 	<th>예약인원 (성인)</th><th>가격 (성인)</th><th>예약인원 (아동)</th><th>가격 (아동)</th><th>결제금액</th>   -->
+							</thead>
+							<tbody id="tbody">
+									
+							</tbody>
+						</table>
+
+					</div>
+    			</div>
+			</div>
+     	</div>
+		
+		
+		
 	</div>
 	<%@include file="footer.jsp"%>
 	<script>
@@ -141,12 +174,12 @@
 			}
 		}
 		function check2() {
-			if (document.frm2.res_no.value == "") {
+			if (document.frm3.res_no.value == "") {
 				alert("예약번호를 입력해주세요");
 				document.frm2.res_no.focus;
 				return false;
-			} else if (document.frm2.prod_no.value == "") {
-				alert("상품번호를 입력해주세요");
+			} else if (document.frm3.pw.value == "") {
+				alert("예약 비밀번호를 입력해주세요");
 				document.frm2.prod_no.focus;
 				return false;
 			} else {
@@ -181,7 +214,6 @@
 				return false;
 			} else {
 				return true;
-
 			}
 		}
 
@@ -229,6 +261,51 @@
 			login.style.display = "none";
 			button1.style.display = "none";
 			button2.style.display = "none";
+		}
+/*		
+	    function go(){
+	        document.querySelector(".termsmodal_res").style.display='block';
+	     }
+	     */
+	    function goaway_no(){
+	        document.querySelector(".termsmodal_res").style.display='none'; 
+	     }
+		
+		const submit_2 = document.querySelector("#submit_2");
+		submit_2.addEventListener('click', show_noRes);
+		const tbody = document.querySelector("#tbody");
+ 		
+		function show_noRes(){
+			const xhttp = new XMLHttpRequest();
+			tbody.replaceChildren();
+			xhttp.onload = function() {
+				if(this.responseText==""){
+					alert("아이디와 비밀번호를 확인하세요.");
+				}else{
+					let jsonStr = this.responseText; 
+					let obj = JSON.parse(jsonStr);
+					document.querySelector(".termsmodal_res").style.display='block';
+					
+					for(let i = 0; i < obj.length; i++){
+						tbody.innerHTML += '<tr><td class="tbl_no">' + obj[i].res_no + '</td><td>'
+						+ obj[i].prod_no + '</td><td colspan="2">' + obj[i].prod_name + '</td><td>' + obj[i].res_date + '</td></tr><tr><th>예약인원 (성인)</th>'
+						+ '<th>가격</th><th>예약인원 (아동)</th><th>가격</th><th>결제금액</th></tr><tr><td>'
+						+ obj[i].res_adult + '</td><td>'
+						+ obj[i].prod_price_adult + '</td><td>' + obj[i].res_child + '</td><td>' + obj[i].prod_price_child + '</td><td>'
+						+ obj[i].res_price + '</td></tr><tr><th>예약자</th><td colspan="8">'
+						+ obj[i].name + '</td></tr><tr><th>연락처</th><td colspan="8">'
+						+ obj[i].tel + '</td></tr><tr><th>상품설명</th><td colspan="8">'
+						+ obj[i].prod_detail + '</td></tr><tr><th>문의사항</th><td colspan="8">'
+						+ obj[i].res_desc + '</td></tr>'
+					}
+				}
+			}
+			if(check2()==true){
+				let id = document.querySelector("#input_res").value;
+				let pw = document.querySelector("#input_pro").value;
+				xhttp.open("GET", "no_res?id="+id+"&pw="+pw,true);  
+				xhttp.send();
+			}
 		}
 	</script>
 </body>
