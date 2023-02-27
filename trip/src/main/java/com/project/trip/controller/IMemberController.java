@@ -71,9 +71,11 @@ public class IMemberController {
 		if (result == 1) {
 			MemberVO mv = mapper.selectOne(id);
 			String name = mv.getName();
+			String authority = mv.getAuthority();
 			out = "<script>alert('" + mv.getName() + "님 로그인 성공!');location.href='/';</script>";
 			session.setAttribute("id", id);
 			session.setAttribute("name", name);
+			session.setAttribute("authority", authority);
 			
 		} else{
 			out = "<script>alert('아이디 비밀번호를 확인해주세요');location.href='login';</script>";
