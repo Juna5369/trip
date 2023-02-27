@@ -18,7 +18,7 @@
     <!-- 위쪽 이벤트창 시작  -->
             <div id="list_event">
                 
-                <img src="../img/event1.jpg">
+                <img src="../img/kr_event1.jpg">
             </div>
             <!-- 위쪽 이벤트창 끝 -->
             
@@ -29,7 +29,7 @@
                     <div id="slide1">
                         <!-- 슬라이드1 제목ㅎㅇㅇ -->
                         <div id="slide_title">
-                            <h3>23년 일본 여행지</h3>
+                            <h3>23년 한국 여행지</h3>
                         </div>
                         <div id="slide1_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
@@ -62,7 +62,7 @@
                     <div id="slide2">
                         <!-- 슬라이드2 제목 -->
                         <div id="slide_title">
-                            <h3>다시떠나는 일본 리오프닝 특가</h3>
+                            <h3>「내륙섬여행」 ★ 시원한 자연 가득- 울릉도! 홍도! 백령도!!</h3>
                         </div>
                         <div id="slide2_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
@@ -95,7 +95,7 @@
                     <div id="slide2">
                         <!-- 슬라이드3 제목 -->
                         <div id="slide_title">
-                            <h3>교토에서의 따사로운 산책</h3>
+                            <h3>「버스/기차」 ★ 화끈한 가격으로! 떠나는 버스 OR 기차 테마 여행</h3>
                         </div>
                         <div id="slide2_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
@@ -222,7 +222,7 @@
                             <div class="weekly_theme_text">
                                 Weekly 추천 테마여행!
                             </div>
-                            <ul>
+                                                       <ul>
                                 <li>
                       				<c:forEach var="data" items="${list }" varStatus="status" begin="12" end="12">
 	                                    <div class="weekly_theme_img">

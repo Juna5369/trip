@@ -18,7 +18,7 @@
     <!-- 위쪽 이벤트창 시작  -->
             <div id="list_event">
                 
-                <img src="../img/event1.jpg">
+                <img src="../img/golf_event1.jpg">
             </div>
             <!-- 위쪽 이벤트창 끝 -->
             
@@ -29,7 +29,7 @@
                     <div id="slide1">
                         <!-- 슬라이드1 제목ㅎㅇㅇ -->
                         <div id="slide_title">
-                            <h3>23년 일본 여행지</h3>
+                            <h3>중요한 것은 꺾이지 않는 골프에 진심인 마음</h3>
                         </div>
                         <div id="slide1_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
@@ -62,7 +62,7 @@
                     <div id="slide2">
                         <!-- 슬라이드2 제목 -->
                         <div id="slide_title">
-                            <h3>다시떠나는 일본 리오프닝 특가</h3>
+                            <h3>4계절 라운딩이 가능한 일본 골프 추천 상품♥</h3>
                         </div>
                         <div id="slide2_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
@@ -95,7 +95,7 @@
                     <div id="slide2">
                         <!-- 슬라이드3 제목 -->
                         <div id="slide_title">
-                            <h3>교토에서의 따사로운 산책</h3>
+                            <h3>2인 단독라운딩 가능상품</h3>
                         </div>
                         <div id="slide2_menu" style="text-align: center;">
                             <div id="hidden_wrap"style="max-width: 1400px; margin: 0px auto;">
