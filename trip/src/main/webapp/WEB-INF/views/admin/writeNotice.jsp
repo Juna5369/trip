@@ -43,8 +43,7 @@
 						
 						<div class="btn_area">
 							<input type="button" class="l_btn" value="목록">
-							<input type="button" class="s_btn" value="등록/수정">
-							<input type="hidden" class="rno">
+							<input type="button" class="s_btn" value="등록">
 						</div>
                     </div>
                 </div>
@@ -53,7 +52,27 @@
     </section>
 	<%@ include file="../footer.jsp"%>
 	<script>
+	$(".l_btn").click(function(){
+		location.href="admin";
+	})
+	$(".s_btn").click(function(){
 		
+		let nt = $("#rs").val();
+		let nc = $("#rc").val();
+		
+		$.ajax({
+			url: 'writeNotice',
+			type: 'post',
+			data: {
+				not_title: nt,
+				not_contents: nc
+			},
+			success: function() {
+				alert('등록 완료');
+				location.href="admin";
+			}
+		});
+	})
 	</script>
 </body>
 </html>

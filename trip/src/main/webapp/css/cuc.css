@@ -254,6 +254,7 @@ a {
 .faq_subj {
 	cursor: pointer;
 }
+
 .faq_subj > strong {
 	pointer-events: none;
 }
@@ -383,6 +384,16 @@ a {
 	background-color: white;	
 	font-size: 18px;
 }
+.a_l_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 30px;
+	margin-bottom: 50px;
+	border: 1px solid #ccc;
+	background-color: white;	
+	font-size: 18px;
+	float: right;
+}
 .s_btn {
 	width: 150px;
 	height: 70px;
@@ -391,6 +402,36 @@ a {
 	border: transparent;
 	background-color: #e82835;	
 	font-size: 18px;
+	color: white;
+}
+.d_btn {
+	width: 150px;
+	height: 70px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	border: transparent;
+	background-color: #e82835;	
+	font-size: 18px;
+	color: white;
+}
+.s_btn_mini {
+	width: 70px;
+	height: 35px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: transparent;
+	background-color: #e82835;	
+	font-size: 16px;
+	color: white;
+}
+.d_btn_mini {
+	width: 70px;
+	height: 35px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	border: transparent;
+	background-color: #e82835;	
+	font-size: 16px;
 	color: white;
 }
 
@@ -492,6 +533,9 @@ td {
 }
 
 #rs, #rc {
+	width: 1000px;
+}
+.ad {
 	width: 1000px;
 }
 

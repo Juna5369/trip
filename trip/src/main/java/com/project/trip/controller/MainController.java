@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -115,7 +117,7 @@ public class MainController {
 	@PostMapping("/postQna")
 	public @ResponseBody void postQna(ResQNAVO rq) {
 		
-		cMapper.insertQNA(rq);
+		cMapper.insertResQNA(rq);
 	}
 	
 	@GetMapping("/res_qna_list")
@@ -200,8 +202,49 @@ public class MainController {
 		}
 	}
 	
-	@GetMapping("writeNotice")
-	public String writeNotice() {
+	@GetMapping("writeNoticeForm")
+	public String writeNoticeForm() {
 		return "admin/writeNotice";
 	}
+	
+	@GetMapping("writeFAQForm")
+	public String writeFAQForm() {
+		return "admin/writeFAQ";
+	}
+	
+	@PostMapping("writeNotice")
+	public @ResponseBody void writeNotice(NoticeVO notice) {
+		cMapper.insertNotice(notice);
+	}
+	
+	@PutMapping("updateNotice")
+	public @ResponseBody void updateNotice(NoticeVO notice) {
+		cMapper.updateNotice(notice);
+	}
+	
+	@DeleteMapping("deleteNotice")
+	public @ResponseBody void deleteNotice(NoticeVO notice) {
+		cMapper.deleteNotice(notice.getNot_no());
+	}
+	
+	@GetMapping("adminFAQ")
+	public String adminFAQ() {
+		return "admin/admin_faq";
+	}
+	
+	@PutMapping("updateFAQ")
+	public @ResponseBody void updateFAQ(FAQVO faq) {
+		cMapper.updateFAQ(faq);
+	}
+	
+	@DeleteMapping("deleteFAQ")
+	public @ResponseBody void deleteFAQ(FAQVO faq) {
+		cMapper.deleteFAQ(faq.getFaq_no());
+	}
+	
+	@PostMapping("writeFAQ")
+	public @ResponseBody void writeFAQ(FAQVO faq) {
+		cMapper.insertFAQ(faq);
+	}
+	
 }

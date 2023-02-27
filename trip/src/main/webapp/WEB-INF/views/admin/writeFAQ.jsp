@@ -34,7 +34,7 @@
 								<input class="qna_subj" id="rs" type="text" placeholder="제목을 입력해 주세요.">
 							</div>
 							<div class="post_date">
-
+								
 							</div>
                         </div>
 						<div class="post_contents">
@@ -43,8 +43,7 @@
 						
 						<div class="btn_area">
 							<input type="button" class="l_btn" value="목록">
-							<input type="button" class="s_btn" value="등록/수정">
-							<input type="hidden" class="rno">
+							<input type="button" class="s_btn" value="등록">
 						</div>
                     </div>
                 </div>
@@ -53,7 +52,28 @@
     </section>
 	<%@ include file="../footer.jsp"%>
 	<script>
+	$(".l_btn").click(function(){
+		location.href="admin";
+	})
+	$(".s_btn").click(function(){
+
+		let ft = $("#rs").val();
+		let fc = $("#rc").val();
 		
+		$.ajax({
+			url: 'writeFAQ',
+			type: 'post',
+			data: {
+				faq_title: ft,
+				faq_contents: fc
+			},
+			success: function() {
+				alert('등록 완료');
+				location.href="admin";
+			}
+			
+		});
+	})
 	</script>
 </body>
 </html>

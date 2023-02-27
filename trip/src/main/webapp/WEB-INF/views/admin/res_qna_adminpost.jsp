@@ -80,7 +80,7 @@
 			let rno = $(".rno").val();
 			let rrs = $("#rs").val();
 			let rrc = $("#rc").val();
-			alert(rno);
+
 			$.ajax({
 				url: 'res_qna_reply',
 				type: 'post',
