@@ -19,20 +19,23 @@
 	                    <a href="#">관리페이지</a>
 	                </div>
 	                <ul>
-	                    <li><a href="#">공지사항</a></li>
-                        <li><a href="#">상품</a></li>
-                        <li><a href="#">조회/통계</a></li>
+	                    <li><a href="admin_notice">공지사항</a></li>
+                        <li><a href="admin_prod_list">상품관리</a></li>
+                        <li><a href="#">매출 통계</a></li>
                         <li><a href="#">문의 답변</a></li>
 	                </ul>
 	            </div>
 			<div class="ad_main">
 	            <div class="middle_title"><em>거긴어때 관리 페이지</em>입니다. 무엇을 도와드릴까요?</div>
 	                <div class="middle_main">
-	                
+	                <thead>
 	                	<div class="middle1">
 		                    <div class="main_title">공지사항
 		                    	<span><a href="#">더보기></a></span>
 		                    </div>
+							<ul class="admin_list" id="admin_not_list">
+							
+							</ul>
 		                </div>
 		                
 						<div class="middle2">
@@ -52,11 +55,11 @@
 	                    		<span><a href="#">더보기></a></span>
 	                    	</div>
 		                </div>
-		                
+		                </thead>
 					</div>
 	            </div>
-			
-	            </div>
+			</div>
+		</div>
 	        
 	    
 	</section>
