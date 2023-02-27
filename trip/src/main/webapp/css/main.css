@@ -420,11 +420,16 @@ footer {
     display: inline-block;
     
 }
+.bottom_menu {
+	text-align: center;
+	padding-left: 15px;
+}
 .bottom_menu li {
     display: inline;
     font-size: 14px;
     font-weight: bold;
     margin-right: 20px;
+    
 }
 .company_info {
     padding-top: 20px;

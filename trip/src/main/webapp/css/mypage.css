@@ -1,3 +1,7 @@
+*{
+	font-family: 'Pretendard-Regular';
+
+}
 #find {
 	margin-top: 100px;
 }
@@ -29,9 +33,7 @@ sub {
 	table-layout: fixed;
 	width: 1280px;
 	border-top: 1px solid #111;
-	
 	text-align:cetner;
-	
 }
 
 .tb_mypage tr {
@@ -40,7 +42,6 @@ sub {
 	border-color: inherit;
 	height: 50px;
 	width:1280px;
-	
 }
 .tb_mypage tr {
 	display: table-row;
@@ -48,10 +49,7 @@ sub {
 	border-color: inherit;
 	height: 50px;
 	width:1280px;
-	
 }
-
-
 
 .tb_mypage th {
 	padding: 15px 15px 16px 15px;
@@ -73,8 +71,18 @@ sub {
 	height: 300px;
 	display: block;
 	background-color: #e4f5ff;
-	margin-top: 100px;
-	margin-bottom: 100px;
+
+}
+.section_title {
+	text-align: left;
+	margin-bottom: 20px;
+}
+.txt_info {
+	margin-bottom: 20px;
+}
+.update_section {
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .section_content {
@@ -83,13 +91,16 @@ sub {
 	margin: 0 auto;
 	height: 236px;
 	width: 1280px;
-	padding: 44px 0 0 130px;
+	padding: 20px 0 0 70px;
 	font-size: 20px;
 	letter-spacing: -0.07em;
+	text-align: left;
 }
 
 .qna_section {
 	width: 1280px;
+	text-align: center;
+	margin: 0 auto;
 }
 
 .reservation_section {
@@ -99,7 +110,9 @@ sub {
 }
 
 .review_section {
-	height: 300px;
+	height: 100%;
+	text-align: center;
+	margin: 0 auto;
 }
 
 .review_btn {
@@ -120,6 +133,11 @@ sub {
 	cursor:pointer;
 	
 }
+.like_section{
+	width:100%;
+	height:100%;
+	margin-bottom:50px;
+}
 
 .like_section img {
 	width: 280px;
@@ -130,12 +148,15 @@ sub {
 	vertical-align: top;
 }
 
-.like_section li {
+.like_wrap > ul > li {
 	width: 327px !important;
-	height: 100%;
+	height: 310px;
 	padding: 20px;
 	border-right: 1px solid #ccc;
 }
+.like_wrap > ul:last-child > li {
+	border-right: transparent;
+} 
 
 .like_section ul {
 	display: block;
@@ -147,20 +168,29 @@ sub {
 }
 
 .like_wrap {
-	border-top: 1px solid #ccc; border-right : none;
-	height: 300px;
-	border-right: none;
+	width:1280px;
+	height: 311px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
 .list_section {
-
 	width: 100%;
+	height: 100%;
+	padding: 5px;
+	margin: 0 auto;
+	margin-bottom:50px;
+	width: 1280px;
+}
+
+.ggim_section{
+	width: 1280px;
 	height: 450px;
 	padding: 5px;
 	margin: 0 auto;
-	border-bottom:1px solid #ccc;
-	width: 1280px;
-	
+	margin-bottom:50px;
+
+
 }
 
 div {
@@ -170,4 +200,10 @@ div {
 @font-face {
 	src: url("/fonts/Jalnan.ttf");
 	font-family: "jalnan";
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }

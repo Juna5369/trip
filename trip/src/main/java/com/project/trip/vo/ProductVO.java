@@ -20,7 +20,7 @@ public class ProductVO {
 	private int prod_cur_person;	//현재인원
 	private String prod_start_date;	//여행출발날짜
 	private String prod_end_date;	//귀가날짜
-	
+	private String prod_category; // 카테고리
 	private String prod_hotel;
 	private String prod_plane;
 }

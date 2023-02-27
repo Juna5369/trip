@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.project.trip.mapper.AdminMapper">
+  	
+  	<insert id="insertNotice">
+  		INSERT INTO notice_tbl (not_title, not_date, not_contents) VALUES (#{not_title}, #{not_date}, #{not_tel})
+  	</insert>
+  	
+  	<select id="getNoticeList" resultType="com.project.trip.vo.NoticeVO">
+  		SELECT * FROM notice_tbl ORDER BY not_no DESC
+  	</select>
+  	
+  	<select id="getNoticeOne" resultType="com.project.trip.vo.NoticeVO">
+  		SELECT * FROM notice_tbl WHERE not_no = #{not_no}
+  	</select>
+  
+    	<insert id="insertProd">
+  		INSERT INTO product_tbl (prod_name, prod_price_adult, prod_price_child, 
+  		prod_hash, prod_city, prod_img, prod_detail, prod_theme, prod_max_person, prod_min_person, 
+  		prod_cur_person, prod_start_date, prod_end_date, prod_hotel, prod_plane, prod_category) 
+  		VALUES (#{prod_name}, #{prod_price_adult}, 
+  		#{prod_price_child}, #{prod_hash}, #{prod_city}, #{prod_img}, #{prod_detail}, #{prod_theme}, 
+  		#{prod_max_person}, #{prod_min_person}, #{prod_cur_person}, #{prod_start_date}, 
+  		#{prod_end_date}, #{prod_hotel}, #{prod_plane}, #{prod_category})
+  	</insert>
+  	
+  	<select id="getAdminProductList" resultType="com.project.trip.vo.ProductVO">
+	SELECT * FROM product_tbl ORDER BY prod_no DESC
+	</select>
+  	<select id="getProductOne" resultType="com.project.trip.vo.ProductVO">
+  		SELECT * FROM product_tbl WHERE prod_no = #{prod_no}
+  	</select>
+  	<update id="updateProd">
+  		UPDATE product_tbl SET prod_name=#{prod_name}, prod_price_adult=#{prod_price_adult}, 
+  		prod_price_child=#{prod_price_child}, prod_hash=#{prod_hash}, prod_city=#{prod_city},
+  		 prod_img=#{prod_img}, prod_detail=#{prod_detail}, prod_theme=#{prod_theme},prod_max_person=#{prod_max_person},
+  		 prod_min_person=#{prod_min_person}, prod_cur_person=#{prod_cur_person}, prod_start_date=#{prod_start_date},
+  		 prod_end_date=#{prod_end_date}, prod_hotel=#{prod_hotel}, prod_plane=#{prod_plane}, prod_category=#{prod_category}
+  		 WHERE prod_no=#{prod_no}
+  	</update>
+  	
+  </mapper>

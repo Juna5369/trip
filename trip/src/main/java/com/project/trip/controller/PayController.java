@@ -88,7 +88,6 @@ public class PayController {
     	String prod_no_str = order_no_str[1];
     	int prod_no = Integer.parseInt(prod_no_str);
     	ProductVO product = prmapper.getListOne(prod_no);
-    	
 	    
 	    re.addFlashAttribute("prod", product);
 	    re.addFlashAttribute("pay", pay);

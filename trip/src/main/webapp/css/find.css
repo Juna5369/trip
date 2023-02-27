@@ -1,9 +1,11 @@
 @charset "UTF-8";
-
+*{
+	margin: 0 auto;
+	padding: 0 auto;
+}
 div {
 	display: block;
 }
-
 p {
 	display: block;
 	margin-block-start: 1em;
@@ -11,30 +13,34 @@ p {
 	margin-inline-start: 0px;
 	margin-inline-end: 0px;
 }
-
-.findId {
-	border-top: 0.5px solid gray;
-	border-bottom: 0.5px solid gray;
-	padding-left: 30px;
-	background: url(../img/point.PNG) no-repeat 0 5px;
-	line-height: 40px;
-	font-size: 23px !important;
+table {
+	width: 400px;
+	height: 150px;
+	border-collapse: collapse;
+	margin-top: 30px;
+	font-size: 24px;
 }
-.container h3 {
-    margin: 60px 0 50px 0;
-    font-size: 40px;
+
+tr:first-child {
+	background-color: #ccc;
+}
+.box {
+	height: 300px;
+}
+.findId {
+	width: 550px;
+	height: 35px;
+	text-align: center;
+	background: url(../img/point.PNG) no-repeat;
+	background-position: 0px -3px;
+	font-size: 23px !important;
+
+}
+.container{
+    margin: 60px 0 20px 0;
+    font-size: 30px;
     color: #000;
     text-align: center;
     font-weight: normal;
     line-height: 1;
-}
-.wrap{
-	padding: 22px 0;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
-
-.container {
-	width: 1180px;
-	margin: 0px auto 100px;
 }

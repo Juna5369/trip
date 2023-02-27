@@ -10,7 +10,7 @@ import com.project.trip.vo.ProductVO;
 @Mapper
 public interface ProductMapper {
 
-	public List<ProductVO> getList();
+	public List<ProductVO> getList(@Param("prod_category")String prod_category);
 	public ProductVO getListOne(int prod_no);
 	
 	public int reg_like(@Param("id") String id, @Param("prod_no") int prod_no);

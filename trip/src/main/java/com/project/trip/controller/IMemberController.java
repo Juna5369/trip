@@ -1,5 +1,7 @@
 package com.project.trip.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.trip.mapper.IMemberMapper;
 import com.project.trip.vo.MemberVO;
+import com.project.trip.vo.QNAVO;
+import com.project.trip.vo.ReserVO;
+import com.project.trip.vo.ReviewVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,15 +64,18 @@ public class IMemberController {
 	}
 
 	@PostMapping("login.do")
-	public @ResponseBody String loginCheck(String id, String pw, HttpServletRequest request) {
+	public @ResponseBody String loginCheck(String id, String pw, HttpServletRequest request,Model model) {
 		int result = mapper.login(id, pw);
 		HttpSession session = request.getSession();
 		String out = "";
-
 		if (result == 1) {
-			out = "<script>alert('" + id + "님 로그인 성공!');location.href='/';</script>";
+			MemberVO mv = mapper.selectOne(id);
+			String name = mv.getName();
+			out = "<script>alert('" + mv.getName() + "님 로그인 성공!');location.href='/';</script>";
 			session.setAttribute("id", id);
-		} else {
+			session.setAttribute("name", name);
+			
+		} else{
 			out = "<script>alert('아이디 비밀번호를 확인해주세요');location.href='login';</script>";
 		}
 
@@ -87,44 +95,12 @@ public class IMemberController {
 
 	}
 
-	@GetMapping("/openlogin.do")
-	public @ResponseBody String openlogin() {
-		String out = "<form action=\"login.do\" method=\"post\" name=\"frm\" id=\"form\">\r\n" + "<table>\r\n"
-				+ "	<tr>\r\n"
-				+ "		<td><input type=\"text\" name=\"id\" id=\"input\" placeholder=\"아이디 입력\"></td>\r\n"
-				+ "	</tr>\r\n" + "	<tr>\r\n" + "		\r\n"
-				+ "		<td><input type=\"password\" name=\"pw\" id=\"input\" placeholder=\"비밀번호 입력\"></td>\r\n"
-				+ "	</tr>\r\n"
-				+ "	<td><input type=\"submit\" value=\"로그인\" onclick=\"return check()\" id=\"submit\"></td>\r\n"
-				+ "	\r\n" + "\r\n" + "</table>\r\n" + "<hr>\r\n"
-				+ "	<div id=\"find\" style=border:1px;hegith:50px;width:500px>\r\n"
-				+ "		<a href=\"\"> 아이디 찾기 |</a>\r\n" + "		<a href=\"\"> 비밀번호 찾기 | </a>\r\n"
-				+ "		<a href=\"regMember\"> 회원가입</a>\r\n" + "	</div>\r\n" + "</form>";
-
-		return out;
-	}
-
-	@GetMapping("/nonlogin.do")
-	public @ResponseBody String nonlogin() {
-		String out = "<form action=\"\" method=\"post\" name=\"frm\">\r\n" + "<table>\r\n" + "	<tr>\r\n"
-				+ "		<td><input type=\"text\" name=\"res_no\" id=\"input\" placeholder=\"예약번호 입력\"></td>\r\n"
-				+ "	</tr>\r\n" + "	<tr>\r\n" + "		\r\n"
-				+ "		<td><input type=\"password\" name=\"prod_no\" id=\"input\" placeholder=\"상품번호 입력\"></td>\r\n"
-				+ "	</tr>\r\n"
-				+ "	<td><input type=\"submit\" value=\"예약조회하기\" onclick=\"return check()\" id=\"submit\"></td>\r\n"
-				+ "</table>\r\n" + "<hr>\r\n" + "	<div id=\"find\" style=border:1px;hegith:50px;width:500px>\r\n"
-				+ "		<a href=\"\">아이디 찾기 | </a>\r\n" + "		<a href=\"\">비밀번호 찾기 | </a>\r\n"
-				+ "		<a href=\"regMember\">회원가입</a>\r\n" + "	</div>\r\n" + "</form>";
-
-		return out;
-	}
-
 	@GetMapping("/idPop")
 	public @ResponseBody String idPop() {
 		String out = "<form action=\"findId\" method=\"post\" name=\"frm1\" id=\"form\">\r\n" + "\r\n"
-				+ "		<input type=\"text\" name=\"name\" id=\"input\" placeholder=\"이름을 입력해주세요\">\r\n" + "\r\n"
-				+ "		<input type=\"text\" name=\"tel\" id=\"input\" placeholder=\"-없이 전화번호 입력해주세요\">\r\n" + "\r\n"
-				+ "	<input type=\"submit\" value=\"아이디찾기\" onclick=\"return idCheck()\" id=\"input\">\r\n" + "</form>";
+				+ "		<input type=\"text\" name=\"name\" class=\"input2\" placeholder=\"이름을 입력해주세요\">\r\n" + "\r\n"
+				+ "	<br><input type=\"text\" name=\"tel\" class=\"input2\" placeholder=\"전화번호를 입력해주세요\">\r\n" + "\r\n"
+				+ "	<br><input type=\"submit\" value=\"아이디찾기\" onclick=\"return idCheck()\" class=\"input2\">\r\n" + "</form>";
 
 		return out;
 	}
@@ -157,7 +133,36 @@ public class IMemberController {
 
 		model.addAttribute("pw", pw);
 
-
 		return view;
 	}
+	@GetMapping("/agree")
+	public void agree() {
+		
+	}
+	@PostMapping("/nonMember")
+	public void nonMember() {
+		
+	}
+	@GetMapping("/show_reserList")
+	public String admin_reserList(Model model) {
+		List<ReserVO> list =mapper.show_reservation();
+		model.addAttribute("list",list);
+		
+		return"admin/show_reserList";
+	}
+	@GetMapping("/show_qna")
+	public String admin_qna(Model model) {
+		List<QNAVO> list=mapper.getQnAList();
+		model.addAttribute("list",list);
+		
+		return"admin/show_qna";
+	}
+	@GetMapping("/show_review")
+	public String admin_review(Model model) {
+		List<ReviewVO> list=mapper.getReviewAll();
+		model.addAttribute("list",list);
+		
+		return"admin/show_review";
+	}
+	
 }

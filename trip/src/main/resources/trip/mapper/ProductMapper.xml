@@ -5,7 +5,7 @@
 <mapper namespace="com.project.trip.mapper.ProductMapper">
   
 	<select id="getList" resultType="com.project.trip.vo.ProductVO">
-	SELECT * FROM product_tbl
+	SELECT * FROM product_tbl WHERE prod_category = #{prod_category}
 	</select>
 
 	<select id="getListOne" resultType="com.project.trip.vo.ProductVO">

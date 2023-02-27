@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>거긴어때</title>
 <script src="/webjars/jquery/3.6.2/dist/jquery.js"></script>
 <link rel="stylesheet" href="css/main.css">
 <link rel="stylesheet" href="css/reg.css">
@@ -39,7 +39,7 @@
 		
 		<tr>
 			<td id="content">성별</td>
-			<td id="input">여자<input type="radio"name="gender" value="woman"> 남자<input type="radio" name="gender" value="man"></td>
+			<td id="input">여자<input type="radio"name="gender" value="woman" checked> 남자<input type="radio" name="gender" value="man"></td>
 		</tr>
 		
 		<tr>
@@ -156,6 +156,8 @@
 			xhttp.send();
 		}
 		function confirm(){
+			
+			
 			if (document.frm.id.value == "") {
 				alert("아이디를 입력해주세요");
 				document.frm.id.focus();
@@ -168,7 +170,8 @@
 				alert("이름을 입력해주세요");
 				document.frm.name.focus();
 				return false;
-			} else if(document.frm.birth.value==""){
+				
+			}else if(document.frm.birth.value==""){
 				alert("생년월일을 선택해주세요");
 				document.frm.birth.focus();
 				return false;

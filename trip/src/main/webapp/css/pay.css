@@ -29,7 +29,6 @@
     text-align: initial;
     
     margin-bottom: 10px;
-
 }
 .cont_inner_left {
     text-align: left;
@@ -56,4 +55,15 @@
 	text-align: right;
 	border: transparent;
 	font-size: 17px;
+}
+
+.prd_img{
+	width: 100px;
+	
+}
+
+.prd_info {
+	margin-bottom: 50px;
+	vertical-align: top;
+	display: inline-block;
 }

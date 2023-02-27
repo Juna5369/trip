@@ -20,8 +20,8 @@
 	                </div>
 	                <ul>
 	                    <li><a href="faq">자주찾는 질문</a></li>
-                        <li><a href="qna">1:1 문의</a></li>
-                        <li><a href="#">1:1 문의내역</a></li>
+                        <li><a onclick="goQNA()">1:1 문의</a></li>
+                        <li><a onclick="go_res_qna_list()">1:1 문의내역</a></li>
                         <li><a href="notice">공지사항</a></li>
 	                </ul>
 	            </div>
@@ -35,15 +35,8 @@
 	                    <div class="guide_title">자주 찾는 질문
 	                    	<span><a href="faq">더보기></a></span>
 	                    </div>
-	                    <ul class="cuc_list">
-	                        <li>출국 후 날짜 변경이 필요한 경우에는 어떻게 해야 하나요?</li>
-	                        <li>항공권 예약 취소 및 환불 등의 문의는 어디서 하나요?</li>
-	                        <li>항공권 예약 변경은 어디서 하나요?</li>
-                            <li>항공권 예약 확인은 어디서 하나요?</li>
-                            <li>모바일(온라인) 체크인은 어떻게 하나요?</li>
-                            <li>항공권 구매 후 자동 발행 된 호텔 할인쿠폰 확인은 어디서 하나요?</li>
-                            <li>여권정보가 확실하지 않습니다.</li>
-                            <li>취소수수료와 환불 패널티는 어디서 확인하나요?</li>
+	                    <ul class="cuc_list" id="cuc_faq_list">
+
 	                    </ul>
 	                </div>
 	            </div>
@@ -87,16 +80,73 @@
     			let obj = JSON.parse(data);
     			
     			for (i = 0; i < 5; i++) {
-    				$("#cuc_not_list").append('<li><a href="#"><span>' 
-    						+ obj[i].not_title + '</span></a><input type="hidden" value="'
-    						+ obj[i].not_no + '"></li>');
+    				$("#cuc_not_list").append('<li><a href="notice_post?not_no=' + obj[i].not_no + '"><span>' 
+    						+ obj[i].not_title + '</span></a></li>');
     				}
     		},
     		error: function(){
     			alert("error.....");
     		}
     	});
+    	
+   		$.ajax({
+   			url: "getFAQList",
+   			type: "get",
+   			dataType: "text",
+   			success: function(data){
+   				let obj = JSON.parse(data);
+   				
+   				for(i = 0; i < 7; i++){
+   					$("#cuc_faq_list").append('<li class="list_li"><div class="faq_subj"><span>'
+   							+ obj[i].faq_title + '</span><div class="downside"></div></div><div class="faq_cont">' 
+   							+ obj[i].faq_contents + '</div></li>' 
+   					);
+   				}
+   			}
+   		});
+    	
     });
+	
+	$(".search_button").click(function(){
+		let keyword = $(".search_input").val();
+		location.href= "/searchFAQ?keyword="+keyword;
+
+	});
+	$(".search_input").keyup(function(e){
+		if(e.keyCode == 13){
+			let keyword = $(".search_input").val();
+			location.href= "/searchFAQ?keyword="+keyword;
+		}
+	});
+	
+	$("#cuc_faq_list").on("click", function(e){
+
+		if($(e.target).next().hasClass("faq_cont") == true){
+			if($(e.target).next().css("display") == "none"){
+				$(e.target).next().show();
+				$(e.target).children().last().css("background-image", "url(/img/upside.png)");
+			}else {
+				$(e.target).next().hide();
+				$(e.target).children().last().css("background-image", "url(/img/downside.png)");
+			}
+		}
+	});
+	
+	function goQNA(){
+		if('${sessionScope.id }' == ""){
+			location.href="login";
+		}else{
+			location.href="qna";
+		}
+	}
+	
+	function go_res_qna_list(){
+		if('${sessionScope.id }' == ""){
+			location.href="login";
+		}else{
+			location.href="res_qna_list";
+		}
+	}
 	</script>
 </body>
 </html>

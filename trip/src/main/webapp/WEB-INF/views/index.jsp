@@ -126,10 +126,9 @@
     			let obj = JSON.parse(data);
     			
     			for (i = 0; i < 4; i++) {
-    				$(".bottom_side_notice_list").append('<li><a href="#"><span class="not_title_span">' 
+    				$(".bottom_side_notice_list").append('<li><a href="notice_post?not_no=' + obj[i].not_no + '"><span class="not_title_span">' 
     						+ obj[i].not_title + '</span><span class="not_date_span">' 
-    						+ obj[i].not_date + '</span></a><input type="hidden" value="'
-    						+ obj[i].not_no + '"></li>');
+    						+ obj[i].not_date + '</span></a></li>');
     				}
     		},
     		error: function(){
