@@ -1,4 +1,14 @@
 @charset "UTF-8";
+
+#travel_info{
+	height:5000px;
+
+}
+
+#travel_main_info{
+	height: 4900px;
+	
+}
 .btn_1 {
 	width: 40px;
 	height: 30px;
@@ -573,7 +583,7 @@
 }
 
 .de2 {
-	margin-left: 10px;
+	margin-left: 28px;
 	margin-bottom: 15px;
 }
 
@@ -670,3 +680,122 @@
 #new_num {
 	cursor: pointer;
 }
+
+
+.termsmodal_res{
+    display: none;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    font-family: 'Pretendard-Regular';
+}
+
+.termsmodal-wrap_no{
+    border-radius: 3px;
+  
+    top: 10%;
+    position: relative;
+    overflow: auto;
+    background-color: white;
+    height: 300px;
+    width: 600px;
+    opacity: 1;
+    z-index: 10;
+}
+.termsmodal-bg_no{
+    position: fixed;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+}
+.termsmodal-close_no{
+    display:block;
+    font-size:50px;
+    text-align:center;
+    line-height: 100%;
+    border-radius:20px;
+    width: 60px;
+    height: 60px;
+    cursor:pointer;
+    color:black;
+    opacity: 1;
+    z-index: 10;
+    position: relative;
+    left: 40%;
+    top: 50px;
+}
+.termsmodal-title_no{
+    position:fixed;
+    background-color: white;
+    width: 600px;
+    float: right;
+    padding-left: 40px;
+
+}
+.no_btn_1{
+	width: 120px;
+	height: 25px;
+	border: 1px solid gray;
+	margin-left: 120px;
+	margin-top: 20px;
+}
+.no_btn_2{
+	width: 120px;
+	height: 25px;
+	border: 1px solid gray;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.no_res{
+	width:180px; height:25px;
+	border: 0px solid gray;
+	border-bottom: 1px solid gray;
+	margin-left: 60px;
+	padding-left: 20px;
+}
+#lbl_no{
+	margin-left: 100px;
+}
+#box_no{
+	
+}
+
+#num_bar{
+	text-align: center;
+}
+#td_qna{
+	text-align: center;
+}
+#guest_search{
+	display: none;
+	border: 1px solid gray;
+	
+}
+#guest_search{
+	padding: 20px;
+	padding-left: 100px;
+}
+.ge_id{
+	margin-left: 48px;
+}
+.ge_pw{
+	margin-left: 20px;
+}
+#prod_info > ul > li{
+	margin-left: 100px;
+}
+.g_btn{
+	width: 120px; height: 30px;
+	margin-left: 50px;
+}
+
+	
+	
+
