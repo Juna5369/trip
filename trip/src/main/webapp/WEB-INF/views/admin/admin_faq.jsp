@@ -26,12 +26,14 @@
                         <ul class="faq_list">
 							
                         </ul>
+                        <input type="button" class="a_l_btn" value="FAQ 작성">
                     </div>
                 </div>
             </div>
         </div>
     </section>
 	<%@ include file="../footer.jsp"%>
+	<script src="js/cuc.js"></script>
 	<script>
 
 		$(document).on("click", ".s_btn_mini", function(e){
