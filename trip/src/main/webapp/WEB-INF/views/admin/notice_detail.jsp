@@ -14,17 +14,7 @@
 	<section class="main">
     	<div class="box">
 			<div class="cuc_box">
-                <div class="lnb">
-                    <div class="lnb_title">
-	                    <a href="admin">관리페이지</a>
-	                </div>
-	                <ul>
-	                    <li><a href="admin_notice">공지사항</a></li>
-                        <li><a href="admin_prod_list">상품관리</a></li>
-                        <li><a href="#">매출 통계</a></li>
-                        <li><a href="#">문의 답변</a></li>
-	                </ul>
-	            </div>
+                <%@include file="admin_nav.jsp"%>
                 <div class="main_post">
                     <div class="notice_post">
                         <div class="notice_title">공지사항
@@ -69,7 +59,6 @@
 				},
 				success: function() {
 					alert('수정 완료');
-					location.href="admin_notice";
 				}
 				
 			});

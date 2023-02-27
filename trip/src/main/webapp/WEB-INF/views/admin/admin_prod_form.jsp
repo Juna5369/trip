@@ -14,17 +14,7 @@
 	<section class="main">
 	    <div class="box">
 	        <div class="admin_box">
-	            <div class="lnb">
-	                <div class="lnb_title">
-	                    <a href="#">관리페이지</a>
-	                </div>
-	                <ul>
-	                    <li><a href="admin_notice">공지사항</a></li>
-                        <li><a href="admin_prod_list">상품</a></li>
-                        <li><a href="#">조회/통계</a></li>
-                        <li><a href="#">문의 답변</a></li>
-	                </ul>
-	            </div>
+	            <%@include file="admin_nav.jsp"%>
 				<form action="insertProd.do" method="post" enctype="multipart/form-data"><br>
 					<table>
 						<tr>

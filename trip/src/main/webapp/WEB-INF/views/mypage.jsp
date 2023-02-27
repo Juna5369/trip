@@ -15,6 +15,7 @@
 	<%@include file="header.jsp"%>
 	<%@include file="nav.jsp"%>
 	<section class="main">
+	
 		<div class="info">
 			<div class="content_section">
 				<div class="section_content">
@@ -37,7 +38,7 @@
 			</div>
 
 		</div>
-
+		<div class="box">
 		<div class="list_section">
 			<div class="reservation_section">
 				<div class="section_title">
@@ -129,7 +130,7 @@
 				<div class="like_wrap">
 					<c:forEach var="data" items="${plist }" begin="0" end="3">
 						<ul>
-							<li style="float: left; list-style: none; position: relative; width: 323px;">
+							<li>
 								<a href="/prod_detail?no=${data.prod_no }"> 
 								<img src="../img/${data.prod_img }" id="slide_img"><br>
 									<!-- 게시글 제목1 -->
@@ -143,6 +144,7 @@
 					</c:forEach>
 				</div>
 			</div>
+		</div>
 		</div>
 	</section>
 	<%@include file="footer.jsp"%>

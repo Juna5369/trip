@@ -56,7 +56,12 @@ a {
 	width: 750px;
 	height: 100%;
 }
-
+.ad_middle_content {
+	float: left;
+	width: 500px;
+	height: 100%;
+	margin-right: 20px;
+}
 .search_box{
 	width: 750px;
 	height: 60px;
@@ -170,7 +175,7 @@ a {
 	font-weight: 1500;
 }
 .cnotice_title{
-	width: 300px;
+	width: 100%;
 	font-size: 24px;
 	font-weight: bold;
 	text-align: left;
@@ -531,11 +536,24 @@ td {
 	font-weight: bold;
 	font-size: 16px;
 }
-
-#rs, #rc {
+#rs {
+	width: 880px;
+}
+#rc {
 	width: 1000px;
 }
 .ad {
 	width: 1000px;
 }
-
+.ad_date {
+	width: 260px;
+	height: 85px;
+	float: left;
+	padding: 33px 20px;
+	text-align: right;
+	font-size: 15px;
+}
+.a_l_btn {
+	color: #e82835;
+	cursor: pointer;
+}

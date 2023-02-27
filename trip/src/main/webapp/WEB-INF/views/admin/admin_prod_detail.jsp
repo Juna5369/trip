@@ -15,18 +15,8 @@
 	<section class="main">
      <div class="box">
 	        <div class="admin_box">
-	            <div class="lnb">
-	                <div class="lnb_title">
-	                    <a href="#">관리페이지</a>
-	                </div>
-	                <ul>
-	                    <li><a href="admin_prod">공지사항</a></li>
-                        <li><a href="admin_prod_list">상품관리</a></li>
-                        <li><a href="#">매출 통계</a></li>
-                        <li><a href="#">문의 답변</a></li>
-	                </ul>
-	            </div>
-						<div class="middle_title">상품관리</div>
+	            <%@include file="admin_nav.jsp"%>
+				<div class="middle_title">상품관리</div>
                 <div class="main_post">
                     <div class="prod_post">
 						

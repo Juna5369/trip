@@ -14,17 +14,7 @@
 	<section class="main">
         <div class="box">
             <div class="cuc_box">
-                <div class="lnb">
-                    <div class="lnb_title">
-                        <a href="cust_center">관리자 페이지</a>
-                    </div>
-                    <ul>
-                        <li><a href="#">요소</a></li>
-                        <li><a href="#">요소</a></li>
-                        <li><a href="#">요소</a></li>
-                        <li><a href="#">요소</a></li>
-                    </ul>
-                </div>
+                <%@include file="admin_nav.jsp"%>
                 <div class="main_notice">
                     <div class="notice_board">
                         <div class="notice_title">1:1 문의내역

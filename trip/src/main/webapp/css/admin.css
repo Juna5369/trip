@@ -54,13 +54,7 @@
 }
 
 .ad_main{
-	float:left;
-	position:relative;
-	left:250px;
-	bottom:700px;
-	width:1080px;
-	height:1000px;
-	/* border:1px solid black; */
+
 }
 
 .middle_main {
@@ -68,7 +62,7 @@
 	width: 1080px;
 	height: 900px;
 	margin-bottom:10px;
-	/* border:1px solid black; */
+
 	text-align: left;
 }
 .main_title {
