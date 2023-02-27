@@ -26,35 +26,35 @@ import com.project.trip.vo.ReviewVO;
 
 @Controller
 public class MyPageController {
-	
+
 	@Autowired
 	IMemberMapper mapper;
 
 	@GetMapping("/mypage")
-	public void mypage(Model model,String id) {
+	public void mypage(Model model, String id) {
 
 		MemberVO mv = mapper.selectOne(id);
-	
-		List<ReviewVO> reviewList= mapper.getReview(id);
+
+		List<ReviewVO> reviewList = mapper.getReview(id);
 		List<ReserVO> rlist = mapper.getReservation(id);
 		List<QNAVO> qlist = mapper.getQnA(id);
 		List<LikeVO> likeList = mapper.getLike(id);
-		List<ProductVO> plist = new ArrayList<>() ;
-	
-		for(int i =0;i<likeList.size();i++) {
-	
-			int product_no=likeList.get(i).getProd_no();
+		List<ProductVO> plist = new ArrayList<>();
+
+		for (int i = 0; i < likeList.size(); i++) {
+
+			int product_no = likeList.get(i).getProd_no();
 			ProductVO pv = mapper.getProduct(product_no);
 			plist.add(pv);
 		}
 
-		model.addAttribute("reviewList",reviewList);
-		model.addAttribute("plist",plist);
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("plist", plist);
 		model.addAttribute("rlist", rlist);
-		model.addAttribute("qlist",qlist);
-		model.addAttribute("mv",mv);
+		model.addAttribute("qlist", qlist);
+		model.addAttribute("mv", mv);
 
-		}
+	}
 
 	@GetMapping("/update")
 	public void update(Model model, String id) {
@@ -80,8 +80,8 @@ public class MyPageController {
 		HttpSession session = request.getSession();
 		session.invalidate();
 		String out = "<script>alert('회원탈퇴 완료');location.href='/';</script>";
-		
-		return out;	
+
+		return out;
 	}
 
 	@GetMapping("/deleteMember")
@@ -90,7 +90,7 @@ public class MyPageController {
 
 		MemberVO mv = mapper.selectOne(id);
 		model.addAttribute("mv", mv);
-		
+
 		return "withdrawal";
 	}
 
@@ -101,55 +101,77 @@ public class MyPageController {
 	}
 
 	@GetMapping("/reviewBoard")
-	public String review(String id ,Model model) {
-		
-		MemberVO mv= mapper.selectOne(id);
-		
-		List<OrderVO> ovList = mapper.getOrder(id);
-		List<ProductVO> plist = new ArrayList<>() ;
-		for(int i =0;i<ovList.size();i++) {
+	public String review(String id, Model model) {
 
-			int product_no=ovList.get(i).getProd_no();
+		MemberVO mv = mapper.selectOne(id);
+
+		List<OrderVO> ovList = mapper.getOrder(id);
+		List<ProductVO> plist = new ArrayList<>();
+		for (int i = 0; i < ovList.size(); i++) {
+
+			int product_no = ovList.get(i).getProd_no();
 			ProductVO pv = mapper.getProduct(product_no);
 			plist.add(pv);
 		}
-		
-		model.addAttribute("ovList",plist);
-		model.addAttribute("mv",mv);
-		model.addAttribute("id",id);
-		
-		return"review";
+
+		model.addAttribute("ovList", plist);
+		model.addAttribute("mv", mv);
+		model.addAttribute("id", id);
+
+		return "review";
 	}
-	
+
 	@PostMapping("/reviewBoard")
-	public @ResponseBody String reviewdo(ReviewVO rv,HttpServletRequest request,String id) {
-		
+	public @ResponseBody String reviewdo(ReviewVO rv, HttpServletRequest request, String id) {
+
 		String page = "";
 		Date date = new Date();
 		ProductVO pv = mapper.getProductByName(request.getParameter("prod_name"));
-		System.out.println("상품번호 :"+pv.getProd_no());
-		String order_no = mapper.getOrderOne(id,pv.getProd_no());
-		System.out.println("주문번호 :"+order_no);
-		
+		System.out.println("상품번호 :" + pv.getProd_no());
+		String order_no = mapper.getOrderOne(id, pv.getProd_no());
+		System.out.println("주문번호 :" + order_no);
+
 		PayVO payv = mapper.getPay(order_no);
-		
+
 		long timeInMilliSeconds = date.getTime();
-        java.sql.Date now = new java.sql.Date(timeInMilliSeconds);
-        
-		rv.setProd_no(pv.getProd_no());//상품번호
-		rv.setId(id);//아이디
-		rv.setPay_no(payv.getPay_no());//결제번호
-		rv.setRev_date(now);//리뷰 날짜
+		java.sql.Date now = new java.sql.Date(timeInMilliSeconds);
+
+		rv.setProd_no(pv.getProd_no());// 상품번호
+		rv.setId(id);// 아이디
+		rv.setPay_no(payv.getPay_no());// 결제번호
+		rv.setRev_date(now);// 리뷰 날짜
 		rv.setRev_img(pv.getProd_img()); // 상품 이미지
-		
-		System.out.println("리뷰 :" +rv.toString());
-		if(mapper.regReview(rv) == 1) {
-			page= "<script>alert('리뷰등록 완료');location.href='/';</script>";
-		}else {
-			page= "<script>alert('리뷰실패');location.href='/';</script>";
+
+		System.out.println("리뷰 :" + rv.toString());
+		if (mapper.regReview(rv) == 1) {
+			page = "<script>alert('리뷰등록 완료');location.href='/';</script>";
+		} else {
+			page = "<script>alert('리뷰실패');location.href='/';</script>";
 		}
-		
+
 		return page;
+	}
+
+	@GetMapping("/like_list")
+	public String like_tbl(Model model, String id) {
+		List<LikeVO> likeList = mapper.getLike(id);
+		List<ProductVO> plist = new ArrayList<>();
+		for (int i = 0; i < likeList.size(); i++) {
+
+			int product_no = likeList.get(i).getProd_no();
+			ProductVO pv = mapper.getProduct(product_no);
+			plist.add(pv);
+		}
+		model.addAttribute("plist", plist);
+
+		return "myList/like_list";
+	}
+
+	@GetMapping("/reservation_list")
+	public String reservation_list(String id, Model model) {
+		List<ReserVO> rlist = mapper.getReservation(id);
+		model.addAttribute("rlist", rlist);
+		return "myList/reservation_list";
 	}
 
 }

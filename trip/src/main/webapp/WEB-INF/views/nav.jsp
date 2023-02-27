@@ -20,8 +20,8 @@
 			<span id="red_line"></span><!--nav line 빨간줄-->
 			<div class="right_nav">
 				<c:if test="${sessionScope.id != null }">
-					<div class="like_icon"><a href="#">찜 목록</a></div>
-					<div class="res_icon"><a href="#">예약 내역</a></div>
+					<div class="like_icon"><a href="like_list?id=${sessionScope.id }">찜 목록</a></div>
+					<div class="res_icon"><a href="reservation_list?id=${sessionScope.id }">예약 내역</a></div>
 					<div class="myp_icon"><a href="mypage?id=${sessionScope.id }">내 정보</a></div>
 				</c:if>
 				<c:if test="${sessionScope.id == null }">
