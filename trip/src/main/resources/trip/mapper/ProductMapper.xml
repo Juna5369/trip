@@ -5,7 +5,7 @@
 <mapper namespace="com.project.trip.mapper.ProductMapper">
   
 	<select id="getList" resultType="com.project.trip.vo.ProductVO">
-	SELECT * FROM product_tbl WHERE prod_category = #{prod_category}
+	SELECT * FROM product_tbl
 	</select>
 
 	<select id="getListOne" resultType="com.project.trip.vo.ProductVO">
@@ -30,6 +30,24 @@
 	<select id="search_prodName2" resultType="com.project.trip.vo.ProductVO">
 	SELECT prod.prod_name, prod.prod_no FROM product_tbl prod, order_tbl orde WHERE orde.prod_no = prod.prod_no AND orde.id = #{id}
 	</select>
+	
+	<select id="search_no_prod" resultType="com.project.trip.vo.ProductVO">
+	SELECT * FROM reservation_tbl res, member_tbl mem, product_tbl pro 
+	WHERE res.id = mem.id AND res.prod_no = pro.prod_no AND res.id = #{id} AND mem.pw = #{pw};
+
+	</select>
+	
+	<!-- 
+	SELECT prod_no 
+FROM reservation_tbl res, member_tbl mem 
+WHERE res.id = mem.id AND res.id = '953448' AND mem.pw = '1234';
+
+SELECT * 
+FROM reservation_tbl res, member_tbl mem, product_tbl pro 
+WHERE res.id = mem.id AND res.prod_no = pro.prod_no AND res.id = '953448' AND mem.pw = '1234';
+
+
+	 -->
 	
 	
 </mapper>

@@ -169,14 +169,45 @@
 									<div id="btn_box">
 										<c:if test="${sessionScope.id eq null }">
 										<input type="button" name="res_no_many" id="res_no_many" class="btn_2" value="비회원 예약">
+										<script>
+										const res_no_many = document.querySelector("#res_no_many");
+										res_no_many.addEventListener('click', many_res_no);
+									    function many_res_no(){
+									    	const xhttp = new XMLHttpRequest();
+									    	xhttp.onload = function() {
+									    		if(this.responseText === "ok"){
+												    document.querySelector(".termsmodal_res").style.display="block";
+												    document.querySelector("#no_id").value = temp_no_id;
+												    document.querySelector("#no_ch_val").value = ch_val.value;
+												    document.querySelector("#no_ad_val").value = ad_val.value;
+												    document.querySelector("#no_total").value = total.value;
+									    		}else{
+									    			many_res_no();
+									    		}
+									    	}
+									    	var temp_no_id = rand(100000, 999999);
+									    	xhttp.open("GET", "res_no_check?no_id=" + temp_no_id, true);
+								     		xhttp.send();
+									    }
+										</script>
+										
 										</c:if>
 										<c:if test="${sessionScope.id ne null }">
 										<input type="submit" name="res_many" id="res_many" class="btn_2" value="예 약">
 										</c:if> 
 										<input type="button" name="res_like" id="res_like" class="btn_3" value="">
 										<input type="hidden" name="like" id="like" value="0">
+<!--  -->										<c:if test="${sessionScope.id eq null }">
+										<input type="hidden" name="payno_id" id="payno_id" value=""> <!--  세션 아이디 없으면 비회원인데 비회원 아이디 저장 -->
+										</c:if>
+										<c:if test="${sessionScope.id ne null }">
+										<input type="hidden" name="payno_id" id="payno_id" value="${sessionScope.id }">
+										</c:if>
 										<input type="hidden" name="res_id" id="res_id" value="${sessionScope.id }">
 										<input type="hidden" name="prod_pno" id="prod_pno" value="${vo.prod_no }">
+										<input type="hidden" name="max_person" id="max_person" value="${vo.prod_max_person }">
+        								<input type="hidden" name="min_person" id="min_person" value="${vo.prod_min_person }">
+        								<input type="hidden" name="cur_person" id="cur_person" value="${vo.prod_cur_person }">
 									</div>
 
 								</form>
@@ -431,11 +462,9 @@
 										<span>상품 문의</span>
 									</div>
 								</div>
-
-
 								<div id="con_wrap">
-
-
+								<c:set var="realEnd_review" value="${count_review }" />
+								<c:set var="end_review" value="${start_review + 4 }" />
 									<div id="con1">
 										<div class="re_1">
 										
@@ -451,9 +480,22 @@
 													<tr><td colspan="5"></td></tr>
 													<tr><td><input type="hidden" id="con1_tVal" class="con1_tVal" value="0"></td></tr>
 												</c:forEach>
+												<c:if test="${empty reviews }">
+													<tr><td colspan="5" id="td_qna">작성된 글이 없습니다.</td></tr>
+												</c:if>
 												</tbody>
 											</table>
 										</div>
+										
+										<div id="num_bar">
+											<c:if test="${start_review > 1}">
+											<a href="/prod_detail?start_review=${start_review-5 }&&pageNum_review=${start_review-1 }&&no=${vo.prod_no }&&/#container2">[이전]</a></c:if>
+											<c:forEach var="pageNum_review" begin="${start_review }" end="${(end_review > realEnd_review)? realEnd_review : end_review }" step="1">
+											<a href="/prod_detail?pageNum_review=${pageNum_review }&&start_review=${start_review }&&no=${vo.prod_no }&&/#container2">${pageNum_review }</a>&nbsp;&nbsp;</c:forEach>
+											<c:if test="${end_review < realEnd_review }">
+											<a href="/prod_detail?start_review=${end_review+1 }&&pageNum_review=${end_review+1 }&&no=${vo.prod_no }&&/#container2">[다음]</a></c:if>
+										</div>
+										
 										<hr><br><br>
 										<p style="margin:10px">여행 후기를 작성해 보세요.</p>
 										<div class="re2">
@@ -519,6 +561,13 @@
 																<li>비회원예약 등 기타이유로 여행이력이 확인되지 않는 고객님은 <span class="guest_prod">[예약번호조회]</span>를 이용해주시기 바랍니다.</li>
 																<li>최근 1년동안의 여행이력만 보여집니다.</li>
 															</ul>
+															<div id="guest_search">
+																<label for="guest_id">예약 번호 입력</label>
+																<input type="text" name="guest_id" id="guest_id" class="pr_de ge_id" value="" ><br>
+																<label for="guest_pw">예약 비밀번호 입력</label>
+																<input type="password" name="guest_pw" id="guest_pw" class="pr_de ge_pw" value="" >
+																<input type="button" name="guest_btn" id="guest_btn" class="g_btn" value="조회" ><br>
+															</div>
 														</div>
 
 														<div id="prod_detail">
@@ -580,17 +629,27 @@
 										
 											<table border="0" width="850px" height="100%" id="tbl_con2">
 												<thead>
-													<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>상태</th></tr>
+													<tr><th>번호</th><th>제목</th><th>작성자</th><th>작성일</th><th>상품번호</th></tr>
 												</thead>
+												
 												<tbody id="tbody_con2">
+												
 												<c:forEach var="qna" items="${qnas }" varStatus="status" >
 													<tr>
 														<td class="t1">${qna.qna_no }</td><td class="t1" id="qna_title"><span class="t1_btn">${qna.qna_title }</span></td><td class="t1">${qna.id }</td>
-														<td class="t1">${qna.qna_date }</td><td class="t1">없음</td></tr> <!--  reply과 같이 쿼리 돌려서 -->
+										<!-- 				<td class="t1">${qna.qna_date }</td><td class="t1"><span id="reply">-</span></td></tr> <!--  reply과 같이 쿼리 돌려서 -->
+														<td class="t1">${qna.qna_date }</td><td class="t1">${qna.prod_no }</td></tr> 
 													<tr><td colspan="5"></td></tr>
-													<tr><td><input type="hidden" id="con2_tVal" class="con2_tVal" value="0"></td></tr>
+													<tr><td><input type="hidden" id="con2_tVal" class="con2_tVal" value="0">
+													<input type="hidden" id="re_ex" class="re_ex" value="0">
+													</td></tr>
 												</c:forEach>
+												<c:if test="${empty qnas }">
+													<tr><td colspan="5" id="td_qna">작성된 글이 없습니다.</td></tr>
+												</c:if>
+												
 												</tbody>
+												
 											</table>
 										</div>
 										<hr>
@@ -812,32 +871,23 @@
                             	<h1 style="display:inline-block;">비회원 예약</h1>
                             	
                             	<div id="box_no">
-                            	<form name="frm_mo" action="#" method="post" id="fmo">
+                            	<form name="frm_mo" action="/reservation_page" method="post" id="fmo">
                        
                             		<label for="no_id" id="lbl_no">예약번호</label>
                             		<input type="text" name="no_id"id="no_id"class="no_res" value="" readonly><br>
                             		<label for="no_pw" id="lbl_no">비밀번호</label>
-                            		<input type="password" name="no_pw"id="no_pw"class="no_res" required ><br>
+                            		<input type="password" name="no_pw"id="no_pw"class="no_res" value="" ><br>
                             		<label for="no_name" id="lbl_no">이름</label>
-                            		<input type="text" name="no_name"id="no_name"class="no_res" required ><br>
+                            		<input type="text" name="no_name"id="no_name"class="no_res"value="" ><br>
                             		<label for="no_tel" id="lbl_no">연락처</label>
-                            		<input type="text" name="no_tel"id="no_tel"class="no_res" required ><br>
-                            		<input type="submit" id="no_btn" class="no_btn_1"value="예약하기">
-                            		<input type="reset" class="no_btn_2"value="초기화">
-                            	
-                            	<!-- 
-								<table id="tbl1">
-									<tr><th>예약번호</th><td><input type="text" name="no_id"id="no_id"class="no_res"style="border:0px" value="" readonly></td></tr>
-									<tr><th>비밀번호</th><td><input type="password" name="no_pw"id="no_pw"class="no_res" style="border:0px"required ></td></tr>
-									<tr><th>이름</th><td><input type="text" name="no_name"id="no_name"class="no_res" style="border:0px"required ></td></tr>
-									<tr><th>연락처</th><td><input type="text" name="no_tel"id="no_tel"class="no_res"style="border:0px" required ></td></tr>
-									<tr><td colspan="2"><input type="submit" id="no_btn" class="no_btn_1"value="예약하기">
-									<input type="reset" class="no_btn_2"value="초기화"></td></tr>
-								</table> -->
+                            		<input type="text" name="no_tel"id="no_tel"class="no_res" value="" ><br>
+                            		<input type="submit" id="no_btn" class="no_btn_1"value="예약하기" onclick="return no_check()">
+                            		<input type="hidden" name="no_prod_no" id="no_prod_no" value="${vo.prod_no }">
+                            		<input type="hidden" name="no_ch_val" id="no_ch_val" value="">
+                            		<input type="hidden" name="no_ad_val" id="no_ad_val" value="">
+                            		<input type="hidden" name="no_total" id="no_total" value="">
 								</form>
 								</div>
-                            	
-   
     						</div>
 						</div>
            	 	</div>
@@ -908,17 +958,25 @@
 	
 	const star_val = document.querySelector("#star_val");
 	
-	const res_id = document.querySelector("#res_id");
+	const res_id = document.querySelector("#res_id");	
+	const payno_id = document.querySelector("#payno_id");
 	const prod_pno = document.querySelector("#prod_pno");
 	
 	const review_submit = document.querySelector("#review_submit");
 	review_submit.addEventListener('click', submit_review);
 	const pay_num = document.querySelector("#pay_num");
 	
-	const res_no_many = document.querySelector("#res_no_many");
-	res_no_many.addEventListener('click', many_res_no);
+	const guest_prod = document.querySelector(".guest_prod");
+	guest_prod.addEventListener('click', prod_guest);
+	const guest_btn = document.querySelector("#guest_btn");
+	guest_btn.addEventListener('click', btn_guest);
+
+	const max_person = document.querySelector("#max_person");
+	const min_person = document.querySelector("#min_person");
+	const cur_person = document.querySelector("#cur_person");
 	
-	
+	const re_ex = document.querySelector("#re_ex");
+		
     function go(){
         document.querySelector(".termsmodal").style.display='block'; //스타일중에 디스플레이를 블록으로 바꿔라
      
@@ -942,10 +1000,62 @@
         document.querySelector(".meetingmodal").style.display='none'; //스타일중에 디스플레이를 블록으로 바꿔라
      }
     
-    function many_res_no(){
-    //	alert("예약");
-    	document.querySelector(".termsmodal_res").style.display="block";
+    function prod_guest(){
+    	document.querySelector("#guest_search").style.display="block";
     }
+    
+    function btn_guest(){
+ 		const xhttp = new XMLHttpRequest();
+
+		let guest_id = document.querySelector("#guest_id");
+		let guest_pw = document.querySelector("#guest_pw");
+
+		let s_date = document.querySelector("#start_date");
+		let e_date = document.querySelector("#end_date");
+		let s_plane = document.querySelector("#plane");
+		let s_hotel = document.querySelector("#hotel");
+
+ 		xhttp.onload = function() { // 비회원 리뷰등록을 위한 상품정보 검색
+ 			let jsonStr = this.responseText; 
+ 			let obj = JSON.parse(jsonStr);
+
+ 			$("#prod_list option:eq(0)").after("<option value="+obj.prod_no+">"+obj.prod_name+"</option>");
+ 			$("#prod_list").val(obj.prod_no).prop("selected", true);
+
+ 			review_name.value = guest_id.value;
+ 			payno_id.value = guest_id.value;   
+ 			rev_prodno.value = obj.prod_no;
+ 			prod_show(obj.prod_no);
+ 			s_date.value = obj.prod_start_date;
+ 			e_date.value = obj.prod_end_date;
+ 			s_plane.value = obj.prod_plane;
+ 			s_hotel.value = obj.prod_hotel;
+ 		}
+ 		xhttp.open("GET", "no_prod_info?id="+guest_id.value+"&pw="+guest_pw.value, true);
+ 		xhttp.send();
+    }
+
+	function no_check(){
+		let no_pw = document.querySelector("#no_pw");
+		let no_name = document.querySelector("#no_name");
+		let no_tel = document.querySelector("#no_tel");
+		
+		if(no_pw.value == ""){
+			alert("비밀번호가 입력되지 않았습니다.");
+			document.frm_mo.no_pw.focus();
+			return false;
+		}else if(no_name.value == ""){
+			alert("이름이 입력되지 않았습니다.");
+			document.frm_mo.no_name.focus();
+			return false;
+		}else if(no_tel.value == ""){
+			alert("연락처가 입력되지 않았습니다.");
+			document.frm_mo.no_tel.focus();
+			return false;
+		}else{
+			return true;
+		}
+	}
 
 	function rating_stars(n){
 		let star_1 = document.querySelector('label[for="star1"]');
@@ -995,8 +1105,9 @@
 	let type_string = ["홀로 여행", "친구 / 커플", "아동 동반", " 부모님 동반", "대가족 / 모임"];
 	function write_rewiew(e){
 		var tmp_value = $('input:radio[name=types]:checked').val();
-		sel_types.value=type_string[parseInt(tmp_value)-1];
+		sel_types.value = type_string[parseInt(tmp_value)-1];
 		re_wrap.style.display="block";
+		prod_show2();
 	}
 	
 	function review_check(){
@@ -1037,7 +1148,6 @@
 			return true;
 		}
 	}
-	
     function submit_review(){
  		const xhttp = new XMLHttpRequest();	
      	let review_title = document.querySelector("#review_title").value;
@@ -1046,7 +1156,7 @@
      	let sel_type2 = sel_types.value;
      	let re_text = document.querySelector("#re_text").value;
      	let rev_prodno = document.querySelector("#rev_prodno").value;
-     
+		
      	let prod_no = parseInt(rev_prodno);
      	let stars = parseInt(star_val);
      	let pay_no = parseInt(pay_num.value);
@@ -1063,10 +1173,10 @@
 	 		xhttp.send(data);	
  		}
       }
-  	prod_show2();
+	
  	function prod_show(number){
  		const xhttp = new XMLHttpRequest();
- 		let id = res_id.value; 
+ 		let id = payno_id.value;
  		let pno = number;
  		let prod_no = parseInt(pno);
  		
@@ -1081,7 +1191,8 @@
  	
  	function prod_show2(){
  		const xhttp = new XMLHttpRequest();	
- 		let id = res_id.value; 
+ //		let id = res_id.value; 
+ 		let id = payno_id.value;
  		let pno = prod_pno.value;
  		let prod_no = parseInt(pno);
  		let rev_prodno = document.querySelector("#rev_prodno");
@@ -1098,7 +1209,7 @@
  		xhttp.send();
  	}
 
- 	function sel_prod(){
+ 	function sel_prod(){ // 상품목록 셀렉트 박스 회원용 상품목록 검색
  		const xhttp = new XMLHttpRequest();
  		var prod_nos = document.getElementById("prod_list");    
 		var prod_no = prod_nos.options[prod_nos.selectedIndex].value;
@@ -1134,7 +1245,7 @@
 	function checkBot(){
 		security.value = rand(10000, 99999);
 	}
-	
+
 	function con1_tbody(e){
 		const xhttp = new XMLHttpRequest();
 		const con1_tVal = document.querySelector("#con1_tVal");
@@ -1173,6 +1284,16 @@
 			xhttp.send();
 		}
 	}
+
+	function reply_exist(qna_no){
+		const xhttp = new XMLHttpRequest();
+		
+		xhttp.onload = function() {
+			re_ex.value = this.responseText; 
+		}
+		xhttp.open("GET", "board3?qna_no="+qna_no,true);  
+		xhttp.send();
+	}
 	
 	function con2_tbody(e){
 		const xhttp = new XMLHttpRequest();
@@ -1182,10 +1303,12 @@
 		xhttp.onload = function() {
 			let jsonStr = this.responseText; 
 			let obj = JSON.parse(jsonStr);
+			
 			e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.replaceChildren();
 			var con2_Val = e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value;
 			var writerId = e.target.parentElement.nextElementSibling.innerHTML;
 			let userId = res_id.value; 
+			let no_memId = payno_id.value;
 			
 				if(e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value === "0"){
 					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.style.display = "table-cell";
@@ -1194,11 +1317,22 @@
 					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.style.display = "none";
 					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.value = 0;
 				}
-			if(writerId === userId ){
-				for(let i = 0; i < obj.length; i++){
+				
+			if((writerId === userId) || (writerId === no_memId)){
+				
+				if(re_ex.value == 0){
+					for(let i = 0; i < obj.length; i++){
+						e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.innerHTML += '<div class="con2_review">' 
+						+ '<div id="a3"><input type="text" class="td3_con1" value="내용" readonly><p class="sp2_con1">' + obj[i].qna_contents + '</p></div></div>'
+					}	
+				}else{
+					for(let i = 0; i < obj.length; i++){
 					e.target.parentElement.previousElementSibling.parentElement.nextElementSibling.firstElementChild.innerHTML += '<div class="con2_review">' 
 					+ '<div id="a3"><input type="text" class="td3_con1" value="내용" readonly><p class="sp2_con1">' + obj[i].qna_contents + '</p></div></div>'
-				}
+					+ '<div id="a4"><input type="text" class="td3_con1" value="답변 제목" readonly><p class="sp2_con1">' + obj[i].reply_title + '</p></div></div>'
+					+ '<div id="a5"><input type="text" class="td3_con1" value="답변 내용" readonly><p class="sp2_con1">' + obj[i].reply_contents + '</p></div></div>'
+					}
+				}				
 			}else{
 				alert("작성자만 열람할 수 있습니다.");
 			}
@@ -1206,6 +1340,7 @@
 		if(e.target.className == "t1_btn"){
 			let reno = e.target.parentElement.previousElementSibling.innerHTML;
 			let no = parseInt(reno);
+			re_ex.value = reply_exist(no);
 			xhttp.open("GET", "board2?qna_no="+no,true);  
 			xhttp.send();
 		}
@@ -1228,19 +1363,22 @@
 		$("#bar1").css("background-color", "white");
 		$("#con1").css("display", "none");
 	});
-	
+
 	function ad_plus() {
 		let pre_Aval1 = parseInt(ad_val.value);
 		let ad_price1 = won(ad_price.innerText);
 		let pre_Cval1 = parseInt(ch_val.value);
 		let ch_price1 = won(ch_price.innerText);
 
-		if (ad_val.value < 5) {
+		let limit_ad = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ch_val.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
+		
+		if (ad_val.value < limit_ad) {
 			ad_val.value = pre_Aval1 + 1;
 			total.value = format((ad_price1) * (ad_val.value) + (ch_price1)
 					* (pre_Cval1));
 		} else {
-			alert("최대5명까지 가능합니다.");
+			alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
 		}
 	}
 	function ad_minus() {
@@ -1261,13 +1399,16 @@
 		let ad_price3 = won(ad_price.innerText);
 		let pre_Cval3 = parseInt(ch_val.value);
 		let ch_price3 = won(ch_price.innerText);
+		
+		let limit_ad = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ch_val.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
 
-		if ((e.target.value >= 1 && e.target.value <= 5)
+		if ((e.target.value >= 1 && e.target.value <= limit_ad)
 				|| e.target.value === "") {
 			total.value = format((e.target.value) * (ad_price3)
 					+ (ch_price3) * (pre_Cval3));
 		} else {
-			alert("1명이상 5명이하로 예약 가능합니다.");
+			alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
 		}
 	}
 	function ch_plus() {
@@ -1275,13 +1416,16 @@
 		let ad_price4 = won(ad_price.innerText); // 현재 성인 가격
 		let pre_Cval4 = parseInt(ch_val.value); // 현재 아동 인원수
 		let ch_price4 = won(ch_price.innerText); // 현재 아동 가격
+		
+		let limit_ch = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ad_val.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
 
-		if (ch_val.value < 4) {
+		if (ch_val.value < limit_ch) {
 			ch_val.value = pre_Cval4 + 1;
 			total.value = format((ch_price4) * (ch_val.value) + (ad_price4)
 					* (pre_Aval4));
 		} else {
-			alert("최대4명까지 가능합니다.");
+			alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
 		}
 	}
 	function ch_minus() {
@@ -1302,13 +1446,16 @@
 		let pre_Aval6 = parseInt(ad_val.value);
 		let ad_price6 = won(ad_price.innerText);
 		let ch_price6 = won(ch_price.innerText);
+		
+		let limit_ch = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ad_val.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
 
-		if ((e.target.value >= 0 && e.target.value <= 4)
+		if ((e.target.value >= 0 && e.target.value <= limit_ch)
 				|| e.target.value === "") {
 			total.value = format((e.target.value) * (ch_price6)
 					+ (ad_price6) * (pre_Aval6));
 		} else {
-			alert("4명이하로 예약 가능합니다.");
+			alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
 		}
 	}
 
@@ -1321,8 +1468,7 @@
 		xhttp.onload = function() {
 			alert(this.responseText);
 		}
-		
-		if(res_id.value === null){
+		if(res_id.value === "" || res_id.value === null){
 			alert("상품 찜하기는 회원만 가능합니다. 로그인해주세요.");
 		}else{
 			let prod_no = parseInt(pno);
@@ -1338,6 +1484,7 @@
 				res_like.style.backgroundSize = "30px";
 				res_like.style.backgroundPosition = "center";
 				like.value = "0";
+				
 			}
 			xhttp.open("GET", "like_prod?id="+id+"&prod_no="+prod_no+"&like="+liked, true);  
 			xhttp.send();		

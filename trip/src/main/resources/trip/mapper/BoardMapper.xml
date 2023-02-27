@@ -10,23 +10,26 @@
 		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no;
 	</select>
 	
-	<select id="review_selectProduct" resultType="com.project.trip.dto.ReviewBoardDTO">
+	<select id="review_selectProduct" parameterType="Map" resultType="com.project.trip.dto.ReviewBoardDTO">
 		SELECT rev.rev_no, rev.prod_no, rev.id, rev.pay_no, rev.rev_title, rev.rev_type, rev.rev_date, rev.rev_contents, rev.rev_img, rev.rev_rating, prod.prod_start_date, prod.prod_end_date, prod.prod_hotel, prod.prod_plane 
 		FROM review_tbl rev, product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
-		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no AND rev.prod_no = #{prod_no};
-	</select>
-
-<!--
-  	<select id="review_selectAll" resultType="com.project.trip.dto.ReviewBoardDTO">
-		SELECT * FROM review_tbl
+		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no AND rev.prod_no = #{no} ORDER BY rev.rev_date DESC 
+		LIMIT #{startnum_review}, 5;
 	</select>
 	
-
-	<select id="selectOne" resultType="com.moohan.res_test.dto.ReviewDTO">
-		SELECT * FROM review_tbl WHERE rev_no = #{rev_no}
+	<select id="review_firstProduct" resultType="com.project.trip.dto.ReviewBoardDTO">
+		SELECT rev.rev_no, rev.prod_no, rev.id, rev.pay_no, rev.rev_title, rev.rev_type, rev.rev_date, rev.rev_contents, rev.rev_img, rev.rev_rating, prod.prod_start_date, prod.prod_end_date, prod.prod_hotel, prod.prod_plane 
+		FROM review_tbl rev, product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
+		WHERE rev.prod_no = prod.prod_no AND rev.id = mem.id AND orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND rev.pay_no = pay.pay_no AND rev.prod_no = #{prod_no} ORDER BY rev.rev_date DESC 
+		LIMIT 0, 5;
 	</select>
- -->	
 	
+	<select id="count_review" resultType="int">
+		SELECT CEIL(COUNT(*) / 5) FROM review_tbl WHERE prod_no = #{prod_no};
+	</select>
+
+
+
 	<select id="review_selectOne" resultType="com.project.trip.dto.ReviewBoardDTO">
 		SELECT rev.rev_no, rev.prod_no, rev.id, rev.pay_no, rev.rev_title, rev.rev_type, rev.rev_date, rev.rev_contents, rev.rev_img, rev.rev_rating, prod.prod_start_date, prod.prod_end_date, prod.prod_hotel, prod.prod_plane 
 		FROM review_tbl rev, product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
@@ -39,26 +42,39 @@
 	</insert>
 	
 	<select id="qna_selectAll" resultType="com.project.trip.vo.QNAVO">
-		SELECT * FROM qna_tbl
+		SELECT * FROM qna_tbl ORDER BY qna_date DESC LIMIT 0, 5;
 	</select>
 	
 	<select id="qna_selectProduct" resultType="com.project.trip.vo.QNAVO">
-		SELECT * FROM qna_tbl WHERE prod_no = #{prod_no}      <!-- 상품번호 같은 qna리스트 불러오기 -->
+		SELECT * FROM qna_tbl WHERE prod_no = #{prod_no} ORDER BY qna_date DESC LIMIT 0, 5;     <!-- 상품번호 같은 qna리스트 불러오기 -->
 	</select>
 	
 	<select id="qna_selectOne" resultType="com.project.trip.vo.QNAVO">
-		SELECT * FROM qna_tbl WHERE qna_no = #{qna_no}     <!--  아이디값과 같은지 비교해보고 같을때만 불러오기 -->
+		SELECT * FROM qna_tbl WHERE qna_no = #{qna_no} ORDER BY qna_date DESC LIMIT 0, 5;    <!--  아이디값과 같은지 비교해보고 같을때만 불러오기 -->
 	</select>
 	
-	<select id="pay_no_one" resultType="_int">
+	<select id="qna_reply1" resultType="com.project.trip.dto.QnaBoardDTO">
+		SELECT * FROM qna_tbl WHERE qna_no = #{qna_no} ORDER BY qna_date DESC LIMIT 0, 5;    <!--  아이디값과 같은지 비교해보고 같을때만 불러오기 -->
+	</select>
+	
+	<select id="qna_reply2" resultType="com.project.trip.dto.QnaBoardDTO">
+	SELECT qna.qna_no, qna.id, qna.prod_no, qna.qna_title, qna.qna_contents, qna.qna_date, rep.reply_no, rep.reply_title, rep.reply_contents, rep.reply_date 
+	FROM qna_tbl qna, reply_tbl rep, member_tbl mem, product_tbl prod 
+	WHERE qna.qna_no = rep.qna_no AND qna.id = mem.id AND qna.prod_no = prod.prod_no AND qna.qna_no = #{qna_no};
+	</select>
+	
+	<select id="pay_no_one" resultType="int">
 	SELECT pay.pay_no 
 	FROM product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
 	WHERE orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND mem.id = #{id} AND prod.prod_no = #{prod_no};
 	</select>
 	
-	<!-- SELECT pay.pay_no 
-FROM product_tbl prod, member_tbl mem, pay_tbl pay, order_tbl orde 
-WHERE orde.order_no = pay.order_no AND orde.id = mem.id AND orde.prod_no = prod.prod_no AND mem.id = 'over' AND prod.prod_no = 1;
-	 -->
+	<select id="count_reply" resultType="int">
+		SELECT COUNT(*) FROM reply_tbl WHERE qna_no = #{qna_no};
+	</select>
+	
+	<select id="count_qna" resultType="int">
+		SELECT CEIL(COUNT(*) / 5) FROM qna_tbl WHERE prod_no = #{prod_no};
+	</select>
 
 </mapper>

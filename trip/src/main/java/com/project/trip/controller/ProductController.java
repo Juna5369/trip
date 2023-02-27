@@ -1,16 +1,20 @@
 package com.project.trip.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.trip.dto.QnaBoardDTO;
 import com.project.trip.dto.ReviewBoardDTO;
 import com.project.trip.mapper.IBoardMapper;
 import com.project.trip.mapper.ProductMapper;
@@ -28,28 +32,56 @@ public class ProductController {
 	IBoardMapper b_mapper;
 	
 	@GetMapping("/list")
-	public String japanList(@RequestParam("prod_category")String prod_category,Model model) {
-		List<ProductVO> list = mapper.getList(prod_category);
+	public String japanList(Model model) {
+		List<ProductVO> list = mapper.getList();
+		System.out.println("리스트 : "+list.toString());
 		model.addAttribute("list", list);
 	return "prod_list/japan_hongkong";
 	}
 
 	
-	@GetMapping("/prod_detail")
-	public String prod_detail(@RequestParam("no") String prod_nol, Model model) {
+//	@GetMapping("/prod_detail")
+	
+	@RequestMapping("/prod_detail")
+	public String prod_detail(@RequestParam("no") String prod_nol, @RequestParam(value="pageNum_review", required=false) String pageNum_review, @RequestParam(value="start_review", required=false) String start_review, Model model) {
 		System.out.println("상품디테일 : " + prod_nol);
 		int prod_no = Integer.parseInt(prod_nol);
 		ProductVO vo = mapper.getListOne(prod_no);
 		List<ProductVO> list = new ArrayList<>();
 		list.add(vo);
 		model.addAttribute("list", list);
+		int review_count = b_mapper.count_review(prod_no);
+		model.addAttribute("count_review", review_count);
+		System.out.println(review_count);
 
-		List<ReviewBoardDTO> review_prod = b_mapper.review_selectProduct(prod_no);
-		model.addAttribute("reviews", review_prod);
+	//	List<ReviewBoardDTO> review_prod = b_mapper.review_selectProduct(prod_no);
+	//	model.addAttribute("reviews", review_prod);
 		List<QNAVO> qna_prod = b_mapper.qna_selectProduct(prod_no);
 		model.addAttribute("qnas", qna_prod);
 		
+		if(start_review == null) {
+			model.addAttribute("start_review", 1);
+		}else {
+			model.addAttribute("start_review", Integer.parseInt(start_review));
+		}
 		
+		if(pageNum_review == null) {
+			model.addAttribute("pageNum_review", 1);
+			List<ReviewBoardDTO> review_prod = b_mapper.review_firstProduct(prod_no);
+	//		List<ReviewBoardDTO> review_prod = b_mapper.review_selectProduct(map);
+			model.addAttribute("reviews", review_prod);
+			System.out.println("여긴"+review_prod.toString());
+		}else {
+			Map<String,Object>map = new HashMap<String,Object>();
+			map.put("no", prod_no);
+//			int param_review = Integer.parseInt(pageNum_review) * 10 - 10;
+			int param_review = (Integer.parseInt(pageNum_review) - 1) * 5;
+			map.put("startnum_review", param_review);
+			List<ReviewBoardDTO> review_prod = b_mapper.review_selectProduct(map);
+			System.out.println(review_prod.toString());
+			model.addAttribute("pageNum_review", pageNum_review);
+			model.addAttribute("reviews", review_prod);
+		}
 	return "prod_list/prod_detail";
 	}
 	
@@ -59,10 +91,24 @@ public class ProductController {
 		return p1;
 	}
 	@GetMapping("/board2")
-	public @ResponseBody List<QNAVO> getQna(int qna_no){
-		List<QNAVO> q1 = b_mapper.qna_selectOne(qna_no);
-		return q1;
+	public @ResponseBody List<QnaBoardDTO> getQna(int qna_no){
+		int result = b_mapper.count_reply(qna_no);
+		System.out.println("결과는 : "+result);
+		if(result == 0) {
+			List<QnaBoardDTO> q1 = b_mapper.qna_reply1(qna_no);
+			return q1;
+		}else {
+			List<QnaBoardDTO> q2 = b_mapper.qna_reply2(qna_no);
+			return q2;
+		}
 	}
+	@GetMapping("/board3")
+	public @ResponseBody int reply_exist(int qna_no){
+		int result = b_mapper.count_reply(qna_no);
+		System.out.println("결과는 : "+result);
+		return result;
+	}
+	
 	
 	@PostMapping("/reg_review")
 	public @ResponseBody int reviewReg(ReviewVO rev) {
@@ -110,5 +156,12 @@ public class ProductController {
 		ProductVO pro1 = mapper.getListOne(prod_no);
 		return pro1;
 	}
-	// pay_no_one
+	
+	@GetMapping("/no_prod_info")
+	public @ResponseBody ProductVO show_no_prodInfo(@RequestParam("id") String id, @RequestParam("pw") String pw) {
+		// 예약목록에서 검색후 상품번호 도출 - 단일 상품이다
+		ProductVO no_prod = mapper.search_no_prod(id, pw);
+		return no_prod;
+	}
+
 }

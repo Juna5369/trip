@@ -18,4 +18,5 @@ public class MemberVO {
 	private String address;
 	private String address_detail;
 	private String postalcode;
+	private String authority;
 }

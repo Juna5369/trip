@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,12 @@
                     					<label id="detail_lbl" for="detail_ad">성인</label>
                     					<input type="text" name="detail_ad1" id="detail_ad1" class="input_sum_2" value="${prodvo.prod_price_adult }" readonly>
                     					<label id="detail_lbl" for="detail_ad">원 x </label>
+                    					<c:if test="${sessionScope.id eq null }">
+            								<input type="text" name="detail_ad2" id="detail_ad2" class="input_sum_2" value="${resno.no_ad_val }" readonly>
+            							</c:if>
+            							<c:if test="${sessionScope.id ne null }">
                     					<input type="text" name="detail_ad2" id="detail_ad2" class="input_sum_2" value="${resdto.ad_val }" readonly>
+                    					</c:if>
                     					<label id="detail_lbl" for="detail_ad">명</label>
                     					<input type="text" name="ad_sum" id="ad_sum" class="input_sum" value="" readonly>
                     					<span id="sp_won">원</span>
@@ -46,7 +52,12 @@
                     				    <label id="detail_lbl" for="detail_ch">아동</label>
                     					<input type="text" name="detail_ch1" id="detail_ch1" class="input_sum_2" value="${prodvo.prod_price_child }" readonly>
                     					<label id="detail_lbl" for="detail_ch">원 x</label>
+                    					<c:if test="${sessionScope.id eq null }">
+            								<input type="text" name="detail_ch2" id="detail_ch2" class="input_sum_2" value="${resno.no_ch_val }" readonly>
+            							</c:if>
+            							<c:if test="${sessionScope.id ne null }">
                     					<input type="text" name="detail_ch2" id="detail_ch2" class="input_sum_2" value="${resdto.ch_val }" readonly>
+                    					</c:if>
                     					<label id="detail_lbl" for="detail_ch">명</label>
                     					<input type="text" name="ch_sum" id="ch_sum" class="input_sum" value="" readonly>
                     					<span id="sp_won">원</span>
@@ -95,22 +106,40 @@
         					<label for="boxcon1" id="lbl"> <span id="sp_t">성인</span> (만 12세 이상) </label>
        			 				<div class="many_boxcon" id="boxcon1">
             						<input type="button" name="minus_adcon" id="minus_adcon" class="btn_1 minus_1" value="" >
+            						<c:if test="${sessionScope.id eq null }">
+            							<input type="text" name="res_adult" id="ad_valcon" class="input_1" value="${resno.no_ad_val }">
+            						</c:if>
+            						<c:if test="${sessionScope.id ne null }">
             						<input type="text" name="res_adult" id="ad_valcon" class="input_1" value="${resdto.ad_val }">
+            						</c:if>
             						<input type="button" name="plus_adcon" id="plus_adcon" class="btn_1 plus_1" value="" >
         					</div></div>
         					<div id="res_boxcon_ch"> 
         					<label for="boxcon2" id="lbl"> <span id="sp_t">아동</span> (만 12세 미만) </label>
         						<div class="many_boxcon" id="boxcon2">
             						<input type="button" name="minus_chcon" id="minus_chcon" class="btn_1 minus_1" value="" >
+            						<c:if test="${sessionScope.id eq null }">
+            							<input type="text" name="res_child" id="ch_valcon" class="input_1" value="${resno.no_ch_val }">
+            						</c:if>
+            						<c:if test="${sessionScope.id ne null }">
             						<input type="text" name="res_child" id="ch_valcon" class="input_1" value="${resdto.ch_val }">
+            						</c:if>
             						<input type="button" name="plus_chcon" id="plus_chcon" class="btn_1 plus_1" value="" >
        	 					</div></div>
+       	 						<input type="hidden" name="max_person" id="max_person" value="${prodvo.prod_max_person }">
+        						<input type="hidden" name="min_person" id="min_person" value="${prodvo.prod_min_person }">
+        						<input type="hidden" name="cur_person" id="cur_person" value="${prodvo.prod_cur_person }">
        	 					
         				</div>
                  	</div>
                  	<div class="infoCon_3">
                  		<div class="check_wrap">
+                 		    <c:if test="${sessionScope.id eq null }">
+            					<input type="text" name="user_id" id="user_id" class="input_3" value="${resno.no_name }" readonly>
+            				</c:if>
+            				<c:if test="${sessionScope.id ne null }">
 	                 		<input type="text" name="user_id" id="user_id" class="input_3" value="${memvo.name }" readonly>
+	                 		</c:if>
 	                 		<span>님도 여행에 참여 하십니까?</span>
   							<input type="checkbox" id="goCheck_btn"/>
   							<label for="goCheck_btn"><span>네, 참여합니다.</span></label>
@@ -453,7 +482,12 @@
                 </div>
                 <div id="btn_box">
                 	<input type="submit" name="reservation" id="reservation" class="btn_2" value="결제하기" onclick="return check()">
+                	<c:if test="${sessionScope.id eq null }">
+                		<input type="hidden" name="id" id="id" value="${resno.no_id }">
+                	</c:if>
+                	<c:if test="${sessionScope.id ne null }">
                 	<input type="hidden" name="id" id="id" value="${sessionScope.id }">
+					</c:if>
 					<input type="hidden" name="prod_no" id="prod_no" value="${prodvo.prod_no }">
 					<input type="hidden" name="res_third" id="res_third" value="0">
 					<input type="hidden" name="res_price" id="res_price" value="${prodvo.prod_price_adult }">
@@ -531,23 +565,37 @@
 	const res_price = document.querySelector("#res_price");
 	const res_third = document.querySelector("#res_third");
 	
+	const max_person = document.querySelector("#max_person");
+	const min_person = document.querySelector("#min_person");
+	const cur_person = document.querySelector("#cur_person");
+	
 	ad_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
-    total_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)));
-  
+	ch_sum.value = format((parseInt(detail_ch2.value))*(won(detail_ch1.value)));
+    total_sum.value = format((parseInt(detail_ad2.value))*(won(detail_ad1.value)) + (parseInt(detail_ch2.value))*(won(detail_ch1.value)));
+    show_ch();
+    function show_ch(){
+    	let pre_Cval1 = parseInt(detail_ch2.value);  // 현재 아동 인원수
+    	if(pre_Cval1 > 0){
+	    	many_ch.style.display="block";
+    	}
+    }
 	function ad_pluscon(){
 		let ad_price1 = won(detail_ad1.value); // 현재 성인 가격
 		let pre_Aval1 = parseInt(detail_ad2.value);  // 현재 성인 인원수
 		let ch_price1 = won(detail_ch1.value); // 현재 아동 가격
 		let pre_Cval1 = parseInt(detail_ch2.value);  // 현재 아동 인원수
+		
+		let limit_ad = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ch_valcon.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
 	
-		if(detail_ad2.value < 5){
+		if(detail_ad2.value < limit_ad){
 			detail_ad2.value = pre_Aval1 + 1;
 			ad_valcon.value = pre_Aval1 + 1;
 			ad_sum.value = format((ad_price1)*(detail_ad2.value));
 			total_sum.value = format((ad_price1)*(detail_ad2.value)+(ch_price1)*(pre_Cval1));
 			res_price.value = parseInt((ad_price1)*(detail_ad2.value)+(ch_price1)*(pre_Cval1));
 			}else{
-				alert("최대5명까지 가능합니다.");
+				alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
 			}
 		}
 	function ad_minuscon(){
@@ -571,13 +619,16 @@
 		let pre_Cval3 = parseInt(detail_ch2.value);
 		let ch_price3 = won(detail_ch1.value);
 		
-   	    if((e.target.value >= 1 && e.target.value <= 5) || e.target.value === ""){
+		let limit_ad = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ch_valcon.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
+		
+   	    if((e.target.value >= 1 && e.target.value <= limit_ad) || e.target.value === ""){
    	    	detail_ad2.value = e.target.value;
    	    	ad_sum.value = format((ad_price3)*(e.target.value));
    	    	total_sum.value = format((e.target.value)*(ad_price3)+(ch_price3)*(pre_Cval3));
    	    	res_price.value = parseInt((e.target.value)*(ad_price3)+(ch_price3)*(pre_Cval3));
    	    }else{
-   	        alert("1명이상 5명이하로 예약 가능합니다.");
+   	    	alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
    	    }
 	}
 	function ch_pluscon(){
@@ -586,15 +637,18 @@
 		let pre_Cval4 = parseInt(detail_ch2.value);  // 현재 아동 인원수
 		let ch_price4 = won(detail_ch1.value); // 현재 아동 가격
 		many_ch.style.display="block";
+		
+		let limit_ch = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ad_valcon.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
 
-   	    if(detail_ch2.value < 4){
+   	    if(detail_ch2.value < limit_ch){
    	    	detail_ch2.value = pre_Cval4 + 1;
 			ch_valcon.value = pre_Cval4 + 1;
 			ch_sum.value = format((ch_price4)*(detail_ch2.value));
    	     	total_sum.value = format((ch_price4)*(detail_ch2.value)+(ad_price4)*(pre_Aval4));
    	     	res_price.value = parseInt((ch_price4)*(detail_ch2.value)+(ad_price4)*(pre_Aval4));
    	    }else{
-   	        alert("최대4명까지 가능합니다.");
+   	    	alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
    	    }
 	}
 	function ch_minuscon(){
@@ -621,22 +675,30 @@
 		let ad_price6 = won(detail_ad1.value);
 		let ch_price6 = won(detail_ch1.value);
 		
-   	    if((e.target.value >= 0 && e.target.value <= 4) || e.target.value === ""){
+		let limit_ch = parseInt(max_person.value) - parseInt(cur_person.value) - parseInt(ad_valcon.value);
+		let limit_person = parseInt(max_person.value) - parseInt(cur_person.value);
+		
+   	    if((e.target.value >= 0 && e.target.value <= limit_ch) || e.target.value === ""){
    	    	detail_ch2.value = e.target.value;
    	    	ch_sum.value = format((ch_price5)*(detail_ch2.value));
    	    	total_sum.value = format((e.target.value)*(ch_price6)+(ad_price6)*(pre_Aval6));
    	    	res_price.value = parseInt((e.target.value)*(ch_price6)+(ad_price6)*(pre_Aval6));
    	    }else{
-   	        alert("4명이하로 예약 가능합니다.");
+   	    	alert("현재 예약 가능한 최대 인원은 (성인+아동) "+ limit_person + "명 입니다.");
    	    }
 	}
 	function btn_goCheck(){
 		let is_checked = goCheck_btn.checked;
 		if(is_checked){
-			k_name.value = "${memvo.name}";
-			birth.value = "${memvo.birth}";
-			phone.value = "${memvo.tel}";
-			e_mail.value = "${memvo.email}";
+			if(${sessionScope.id != null}){
+				k_name.value = "${memvo.name}";
+				birth.value = "${memvo.birth}";
+				phone.value = "${memvo.tel}";
+				e_mail.value = "${memvo.email}";			
+			}else{
+				k_name.value = "${resno.no_name}";
+				phone.value = "${resno.no_tel}";
+			}
 		}else{
 			k_name.value ="";
 			birth.value = "";
