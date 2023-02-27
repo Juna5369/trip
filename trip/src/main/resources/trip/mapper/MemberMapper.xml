@@ -3,96 +3,71 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.trip.mapper.IMemberMapper">
-
 	<insert id="insertMember">
-		INSERT INTO member_tbl
-		(id,pw,name,birth,gender,tel,email,email_check,address,address_detail,postalcode)
-		VALUES(#{id},#{pw},#{name},#{birth},#{gender},#{tel},#{email},#{email_check},#{address},#{address_detail},#{postalcode})
-	</insert>
-	
-	<select id="idOverCheck" resultType="_int">
-		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid}
-	</select>
-	
-	<select id="login" resultType="_int">
-		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid} AND pw=#{mpw}
-	</select>
-	
-	<select id="findId" resultType="String">
-		SELECT id FROM member_tbl WHERE name=#{fname} AND tel=#{ftel}
-	</select>
-	
-	<select id="findPw" resultType="String">
-		SELECT pw FROM member_tbl WHERE
-		id=#{param1} AND email=#{param2}
-	</select>
-	
-	<select id="selectOne" resultType="membervo">
-		SELECT * FROM member_tbl WHERE id=#{selId}
-	</select>
-	
-	<update id="updateMember">
-		UPDATE member_tbl SET pw=#{pw} , name=#{name} ,
-		birth=#{birth},email=#{email},email_check=#{email_check},
-		address=#{address} ,address_detail=#{address_detail},
-		postalcode=#{postalcode} WHERE id=#{id}
-	</update>
-	
-	<delete id="deleteMember">
-		DELETE FROM member_tbl WHERE id=#{delId}
-	</delete>
-	
-	<select id="getReservation" resultType="reservo">
-		SELECT * FROM reservation_tbl WHERE id=#{reserId} ORDER BY res_no DESC
-	</select>
-	
-	<select id="show_reservation" resultType="reservo">
-		SELECT * FROM reservation_tbl
-	</select>
-	
-	<select id="getQnA" resultType="qnavo">
-		SELECT * FROM qna_tbl WHERE id=#{qid} ORDER BY qna_no DESC
-	</select>
-	
-	<select id="getQnAList" resultType="qnavo">
-		SELECT * FROM qna_tbl 
-	</select>
-	
-	<select id="getLike" resultType="com.project.trip.vo.LikeVO">
-		SELECT * FROM like_tbl WHERE id=#{lid} ORDER BY like_no DESC
-	</select>
-	
-	<select id="getProduct" resultType="com.project.trip.vo.ProductVO">
-		SELECT * FROM product_tbl WHERE prod_no=#{prod_no}
-	</select>
-	
-	<select id="getReview" resultType="reviewvo">
-		SELECT * FROM review_tbl WHERE id = #{reviewId} ORDER BY rev_no DESC
-	</select>
-	
-		<select id="getReviewAll" resultType="reviewvo">
-		SELECT * FROM review_tbl
-	</select>
-	
-	<select id="getOrder" resultType="ordervo">
+  		INSERT INTO member_tbl (id,pw,name,birth,gender,tel,email,email_check,address,address_detail,postalcode)
+  		VALUES(#{id},#{pw},#{name},#{birth},#{gender},#{tel},#{email},#{email_check},#{address},#{address_detail},#{postalcode})
+  	</insert>
+  	<select id="idOverCheck" resultType="_int">
+  		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid}
+  	</select>
+  	<select id="login" resultType="_int">
+  		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid} AND pw=#{mpw}
+  	</select>
+  	<select id="findId" resultType="String">
+  		SELECT id FROM member_tbl WHERE name=#{fname} AND tel=#{ftel}
+  	</select>
+  	<select id="findPw" resultType="String">
+		SELECT pw FROM member_tbl WHERE id=#{param1} AND email=#{param2} 	
+  	</select>
+  	<select id="selectOne" resultType="membervo">
+  		SELECT * FROM member_tbl WHERE id=#{selId}
+  	</select>
+  	<update id="updateMember">
+  		UPDATE member_tbl SET pw=#{pw} , name=#{name} , birth=#{birth},email=#{email},email_check=#{email_check}, address=#{address} ,address_detail=#{address_detail},
+  		postalcode=#{postalcode} WHERE id=#{id}
+  	</update>
+  	<delete id="deleteMember">
+		DELETE FROM member_tbl WHERE id=#{delId}  	
+  	</delete>
+  	<select id="getReservation" resultType="reservo">
+  		SELECT * FROM reservation_tbl WHERE id=#{reserId}
+  	</select>
+  	<select id="getQnA" resultType="qnavo">
+  		SELECT * FROM qna_tbl WHERE id=#{qid}
+  	</select>
+  	<select id="getLike" resultType="com.project.trip.vo.LikeVO">
+  		SELECT * FROM like_tbl WHERE id=#{lid}
+  	</select>
+  	<select id="getProduct" resultType="com.project.trip.vo.ProductVO">
+  		SELECT * FROM product_tbl WHERE prod_no=#{prod_no}
+  	</select>
+  	<select id="getReview" resultType="reviewvo">
+  		SELECT * FROM review_tbl WHERE id=#{reviewId};
+  	</select>
+  	<select id="getOrder" resultType="ordervo">
 		SELECT * FROM order_tbl WHERE id=#{orderid}
-	</select>
-	
-	<select id="getProductByName" resultType="productvo">
-		SELECT * FROM product_tbl WHERE prod_name=#{prod_name}
-	</select>
-	
-	<select id="getOrderOne"
-		resultType="String">
-		SELECT order_no FROM order_tbl WHERE id=#{order_id} AND prod_no=#{order_prod}
-	</select>
-	
-	<select id="getPay" resultType="payvo">
-		SELECT * FROM pay_tbl WHERE order_no=#{order_no}
-	</select>
-	
-	<insert id="regReview">
-		INSERT INTO review_tbl (rev_no,prod_no,id,pay_no,rev_date,rev_contents,rev_img,rev_rating) VALUES(#{rev_no},#{prod_no},#{id},#{pay_no},#{rev_date},#{rev_contents},#{rev_img},#{rev_rating})
-	</insert>
-	
+  	</select>
+  	<select id="getProductByName" resultType="productvo">
+  		SELECT * FROM product_tbl WHERE prod_name =#{prod_name}
+  	
+  	</select>
+  	<select id="getOrderOne" resultType="String">
+		SELECT order_no FROM order_tbl WHERE id=#{order_id} AND prod_no =#{order_prod};
+  	</select>
+  	<select id="getPay" resultType="payvo">
+  		SELECT * FROM pay_tbl WHERE order_no =#{order_no}
+  	</select>
+  	<insert id="regReview">
+  		INSERT INTO review_tbl (prod_no,id,pay_no,rev_title,rev_type,rev_date,rev_contents,rev_img,rev_rating)
+  				VALUES(#{prod_no},#{id},#{pay_no},#{rev_title},#{rev_type},#{rev_date},#{rev_contents},#{rev_img},#{rev_rating})
+  	</insert>
+  	<select id="getQnAList" resultType="qnavo">
+  		SELECT * FROM qna_tbl 
+  	</select>
+  	<select id="getReviewAll" resultType="reviewvo">
+  		SELECT * FROM review_tbl
+  	</select>
+  	<select id="show_reservation" resultType="reservo">
+  		SELECT * FROM reservation_tbl
+  	</select>
 </mapper>

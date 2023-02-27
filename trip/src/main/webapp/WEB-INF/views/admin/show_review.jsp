@@ -53,7 +53,7 @@
 						<td>${review.pay_no }</td>
 						<td>${review.rev_title }</td>
 						<td>${review.rev_type }</td>
-						<td>${review.rev_img }</td>
+						<td><img src="../img/${review.rev_img }"></td>
 						<td>${review.rev_rating }</td>
 						<td>${review.rev_date }</td>
 

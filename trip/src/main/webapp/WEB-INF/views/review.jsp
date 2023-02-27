@@ -21,13 +21,23 @@
 				<input type="hidden" name="id" value="${sessionScope.id }">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" class="title"></td>
+					<td><input type="text" name="rev_title" class="title"></td>
 				</tr>
 				<tr>
 					<td>이름</td>
 					<td><span>${mv.name }</span></td>
 				</tr>
 				<tr>
+					<td>여행타입</td>
+					<td><select class="select" name="rev_type">
+						<option>홀로여행</option>
+						<option>가족여행</option>
+					
+					</select></td>
+				</tr>
+				<tr>
+				
+				
 					<td>여행상품선택</td>
 
 					<td><select class="select" name="prod_name">
