@@ -28,8 +28,8 @@ public class ProductController {
 	IBoardMapper b_mapper;
 	
 	@GetMapping("/list")
-	public String japanList(Model model) {
-		List<ProductVO> list = mapper.getList();
+	public String japanList(@RequestParam("prod_category")String prod_category,Model model) {
+		List<ProductVO> list = mapper.getList(prod_category);
 		model.addAttribute("list", list);
 	return "prod_list/japan_hongkong";
 	}

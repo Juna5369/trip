@@ -173,7 +173,7 @@ aside{ /* 오른쪽 스티키 */
     float: right;
     width: 380px;
     height: 670px;
-    z-index:90;
+    z-index:40;
 }
 
 #travel_main_info{ /* 왼쪽 */
