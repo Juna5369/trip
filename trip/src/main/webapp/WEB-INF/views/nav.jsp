@@ -32,7 +32,7 @@
 			</div> 
 			<ul class="nav_list">
 				<!-- 해외/테마/국내 nav_list  -->
-				<li><a href="#">해외</a>
+				<li><a href="list2?prod_category=seasia">해외</a>
 					<div class="dropdown_nav">
 						<!-- 해외 part dropdown-->
 						<ul class="nav_sub1">
