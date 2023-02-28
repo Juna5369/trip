@@ -11,7 +11,7 @@
   		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid}
   	</select>
   	<select id="login" resultType="_int">
-  		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid} AND pw=#{mpw} AND authority = 'm'
+  		SELECT COUNT(*) FROM member_tbl WHERE id=#{mid} AND pw=#{mpw} AND authority = 'm' OR authority ='a'
   	</select>
   	<select id="findId" resultType="String">
   		SELECT id FROM member_tbl WHERE name=#{fname} AND tel=#{ftel}
