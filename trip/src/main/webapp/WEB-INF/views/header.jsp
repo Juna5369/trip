@@ -18,7 +18,7 @@
 						<li><a href="logout.do">로그아웃</a></li>
 						<li>|</li> 
 						<li style="font-size:13px;padding-top:3px;">${sessionScope.name }님 환영합니다</li>
-						<c:if test="${sessionScope.authority == 'g'  }">
+						<c:if test="${sessionScope.authority == 'a'  }">
 							<li style="position:relative; right: 875px;"><a href="admin">관리자페이지</a></li>					
 						</c:if>
 					</ul>
