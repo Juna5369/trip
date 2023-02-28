@@ -21,5 +21,10 @@
 	<select id="non_idCheck" resultType="int">
   		SELECT COUNT(*) FROM member_tbl WHERE id=#{id} AND authority = 'g'
   	</select>
+  	
+  	<insert id="non_insertMember">
+  		INSERT INTO member_tbl (id,pw,name,birth,gender,tel,email,email_check,address,address_detail,postalcode,authority)
+  		VALUES(#{id},#{pw},#{name},#{birth},#{gender},#{tel},#{email},#{email_check},#{address},#{address_detail},#{postalcode},#{authority})
+  	</insert>
 
 </mapper>

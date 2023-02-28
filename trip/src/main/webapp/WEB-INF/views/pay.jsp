@@ -39,6 +39,7 @@
 			<button type="button" id="btn-kakao-pay"><span>${reser.res_price }</span>원 결제하기
 			</button>
 			<input type="hidden" id="prod_no" value="${reser.prod_no }">
+			<input type="hidden" id="res_id" value="${reser.id }">
 		</div>
 	</section>
 	<%@ include file="footer.jsp"%>
@@ -51,6 +52,7 @@
 
 		let prod_no = $("#prod_no").val();
 		let totalPrice = $("#price").val();
+		let res_id = $("#res_id").val();
 		
 		// 카카오페이 결제전송
 		$.ajax({
@@ -58,7 +60,8 @@
 			url:'/payment/ready',
 			data:{
 				prod_no: prod_no,
-				res_price: totalPrice
+				res_price: totalPrice,
+				id : res_id
 			},
 			success:function(response){
 				location.href = response.next_redirect_pc_url

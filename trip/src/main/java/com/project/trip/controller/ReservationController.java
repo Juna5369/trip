@@ -58,7 +58,8 @@ public class ReservationController {
 			no_mem.setName(resno.getNo_name());
 			no_mem.setTel(resno.getNo_tel());
 			no_mem.setAuthority("g");
-			mem_mapper.insertMember(no_mem);
+//			mem_mapper.insertMember(no_mem);
+			res_mapper.non_insertMember(no_mem);
 			model.addAttribute("resno",resno);
 			model.addAttribute("prodvo",prodvo);
 		}else if(resno.getNo_prod_no() == 0) {

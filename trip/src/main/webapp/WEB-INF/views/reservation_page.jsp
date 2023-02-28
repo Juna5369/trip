@@ -18,7 +18,7 @@
 
                 <div id="travel_rool">
                     <!-- 국룰 범위(배경색 회색) -->
-                       <p>■출발확정■[가볍게힐링_큐슈 온천 3일] 후쿠오카/아소/유후인/벳부 (힐튼+온천호텔)</p>
+                       <p>${prodvo.prod_name }</p>
                 </div>
 				<div id="reser_product">
                 	<div id="reser_con">
