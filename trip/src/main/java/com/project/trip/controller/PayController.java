@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.trip.mapper.IReservationMapper;
 import com.project.trip.mapper.OrderMapper;
 import com.project.trip.mapper.PayMapper;
 import com.project.trip.mapper.ProductMapper;
@@ -37,6 +38,9 @@ public class PayController {
 	
 	@Autowired
 	ProductMapper prmapper;
+	
+	@Autowired
+	IReservationMapper res_mapper;
 	/**
 	 * 결제요청
 	 */
@@ -44,17 +48,15 @@ public class PayController {
 	public @ResponseBody KakaoReadyResponse readyToKakaoPay(ReserVO res, HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		res.setId(id);
-		
-		String order_no = id+"-"+res.getProd_no();
+		session.setAttribute("id", res.getId());
+		String order_no = res.getId()+"-"+res.getProd_no();
 		session.setAttribute("order_no", order_no);
 		String strPrice = Integer.toString(res.getRes_price());
 		session.setAttribute("price", strPrice);
 		
 		OrderVO order = new OrderVO();
 		order.setProd_no(res.getProd_no());
-		order.setId(id);
+		order.setId(res.getId());
 		order.setOrder_no(order_no);
 		
 		mapper.insertOrder(order);
@@ -71,6 +73,7 @@ public class PayController {
 		HttpSession session = request.getSession();
 		String order_no = (String)session.getAttribute("order_no");
 		int pay_price = Integer.parseInt((String)session.getAttribute("price"));
+		String se_id = (String)session.getAttribute("id");
 		
 	    KakaoApproveResponse kakaoApprove = kakaoPayService.approveResponse(pgToken, order_no);
 	    
@@ -83,6 +86,10 @@ public class PayController {
 	    
 	    session.removeAttribute("order_no");
 	    session.removeAttribute("price");
+	    if(res_mapper.non_idCheck(se_id) == 1) {
+	    	System.out.println(res_mapper.non_idCheck(se_id));
+	    	session.removeAttribute("id");
+	    }
 	    
 	    String[] order_no_str = order_no.split("-");
     	String prod_no_str = order_no_str[1];
