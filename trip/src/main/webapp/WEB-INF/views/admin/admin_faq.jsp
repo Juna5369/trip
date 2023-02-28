@@ -35,6 +35,10 @@
 	<%@ include file="../footer.jsp"%>
 	<script src="js/cuc.js"></script>
 	<script>
+	
+		$(".a_l_btn").click(function(){
+			location.href="writeFAQForm";
+		});
 
 		$(document).on("click", ".s_btn_mini", function(e){
 			

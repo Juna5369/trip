@@ -59,7 +59,7 @@
 			},
 			success: function() {
 				alert('등록 완료');
-				location.href="admin";
+				location.href="adminFAQ";
 			}
 			
 		});

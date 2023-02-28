@@ -38,7 +38,7 @@ a {
 	font-size: 16px;
 	border-top: 1px solid #ccc;
 }
-.lnb > ul >li:nth-child(1){
+.lnb > ul > li:nth-child(1){
 	border-top: transparent;
 }
 .middle_title{
@@ -392,6 +392,7 @@ a {
 	border: 1px solid #ccc;
 	background-color: white;	
 	font-size: 18px;
+	cursor: pointer;
 }
 .a_l_btn {
 	width: 150px;
@@ -402,6 +403,8 @@ a {
 	background-color: white;	
 	font-size: 18px;
 	float: right;
+	color: #e82835;
+	cursor: pointer;
 }
 .s_btn {
 	width: 150px;
@@ -412,6 +415,7 @@ a {
 	background-color: #e82835;	
 	font-size: 18px;
 	color: white;
+	cursor: pointer;
 }
 .d_btn {
 	width: 150px;
@@ -422,6 +426,7 @@ a {
 	background-color: #e82835;	
 	font-size: 18px;
 	color: white;
+	cursor: pointer;
 }
 .s_btn_mini {
 	width: 70px;
@@ -432,6 +437,7 @@ a {
 	background-color: #e82835;	
 	font-size: 16px;
 	color: white;
+	cursor: pointer;
 }
 .d_btn_mini {
 	width: 70px;
@@ -442,6 +448,7 @@ a {
 	background-color: #e82835;	
 	font-size: 16px;
 	color: white;
+	cursor: pointer;
 }
 
 /* qna Page */
@@ -530,6 +537,7 @@ td {
 	font-weight: bold;
 	font-size: 16px;
 	margin-right: 5px;
+	cursor: pointer;
 }
 .btn_s {
 	width: 150px;
@@ -539,6 +547,7 @@ td {
 	color: white;
 	font-weight: bold;
 	font-size: 16px;
+	cursor: pointer;
 }
 #rs {
 	width: 880px;
@@ -557,7 +566,10 @@ td {
 	text-align: right;
 	font-size: 15px;
 }
-.a_l_btn {
-	color: #e82835;
+
+.notice_tbl > tbody > tr{
 	cursor: pointer;
+}
+.notice_tbl > tbody > tr:last-child{
+	cursor: default;
 }
