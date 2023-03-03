@@ -40,7 +40,7 @@ public class IMemberController {
 		}
 		mapper.insertMember(mv);
 
-		return "redirect:/";
+		return "redirect:complete";
 	}
 
 	@GetMapping("/idOverCheck")
@@ -65,7 +65,9 @@ public class IMemberController {
 
 	@PostMapping("login.do")
 	public @ResponseBody String loginCheck(String id, String pw, HttpServletRequest request,Model model) {
+		System.out.println("id:"+id +"pw:" +pw);
 		int result = mapper.login(id, pw);
+		System.out.println("result:" +result);
 		HttpSession session = request.getSession();
 		String out = "";
 		if (result == 1) {
@@ -165,6 +167,10 @@ public class IMemberController {
 		model.addAttribute("list",list);
 		
 		return"admin/show_review";
+	}
+	@GetMapping("/complete")
+	public void complete() {
+		
 	}
 	
 }
