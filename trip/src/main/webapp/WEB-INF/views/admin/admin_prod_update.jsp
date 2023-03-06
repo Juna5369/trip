@@ -110,57 +110,69 @@
 								<tr>
 									<th>카테고리</th><td><select id="prod_category" name="prod_category">
 									<c:if test="${post.prod_category eq 'japan' }">
-									 <option value="japan">일본/몽골/홍콩</option>
-									 <option value="seasia">동남아/대만/아시아</option>
-									 <option value="eu">유럽/아프리카/중동</option>
-									 <option value="au">사이판/호주/뉴질랜드</option>
-									 <option value="usa">하와이/미주/캐나다</option>
-									 <option value="kr">부산/지방출발</option>
+										<option value="japan">일본/몽골/홍콩</option>
+										<option value="seasia">동남아/대만/아시아</option>
+										<option value="eu">유럽/아프리카/중동</option>
+										<option value="au">사이판/호주/뉴질랜드</option>
+										<option value="usa">하와이/미주/캐나다</option>
+										<option value="kr">부산/지방출발</option>
 									</c:if>
 									
 									<c:if test="${post.prod_category eq 'seasia' }">
-									 <option value="seasia">동남아/대만/아시아</option>
-									 <option value="japan">일본/몽골/홍콩</option>
-									 <option value="eu">유럽/아프리카/중동</option>
-									 <option value="au">사이판/호주/뉴질랜드</option>
-									 <option value="usa">하와이/미주/캐나다</option>
-									 <option value="kr">부산/지방출발</option>
+										<option value="seasia">동남아/대만/아시아</option>
+										<option value="japan">일본/몽골/홍콩</option>
+										<option value="eu">유럽/아프리카/중동</option>
+										<option value="au">사이판/호주/뉴질랜드</option>
+										<option value="usa">하와이/미주/캐나다</option>
+										<option value="kr">부산/지방출발</option>
 									</c:if>
 									<c:if test="${post.prod_category eq 'eu' }">
-									 <option value="eu">유럽/아프리카/중동</option>
-									 <option value="seasia">동남아/대만/아시아</option>
-									 <option value="japan">일본/몽골/홍콩</option>
-									 <option value="au">사이판/호주/뉴질랜드</option>
-									 <option value="usa">하와이/미주/캐나다</option>
-									 <option value="kr">부산/지방출발</option>
+										<option value="eu">유럽/아프리카/중동</option>
+										<option value="seasia">동남아/대만/아시아</option>
+										<option value="japan">일본/몽골/홍콩</option>
+										<option value="au">사이판/호주/뉴질랜드</option>
+										<option value="usa">하와이/미주/캐나다</option>
+										<option value="kr">부산/지방출발</option>
 									</c:if>
 									<c:if test="${post.prod_category eq 'au' }">
-									 <option value="au">사이판/호주/뉴질랜드</option>
-									 <option value="seasia">동남아/대만/아시아</option>
-									 <option value="japan">일본/몽골/홍콩</option>
-									 <option value="eu">유럽/아프리카/중동</option>
-									 <option value="usa">하와이/미주/캐나다</option>
-									 <option value="kr">부산/지방출발</option>
+										<option value="au">사이판/호주/뉴질랜드</option>
+										<option value="seasia">동남아/대만/아시아</option>
+										<option value="japan">일본/몽골/홍콩</option>
+										<option value="eu">유럽/아프리카/중동</option>
+										<option value="usa">하와이/미주/캐나다</option>
+										<option value="kr">부산/지방출발</option>
 									</c:if>
 									<c:if test="${post.prod_category eq 'usa' }">
-									 <option value="usa">하와이/미주/캐나다</option>
-									 <option value="seasia">동남아/대만/아시아</option>
-									 <option value="japan">일본/몽골/홍콩</option>
-									 <option value="eu">유럽/아프리카/중동</option>
-									 <option value="au">사이판/호주/뉴질랜드</option>
-									 <option value="kr">부산/지방출발</option>
+										<option value="usa">하와이/미주/캐나다</option>
+										<option value="seasia">동남아/대만/아시아</option>
+										<option value="japan">일본/몽골/홍콩</option>
+										<option value="eu">유럽/아프리카/중동</option>
+										<option value="au">사이판/호주/뉴질랜드</option>
+										<option value="kr">부산/지방출발</option>
 									</c:if>
 									<c:if test="${post.prod_category eq 'kr' }">
-									 <option value="kr">부산/지방출발</option>
-									 <option value="usa">하와이/미주/캐나다</option>
-									 <option value="seasia">동남아/대만/아시아</option>
-									 <option value="japan">일본/몽골/홍콩</option>
-									 <option value="eu">유럽/아프리카/중동</option>
-									 <option value="au">사이판/호주/뉴질랜드</option>
+										<option value="kr">부산/지방출발</option>
+										<option value="usa">하와이/미주/캐나다</option>
+										<option value="seasia">동남아/대만/아시아</option>
+										<option value="japan">일본/몽골/홍콩</option>
+										<option value="eu">유럽/아프리카/중동</option>
+										<option value="au">사이판/호주/뉴질랜드</option>
 									</c:if>
 									
 									</select>
 									 </td>
+								</tr>
+								<tr>
+									<th>Weekly 상품</th>
+									<td>
+										<select id="prod_weekly" name="prod_weekly">
+											<option value="">미선택</option>
+											<option value="1">1번</option>
+											<option value="2">2번</option>
+											<option value="3">3번</option>
+											<option value="4">4번</option>
+										 </select>
+									</td>
 								</tr>
 							</table>
 						</div>

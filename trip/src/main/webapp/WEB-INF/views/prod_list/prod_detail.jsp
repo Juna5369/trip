@@ -223,14 +223,14 @@
                         <br>
                         <h3>여행 주요 일정</h3>
                         <br>
-                        <em>3박 5일 진에어</em>
+                        <em> ${vo.prod_plane }</em>
                         
                         <p>출발 : <fmt:formatDate value="${start }" pattern="yyyy년 MM월 dd일"/> → 총 04시간 40분 소요</p>
                         
                         <p>도착 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/> → 04시간 25분 소요</p>
                         
                         <p>여행도시 : ${vo.prod_city }</p> 
-                        <p>예약현황 예약 : ${vo.prod_cur_person }명 좌석 : ${vo.prod_max_person }석 (최소출발 : 성인 ${vo.prod_min_person }명)</p> 
+                        <p>예약현황 예약 : ${vo.prod_cur_person }명<br> 좌석 : ${vo.prod_max_person }석 (최소출발 : 성인 ${vo.prod_min_person }명)</p> 
                     </div>
                     <div id="travel_price_detail">
                         <br>
@@ -247,7 +247,7 @@
                             <tbody>
 
                                 <td style="border-left: 0px solid white; text-align: center;">기본상품</td><td style="text-align: center;"><em id="product_price">${vo.prod_price_adult}</em>원<br>
-                                    유류할증료 104,600원 포함(db)</td>
+                                    유류할증료 104,600원 포함</td>
                                 <td style="text-align: center;"><em id="product_price">${vo.prod_price_child}</em>원<br>
 
                                     유류할증료 104,600원 포함</td>
@@ -296,15 +296,7 @@
                             <!-- (아래부터 대충 소개 내용입니다) -->
                             <h4>상품 핵심 포인트</h4>
                             <br>
-                            <ul>
-                                <li>① 편리하고 안전한 진에어 이용</li>
-                                <li>② 막탄섬 핵심 관광</li>
-                                <li>③ 과일 시장 방문</li>
-                                <li>④ 전문가와 함께 수영장 다이빙 강습</li>
-                                <li>⑤ 여행의 묘미 전신마사지 1시간</li>
-                                <li>⑥ 맛있는 특식 3회</li>
-                                <li>⑦ 비교필수! 거품없는 합리적 가격의 선택관광</li>
-                            </ul>
+								${vo.prod_main_point }
                             <br>
                             <h4>거긴어때와 함께, 즐거운 안심여행 "SAFETY&JOY"</h4>
                             <br>

@@ -16,7 +16,7 @@
   		SELECT * FROM notice_tbl WHERE not_no = #{not_no}
   	</select>
   
-    	<insert id="insertProd">
+    <insert id="insertProd">
   		INSERT INTO product_tbl (prod_name, prod_price_adult, prod_price_child, 
   		prod_hash, prod_city, prod_img, prod_detail, prod_theme, prod_max_person, prod_min_person, 
   		prod_cur_person, prod_start_date, prod_end_date, prod_hotel, prod_plane, prod_category) 
@@ -27,20 +27,28 @@
   	</insert>
   	
   	<select id="getAdminProductList" resultType="com.project.trip.vo.ProductVO">
-	SELECT * FROM product_tbl ORDER BY prod_no DESC
+		SELECT * FROM product_tbl ORDER BY prod_no DESC
 	</select>
+	
   	<select id="getProductOne" resultType="com.project.trip.vo.ProductVO">
   		SELECT * FROM product_tbl WHERE prod_no = #{prod_no}
   	</select>
+  	
   	<update id="updateProd">
-  		UPDATE product_tbl SET prod_name=#{prod_name}, prod_price_adult=#{prod_price_adult}, 
-  		prod_price_child=#{prod_price_child}, prod_hash=#{prod_hash}, prod_city=#{prod_city},
-  		 prod_img=#{prod_img}, prod_detail=#{prod_detail}, prod_theme=#{prod_theme},prod_max_person=#{prod_max_person},
-  		 prod_min_person=#{prod_min_person}, prod_cur_person=#{prod_cur_person}, prod_start_date=#{prod_start_date},
-  		 prod_end_date=#{prod_end_date}, prod_hotel=#{prod_hotel}, prod_plane=#{prod_plane}, prod_category=#{prod_category}
-  		 WHERE prod_no=#{prod_no}
+		UPDATE product_tbl SET prod_name=#{prod_name}, prod_price_adult=#{prod_price_adult}, 
+		prod_price_child=#{prod_price_child}, prod_hash=#{prod_hash}, prod_city=#{prod_city},
+		prod_img=#{prod_img}, prod_detail=#{prod_detail}, prod_theme=#{prod_theme},prod_max_person=#{prod_max_person},
+		prod_min_person=#{prod_min_person}, prod_cur_person=#{prod_cur_person}, prod_start_date=#{prod_start_date},
+		prod_end_date=#{prod_end_date}, prod_hotel=#{prod_hotel}, prod_plane=#{prod_plane}, prod_category=#{prod_category}
+		WHERE prod_no=#{prod_no}
   	</update>
+  	
   	<delete id="deleteProd">
-  	DELETE FROM product_tbl WHERE prod_no=#{prod_no}
+  		DELETE FROM product_tbl WHERE prod_no=#{prod_no}
   	</delete>
+  	
+  	 <select id="getWeeklyList" resultType="com.project.trip.vo.ProductVO">
+		SELECT * FROM product_tbl WHERE prod_weekly AND prod_category='eu' ORDER BY prod_no ASC
+	</select>
+	
   </mapper>

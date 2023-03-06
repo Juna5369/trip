@@ -141,151 +141,74 @@
                             </div>
                             <div id="bottom_event1_ul_wrap">
                                 <ul>
-                                 <c:forEach var="data" items="${list }" varStatus="status" begin="12" end="12">
-                                    <li style=" list-style: none;">
-                                     <a href="/prod_detail?no=${data.prod_no }">
-                                        <img src="../img/${data.prod_img }" style="width:300px;"><br>
-                                        <div id="bottom_event_text">
-                                            <span style="text-align:none;">
-                                                <hr>
-                                                <br>
-                                                <span style="font-size: 12px;">
-                                                    ${data.prod_hash }<br>
-                                                </span>
-                                                <br>
-                                                ${data.prod_name }<br>
-                                            </span>
-                                            <span class="price">
-                                                ${data.prod_price_adult }
-                                            </span>
-                                            원
-                                        </div>          
-                                        </a>
-                                    </li>
+									<c:forEach var="data" items="${list }" varStatus="status">
+	                      				<c:if test="${data.prod_weekly == 1 and data.prod_theme eq 'golf' }">
+				                                <li>
+				                                    <div class="weekly_theme_img">
+				                                    	<a href="/prod_detail?no=${data.prod_no }">
+				                                        	<img src="../img/${data.prod_img }">
+				                                        </a>
+				                                    </div>
+				                                    <div class="weekly_theme_info">
+				                                        <span>${data.prod_detail }</span>
+				                                    </div>
+				                                    <div class="weekly_theme_info2">
+				                                        <p>최고의 가성비!</p>
+				                                    </div>
+				                                </li>
+		                      			</c:if>
                                     </c:forEach>
-                                </ul>
-                            </div>
-                            <div id="bottom_event2_ul_wrap">
-                                <ul>
-                                <c:forEach var="data" items="${list }" varStatus="status" begin="13" end="13">
-                                    <li style=" list-style: none;">
-                                     <a href="/prod_detail?no=${data.prod_no }">
-                                        <img src="../img/${data.prod_img }" style="width:300px;"><br>
-                                        <div id="bottom_event_text">
-                                            <span style="text-align:none;">
-                                                <hr>
-                                                <br>
-                                                <span style="font-size: 12px;">
-                                                    ${data.prod_hash }<br>
-                                                </span>
-                                                <br>
-                                                ${data.prod_name }<br>
-                                            </span>
-                                            <span class="price">
-                                                ${data.prod_price_adult }
-                                            </span>
-                                            원
-                                        </div>     
-                                        </a>     
-                                    </li>
+    								<c:forEach var="data" items="${list }" varStatus="status">
+	                      				<c:if test="${data.prod_weekly == 2 and data.prod_theme eq 'golf' }">
+			                                <li>
+				                                    <div class="weekly_theme_img">
+				                                    	<a href="/prod_detail?no=${data.prod_no }">
+				                                        	<img src="../img/${data.prod_img }">
+				                                        </a>
+				                                    </div>
+				                                    <div class="weekly_theme_info">
+				                                        <span>${data.prod_detail }</span>
+				                                    </div>
+				                                    <div class="weekly_theme_info2">
+				                                        <p>낭만 넘치는 도시!</p>
+				                                    </div>
+			                                </li>
+	                      				</c:if>
                                     </c:forEach>
-                                </ul>
-                            </div>
-                            
-                            <div id="bottom_event3_ul_wrap">
-                                <ul>
-                                      <c:forEach var="data" items="${list }" varStatus="status" begin="14" end="14">
-                                    <li style=" list-style: none;">
-                                     <a href="/prod_detail?no=${data.prod_no }">
-                                        <img src="../img/${data.prod_img }" style="width:300px;"><br>
-                                        <div id="bottom_event_text">
-                                            <span style="text-align:none;">
-                                                <hr>
-                                                <br>
-                                                <span style="font-size: 12px;">
-                                                    ${data.prod_hash }<br>
-                                                </span>
-                                                <br>l
-                                                ${data.prod_name }<br>
-                                            </span>
-                                            <span class="price">
-                                                ${data.prod_price_adult }
-                                            </span>
-                                            원
-                                        </div>          
-                                        </a>
-                                    </li>
+    								<c:forEach var="data" items="${list }" varStatus="status">
+	                      				<c:if test="${data.prod_weekly == 3 and data.prod_theme eq 'golf' }">
+			                                <li>
+				                                    <div class="weekly_theme_img">
+				                                    	<a href="/prod_detail?no=${data.prod_no }">
+				                                        	<img src="../img/${data.prod_img }">
+				                                        </a>
+				                                    </div>
+				                                    <div class="weekly_theme_info">
+				                                        <span>${data.prod_detail }</span>
+				                                    </div>
+				                                    <div class="weekly_theme_info2">
+				                                        <p>최고의 아름다움!</p>
+				                                    </div>
+			                                </li>
+	                      				</c:if>
                                     </c:forEach>
-                            </div>
-                        </div>
-                        <div class="weekly_theme">
-                            <div class="weekly_theme_text">
-                                Weekly 추천 테마여행!
-                            </div>
-                            <ul>
-                                <li>
-                      				<c:forEach var="data" items="${list }" varStatus="status" begin="12" end="12">
-	                                    <div class="weekly_theme_img">
-	                                    	<a href="/prod_detail?no=${data.prod_no }">
-	                                        	<img src="../img/${data.prod_img }">
-	                                        </a>
-	                                    </div>
-	                                    <div class="weekly_theme_info">
-	                                        <span>${data.prod_detail }</span>
-	                                    </div>
-	                                    <div class="weekly_theme_info2">
-	                                        <p>최고의 가성비!</p>
-	                                    </div>
+    								<c:forEach var="data" items="${list }" varStatus="status">
+	                      				<c:if test="${data.prod_weekly == 4 and data.prod_theme eq 'golf' }">
+			                                <li>
+				                                    <div class="weekly_theme_img">
+				                                    	<a href="/prod_detail?no=${data.prod_no }">
+				                                        	<img src="../img/${data.prod_img }">
+				                                        </a>
+				                                    </div>
+				                                    <div class="weekly_theme_info">
+				                                        <span>${data.prod_detail }</span>
+				                                    </div>
+				                                    <div class="weekly_theme_info2">
+				                                        <p>감성 넘치는 여행!</p>
+				                                    </div>
+			                                </li>
+	                      				</c:if>
                                     </c:forEach>
-                                </li>
-                                <li>
-                      				<c:forEach var="data" items="${list }" varStatus="status" begin="2" end="2">
-	                                    <div class="weekly_theme_img">
-		                                    <a href="/prod_detail?no=${data.prod_no }">
-		                                        <img src="../img/${data.prod_img }">
-		                                    </a>
-	                                    </div>
-	                                    <div class="weekly_theme_info">
-	                                        <span>${data.prod_detail }</span>
-	                                    </div>
-	                                    <div class="weekly_theme_info2">
-	                                        <p>낭만 넘치는 도시!</p>
-	                                    </div>
-                                    </c:forEach>
-                                </li>
-                             
-                              	<li>
-                      				<c:forEach var="data" items="${list }" varStatus="status" begin="6" end="6">
-	                                    <div class="weekly_theme_img">
-		                                    <a href="/prod_detail?no=${data.prod_no }">
-		                                        <img src="../img/${data.prod_img }">
-		                                    </a>
-	                                    </div>
-	                                    <div class="weekly_theme_info">
-	                                        <span>${data.prod_detail }</span>
-	                                    </div>
-	                                    <div class="weekly_theme_info2">
-	                                        <p>최고의 아름다움!</p>
-	                                    </div>
-                                    </c:forEach>
-                                </li>
-                             
-   								<li>
-                      				<c:forEach var="data" items="${list }" varStatus="status" begin="7" end="7">
-	                                    <div class="weekly_theme_img">
-	                                        <a href="/prod_detail?no=${data.prod_no }">
-	                                        	<img src="../img/${data.prod_img }">
-	                                        </a>
-	                                    </div>
-	                                    <div class="weekly_theme_info">
-	                                        <span>${data.prod_detail }</span>
-	                                    </div>
-	                                    <div class="weekly_theme_info2">
-	                                        <p>감성 넘치는 여행!</p>
-	                                    </div>
-                                    </c:forEach>
-                                </li>
-                             
                             </ul>
                             
                         </div>
