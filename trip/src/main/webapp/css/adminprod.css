@@ -210,7 +210,9 @@ td {
 	padding: 30px 30px;
 }
 .btn_area{
-margin-left:550px;	
+margin-left:450px;
+width:900px;
+height:200px;	
 }
 .l_btn {
 	width: 150px;
@@ -237,9 +239,20 @@ margin-left:550px;
 .r_btn {
 	width: 150px;
 	height: 70px;
+	border: 1px solid #ccc;
+	background-color: white;
+	cursor:pointer;
+	font-size: 18px;
+	margin-left:10px;
+	padding-left:30px;
+	color: #e82835;
+}
+.w_btn {
+	width: 150px;
+	height: 70px;
 	margin-top: 50px;
 	margin-bottom: 50px;
-	margin-left:370px;
+	
 	border: 1px solid #ccc;
 	background-color: white;
 	cursor:pointer;
@@ -298,3 +311,6 @@ select{
 	
 }
 
+textarea{
+	resize:none;
+}

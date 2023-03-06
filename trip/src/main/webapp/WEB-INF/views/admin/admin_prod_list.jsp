@@ -30,7 +30,8 @@
 					</tbody>
 				</table>
                 <div class="btn_area">
-                	<input type="button" class="r_btn" style="margin-left:500px;" value="상품등록">
+                	<input type="button" class="w_btn" value="추천목록수정">
+                	<input type="button" class="r_btn" value="상품등록">
 				</div>
 			</div>
 		</div>
@@ -40,6 +41,9 @@
 	<script>
 	$(".r_btn").click(function(){
 		location.href="prodform";
+	})
+	$(".w_btn").click(function(){
+		location.href="weeklyform";
 	})
 
 	$(document).ready(function(){

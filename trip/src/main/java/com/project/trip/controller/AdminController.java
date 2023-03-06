@@ -154,6 +154,20 @@ public class AdminController {
 		adMapper.deleteProd(prod_no);
 		return "admin/admin_prod_list";
 	}
+	
+	@GetMapping("/weeklyform")
+	public String weeklyform() {
+		
+		return "/admin/admin_weekly_form";
+	}
+	
+	@GetMapping("/weeklyupdate.do")
+	public String weeklyupdate(@RequestParam("prod_weekly") String prod_weekly, Model model) {
+		int no = Integer.parseInt(prod_weekly);
+		model.addAttribute("post", adMapper.getProductOne(no));
+		return "/admin/admin_prod_update";
+	} 
+	
 }
 
 

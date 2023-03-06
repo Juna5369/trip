@@ -22,4 +22,6 @@ public interface AdminMapper {
 	public ProductVO getProductOne(@Param("prod_no")int prod_no);
 	public int updateProd(ProductVO vo);
 	public int deleteProd(@Param("prod_no")int prod_no);
+	
+	public List<ProductVO> getWeeklyList();
 }
