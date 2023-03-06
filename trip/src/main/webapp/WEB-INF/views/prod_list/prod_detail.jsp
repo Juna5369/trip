@@ -859,20 +859,19 @@
        				<div class="termsmodal-bg_no" onclick="goaway_no()"></div>
                 		<div class="termsmodal-wrap_no">
                         	<div class="termsmodal-title_no">
+                            	<h1 class="h1_no">비회원 예약</h1>
                             	<em class="termsmodal-close_no" onclick="goaway_no()">×</em>
-                            	<h1 style="display:inline-block;">비회원 예약</h1>
-                            	
+                            </div>
                             	<div id="box_no">
-                            	<form name="frm_mo" action="/reservation_page" method="post" id="fmo">
-                       
+                            	<form name="frm_mo" class="frm_no" action="/reservation_page" method="post" id="fmo">                     
                             		<label for="no_id" id="lbl_no">예약번호</label>
                             		<input type="text" name="no_id"id="no_id"class="no_res" value="" readonly><br>
                             		<label for="no_pw" id="lbl_no">비밀번호</label>
                             		<input type="password" name="no_pw"id="no_pw"class="no_res" value="" ><br>
                             		<label for="no_name" id="lbl_no">이름</label>
-                            		<input type="text" name="no_name"id="no_name"class="no_res"value="" ><br>
+                            		<input type="text" name="no_name"id="no_name"class="no_res1"value="" ><br>
                             		<label for="no_tel" id="lbl_no">연락처</label>
-                            		<input type="text" name="no_tel"id="no_tel"class="no_res" value="" ><br>
+                            		<input type="text" name="no_tel"id="no_tel"class="no_res2" value="" ><br>
                             		<input type="submit" id="no_btn" class="no_btn_1"value="예약하기" onclick="return no_check()">
                             		<input type="hidden" name="no_prod_no" id="no_prod_no" value="${vo.prod_no }">
                             		<input type="hidden" name="no_ch_val" id="no_ch_val" value="">
@@ -880,7 +879,6 @@
                             		<input type="hidden" name="no_total" id="no_total" value="">
 								</form>
 								</div>
-    						</div>
 						</div>
            	 	</div>
             <div class="meetingmodal">

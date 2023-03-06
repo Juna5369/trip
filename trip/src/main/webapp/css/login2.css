@@ -19,8 +19,8 @@
     position: relative;
     overflow: auto;
     background-color: white;
-    height: 650px;
-    width: 850px;
+    height: 600px;
+    width: 800px;
     opacity: 1;
     z-index: 10;
 }
@@ -57,10 +57,14 @@
 }
 #no_tbl{
 	border-collapse:collapse;
-	height: 650px;
+	width:700px;
+	height: 150px;
+	margin-bottom: 20px;
 }
-.tbl_no{
-	height: 30px;
+#no_tbl2{
+	border-collapse:collapse;
+	width:700px;
+	height: 500px;
 }
 #box_no{
 	margin-top: 30px;

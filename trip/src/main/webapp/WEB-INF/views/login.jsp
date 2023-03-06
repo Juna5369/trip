@@ -104,16 +104,21 @@
                        	<div id="box_no">
 						<table border="1" id="no_tbl">
 							<thead>
-					<!-- 			<tr><th>예약번호</th><th>상품번호</th><th>상품명</th><th>예약일</th><th>예약인원 (성인)</th><th>가격 (성인)</th><th>예약인원 (아동)</th><th>가격 (아동)</th><th>결제금액</th>
-								</tr>   -->
-								<tr><th>예약번호</th><th>상품번호</th><th colspan="2">상품명</th><th>예약일</th>
-							<!-- 	<th>예약인원 (성인)</th><th>가격 (성인)</th><th>예약인원 (아동)</th><th>가격 (아동)</th><th>결제금액</th>   -->
+								<tr><th>예약번호</th><th>상품번호</th><th colspan="2">상품명</th><th>예약일</th></tr>
 							</thead>
 							<tbody id="tbody">
 									
 							</tbody>
 						</table>
-
+						
+						<table border="1" id="no_tbl2">
+							<thead>
+								<tr><th>예약인원 (성인)</th><th>가격</th><th>예약인원 (아동)</th><th>가격</th><th>결제금액</th></tr>
+							</thead>
+							<tbody id="tbody2">
+									
+							</tbody>
+						</table>
 					</div>
     			</div>
 			</div>
@@ -274,10 +279,12 @@
 		const submit_2 = document.querySelector("#submit_2");
 		submit_2.addEventListener('click', show_noRes);
 		const tbody = document.querySelector("#tbody");
- 		
+		const tbody2 = document.querySelector("#tbody2");
+		
 		function show_noRes(){
 			const xhttp = new XMLHttpRequest();
 			tbody.replaceChildren();
+			tbody2.replaceChildren();
 			xhttp.onload = function() {
 				if(this.responseText==""){
 					alert("아이디와 비밀번호를 확인하세요.");
@@ -288,8 +295,9 @@
 					
 					for(let i = 0; i < obj.length; i++){
 						tbody.innerHTML += '<tr><td class="tbl_no">' + obj[i].res_no + '</td><td>'
-						+ obj[i].prod_no + '</td><td colspan="2">' + obj[i].prod_name + '</td><td>' + obj[i].res_date + '</td></tr><tr><th>예약인원 (성인)</th>'
-						+ '<th>가격</th><th>예약인원 (아동)</th><th>가격</th><th>결제금액</th></tr><tr><td>'
+						+ obj[i].prod_no + '</td><td colspan="2">' + obj[i].prod_name + '</td><td>' + obj[i].res_date + '</td></tr>'
+						
+						tbody2.innerHTML += '<tr><td>'
 						+ obj[i].res_adult + '</td><td>'
 						+ obj[i].prod_price_adult + '</td><td>' + obj[i].res_child + '</td><td>' + obj[i].prod_price_child + '</td><td>'
 						+ obj[i].res_price + '</td></tr><tr><th>예약자</th><td colspan="8">'
