@@ -51,8 +51,10 @@ public class PayController {
 		session.setAttribute("id", res.getId());
 		String order_no = res.getId()+"-"+res.getProd_no();
 		session.setAttribute("order_no", order_no);
+		
 		String strPrice = Integer.toString(res.getRes_price());
 		session.setAttribute("price", strPrice);
+		System.out.println(strPrice);
 		
 		OrderVO order = new OrderVO();
 		order.setProd_no(res.getProd_no());

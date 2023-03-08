@@ -23,4 +23,6 @@ public class ProductVO {
 	private String prod_category; // 카테고리
 	private String prod_hotel;
 	private String prod_plane;
+	private String prod_main_point; //상품 핵심포인트
+	private String prod_weekly; //weekly 추천
 }

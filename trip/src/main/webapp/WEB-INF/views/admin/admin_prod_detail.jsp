@@ -83,6 +83,25 @@
 						<tr>
 						<th>카테고리</th><td>${post.prod_category }</td>
 						</tr>
+						<tr>
+						<th>Weekly추천</th><td>
+						<c:if test="${post.prod_weekly eq '' }">
+						해당없음
+						</c:if>
+						<c:if test="${post.prod_weekly eq '1' }">
+						1번
+						</c:if>
+						<c:if test="${post.prod_weekly eq '2' }">
+						2번
+						</c:if>
+						<c:if test="${post.prod_weekly eq '3' }">
+						3번
+						</c:if>
+						<c:if test="${post.prod_weekly eq '4' }">
+						4번
+						</c:if>
+						</td>
+						</tr>
 						</table>
 						</div>
 						

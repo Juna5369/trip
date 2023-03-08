@@ -39,6 +39,19 @@
 							<th>부가설명</th><td><input type="text" name="prod_detail"></td>
 						</tr>
 						<tr>
+							<th>상품포인트</th><td><textarea cols="80" rows="20">
+<ul>
+    <li>① 편리하고 안전한 진에어 이용</li>
+    <li>② 막탄섬 핵심 관광</li>
+    <li>③ 과일 시장 방문</li>
+    <li>④ 전문가와 함께 수영장 다이빙 강습</li>
+    <li>⑤ 여행의 묘미 전신마사지 1시간</li>
+    <li>⑥ 맛있는 특식 3회</li>
+    <li>⑦ 비교필수! 거품없는 합리적 가격의 선택관광</li>
+</ul>
+							</textarea></td>
+						</tr>
+						<tr>
 							<th>테마</th><td>
 								<select id="prod_theme" name="prod_theme">
 									<option value="">없음</option>
@@ -82,8 +95,20 @@
 							 </select>
 							</td>
 						</tr>
+						<tr>
+							<th>Weekly 상품</th>
+							<td>
+							<select id="prod_weekly" name="prod_weekly">
+								<option value="">미선택</option>
+								<option value="1">1번</option>
+								<option value="2">2번</option>
+								<option value="3">3번</option>
+								<option value="4">4번</option>
+							 </select>
+							</td>
+						</tr>
 					</table>
-				<input type="submit" value="가입완료" class="u_btn">
+				<input type="submit" value="등록완료" class="u_btn">
 				</form>
 			</div>
 		</div>

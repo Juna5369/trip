@@ -223,14 +223,14 @@
                         <br>
                         <h3>여행 주요 일정</h3>
                         <br>
-                        <em>3박 5일 진에어</em>
+                        <em> ${vo.prod_plane }</em>
                         
                         <p>출발 : <fmt:formatDate value="${start }" pattern="yyyy년 MM월 dd일"/> → 총 04시간 40분 소요</p>
                         
                         <p>도착 : <fmt:formatDate value="${end }" pattern="yyyy년 MM월 dd일"/> → 04시간 25분 소요</p>
                         
                         <p>여행도시 : ${vo.prod_city }</p> 
-                        <p>예약현황 예약 : ${vo.prod_cur_person }명 좌석 : ${vo.prod_max_person }석 (최소출발 : 성인 ${vo.prod_min_person }명)</p> 
+                        <p>예약현황 예약 : ${vo.prod_cur_person }명<br> 좌석 : ${vo.prod_max_person }석 (최소출발 : 성인 ${vo.prod_min_person }명)</p> 
                     </div>
                     <div id="travel_price_detail">
                         <br>
@@ -247,7 +247,7 @@
                             <tbody>
 
                                 <td style="border-left: 0px solid white; text-align: center;">기본상품</td><td style="text-align: center;"><em id="product_price">${vo.prod_price_adult}</em>원<br>
-                                    유류할증료 104,600원 포함(db)</td>
+                                    유류할증료 104,600원 포함</td>
                                 <td style="text-align: center;"><em id="product_price">${vo.prod_price_child}</em>원<br>
 
                                     유류할증료 104,600원 포함</td>
@@ -296,15 +296,7 @@
                             <!-- (아래부터 대충 소개 내용입니다) -->
                             <h4>상품 핵심 포인트</h4>
                             <br>
-                            <ul>
-                                <li>① 편리하고 안전한 진에어 이용</li>
-                                <li>② 막탄섬 핵심 관광</li>
-                                <li>③ 과일 시장 방문</li>
-                                <li>④ 전문가와 함께 수영장 다이빙 강습</li>
-                                <li>⑤ 여행의 묘미 전신마사지 1시간</li>
-                                <li>⑥ 맛있는 특식 3회</li>
-                                <li>⑦ 비교필수! 거품없는 합리적 가격의 선택관광</li>
-                            </ul>
+								${vo.prod_main_point }
                             <br>
                             <h4>거긴어때와 함께, 즐거운 안심여행 "SAFETY&JOY"</h4>
                             <br>
@@ -867,20 +859,19 @@
        				<div class="termsmodal-bg_no" onclick="goaway_no()"></div>
                 		<div class="termsmodal-wrap_no">
                         	<div class="termsmodal-title_no">
+                            	<h1 class="h1_no">비회원 예약</h1>
                             	<em class="termsmodal-close_no" onclick="goaway_no()">×</em>
-                            	<h1 style="display:inline-block;">비회원 예약</h1>
-                            	
+                            </div>
                             	<div id="box_no">
-                            	<form name="frm_mo" action="/reservation_page" method="post" id="fmo">
-                       
+                            	<form name="frm_mo" class="frm_no" action="/reservation_page" method="post" id="fmo">                     
                             		<label for="no_id" id="lbl_no">예약번호</label>
                             		<input type="text" name="no_id"id="no_id"class="no_res" value="" readonly><br>
                             		<label for="no_pw" id="lbl_no">비밀번호</label>
                             		<input type="password" name="no_pw"id="no_pw"class="no_res" value="" ><br>
                             		<label for="no_name" id="lbl_no">이름</label>
-                            		<input type="text" name="no_name"id="no_name"class="no_res"value="" ><br>
+                            		<input type="text" name="no_name"id="no_name"class="no_res1"value="" ><br>
                             		<label for="no_tel" id="lbl_no">연락처</label>
-                            		<input type="text" name="no_tel"id="no_tel"class="no_res" value="" ><br>
+                            		<input type="text" name="no_tel"id="no_tel"class="no_res2" value="" ><br>
                             		<input type="submit" id="no_btn" class="no_btn_1"value="예약하기" onclick="return no_check()">
                             		<input type="hidden" name="no_prod_no" id="no_prod_no" value="${vo.prod_no }">
                             		<input type="hidden" name="no_ch_val" id="no_ch_val" value="">
@@ -888,7 +879,6 @@
                             		<input type="hidden" name="no_total" id="no_total" value="">
 								</form>
 								</div>
-    						</div>
 						</div>
            	 	</div>
             <div class="meetingmodal">
