@@ -100,14 +100,14 @@
 				<table class="tb_mypage">
 					<tr style="border-bottom: 2px">
 						<th><h3>리뷰점수</h3></th>
-						<th><h3>상품번호</h3></th>
+						<th><h3>리뷰번호</h3></th>
 						<th><h3>상품사진</h3></th>
 						<th><h3>리뷰작성날짜</h3></th>
 					</tr>
 					<c:forEach var="review" items="${reviewList }" begin="0" end="4">
 						<tr>
 							<td>${review.rev_rating }</td>
-							<td>${review.prod_no }</td>
+							<td><a href="reviewDetail?rev_no=${review.rev_no } &id=${sessionScope.id}">${review.rev_no }</a></td>
 							<td><img src="img/${review.rev_img }"></td>
 							<td>${review.rev_date }</td>
 						</tr>

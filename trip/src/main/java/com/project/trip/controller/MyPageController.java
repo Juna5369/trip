@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.trip.mapper.IMemberMapper;
+import com.project.trip.mapper.ProductMapper;
 import com.project.trip.vo.LikeVO;
 import com.project.trip.vo.MemberVO;
 import com.project.trip.vo.OrderVO;
@@ -29,7 +30,10 @@ public class MyPageController {
 
 	@Autowired
 	IMemberMapper mapper;
-
+	
+	@Autowired
+	ProductMapper pmapper;
+	
 	@GetMapping("/mypage")
 	public void mypage(Model model, String id) {
 
@@ -173,5 +177,30 @@ public class MyPageController {
 		model.addAttribute("rlist", rlist);
 		return "myList/reservation_list";
 	}
-
+	
+	@GetMapping("/reviewDetail")
+	public void reviewDetail(int rev_no ,Model model,String id) {
+		ReviewVO rv = mapper.getReviewDetail(rev_no);
+		MemberVO mv = mapper.selectOne(id);
+		ProductVO pv = pmapper.getListOne(rv.getProd_no());
+		
+		model.addAttribute("pv",pv);
+		model.addAttribute("rv",rv);
+		model.addAttribute("mv",mv);
+		
+	}
+	@PostMapping("/updateReview")
+	public String updateReview(ReviewVO rev) {
+		mapper.updateReview(rev);
+		
+		
+		return "index";
+	}
+	@GetMapping("deleteReview")
+	public String deleteReview(int rev_no) {
+		mapper.deleteReview(rev_no);
+		
+		
+		return "index";
+	}
 }
