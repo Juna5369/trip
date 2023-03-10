@@ -205,7 +205,7 @@
 				return false;
 			} else {
 				
-				alert("회원가입 완료")
+				alert("회원가입 완료");
 				return true;
 			}
 			
